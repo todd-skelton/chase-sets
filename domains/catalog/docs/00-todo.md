@@ -6,7 +6,7 @@ This checklist is the drill-down work plan for Catalog (curation, versions, corr
 
 - Version system: `domains/catalog/docs/15-version-system.md`
 - Catalog governance: `domains/catalog/docs/24-catalog-governance-and-corrections.md`
-- Glossary/SKU identity: `artifacts/02-domain-model-and-glossary.md`
+- Glossary/Version identity: `artifacts/02-domain-model-and-glossary.md`
 
 ## Version model
 
@@ -14,7 +14,7 @@ This checklist is the drill-down work plan for Catalog (curation, versions, corr
 - [ ] Confirm MVP version modeling conventions + canonical examples: [02-mvp-version-keys-and-facets.md](02-mvp-version-keys-and-facets.md), [03-version-model-examples.md](03-version-model-examples.md)
 - [ ] Define validation rules (invalid combos, required fields)
 - [ ] Define normalization rules for VersionPath (stable ordering, casing)
-- [ ] Define deterministic `skuId` derivation and error codes: [01-sku-identity-and-resolution.md](01-sku-identity-and-resolution.md)
+- [ ] Define deterministic `versionId` derivation and error codes: [01-version-identity-and-resolution.md](01-version-identity-and-resolution.md)
 
 ## Catalog item lifecycle
 
@@ -25,7 +25,7 @@ This checklist is the drill-down work plan for Catalog (curation, versions, corr
 ## Projection outputs
 
 - [ ] Define the “public Item view” projection
-- [ ] Define SKU facet materialization rules for search filtering (feeds Search filter config)
+- [ ] Define Version facet materialization rules for search filtering (feeds Search filter config)
 
 ## Tests (when code starts)
 

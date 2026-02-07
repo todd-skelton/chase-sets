@@ -18,7 +18,7 @@ This is requirements/spec only (no implementation).
 
 ## Canonical references
 
-- SKU identity + VersionPath normalization: [01-sku-identity-and-resolution.md](01-sku-identity-and-resolution.md)
+- Version identity + VersionPath normalization: [01-version-identity-and-resolution.md](01-version-identity-and-resolution.md)
 - Glossary definitions: [../../../artifacts/02-domain-model-and-glossary.md](../../../artifacts/02-domain-model-and-glossary.md)
 - Version system principles: [15-version-system.md](15-version-system.md)
 
@@ -32,7 +32,7 @@ This doc follows the Catalog terminology for concepts while keeping version-syst
 - **Option** = selectable characteristic (represented by `optionKey`).
 - **Option Value** = selectable value (represented by `optionValueKey`).
 - **Version** = resolved selection of Option Values (represented by `VersionPath`).
-- **SKU** = stable identifier for an Item + Version (`skuId`).
+- **Version ID** = stable identifier for an Item + Version (`versionId`).
 
 ---
 
@@ -48,7 +48,7 @@ This doc follows the Catalog terminology for concepts while keeping version-syst
 
 ## Identity posture (important)
 
-In MVP, we treat these as **Item identity**, not Version/SKU distinctions (unless explicitly modeled later):
+In MVP, we treat these as **Item identity**, not Version/Version distinctions (unless explicitly modeled later):
 
 - Set membership and set names
 - Card number
@@ -58,7 +58,7 @@ In MVP, we treat these as **Item identity**, not Version/SKU distinctions (unles
 Rationale:
 
 - Keeps Versions focused on buyer/seller-selectable attributes at listing/offer time.
-- Prevents SKU explosion and confusing selector UX.
+- Prevents Version explosion and confusing selector UX.
 
 If we later decide “printing/edition” is an option, it must be added explicitly with a migration plan.
 
@@ -89,8 +89,8 @@ Do we require the system to support reusable “modules” (subtrees) and overri
 
 When a Version Model changes, what must remain true?
 
-- Existing SKUs remain referentially valid forever
-- New options create new SKUs without changing old `skuId`s
+- Existing Versions remain referentially valid forever
+- New options create new Versions without changing old `versionId`s
 - Breaking key changes require an explicit migration plan (never silent)
 
 ### Q4) Validation + error reporting
@@ -98,7 +98,7 @@ When a Version Model changes, what must remain true?
 What is the minimum validation and error surface?
 
 - Deterministic normalization (server-side)
-- Machine-readable error codes (see [01-sku-identity-and-resolution.md](01-sku-identity-and-resolution.md))
+- Machine-readable error codes (see [01-version-identity-and-resolution.md](01-version-identity-and-resolution.md))
 - “Explainability” payloads (which option is missing/invalid) to support good UX
 
 ### Q5) Facet materialization rules
@@ -125,17 +125,17 @@ What changes must be safe (no code changes) in MVP?
 2. Human-facing labels (e.g., “10 GEM MT”) are display-only and may change.
 3. Changing a key is a breaking change and requires an explicit migration plan.
 
-See: [01-sku-identity-and-resolution.md](01-sku-identity-and-resolution.md)
+See: [01-version-identity-and-resolution.md](01-version-identity-and-resolution.md)
 
 ---
 
 ## Facet conventions (MVP)
 
-Flattened facets are produced during `skuId` resolution and are used for:
+Flattened facets are produced during `versionId` resolution and are used for:
 
 - Search filtering
-- Market view grouping (per SKU)
-- Inventory balances (per SKU)
+- Market view grouping (per Version)
+- Inventory balances (per Version)
 
 Rules:
 
@@ -172,7 +172,7 @@ Example VersionPath (sealed):
 Notes:
 
 - The specific option keys/values are admin-configured and can differ per category.
-- The SKU identity includes all selected steps along the enabled path.
+- The Version identity includes all selected steps along the enabled path.
 
 ### Example B — Apparel: multi-option matrix (Size × Color)
 
@@ -193,4 +193,4 @@ Notes:
 
 Adding new options (new colors, new sizes, new grading companies, new grade values, etc.) should be treated as **data/config expansion**.
 
-The only changes that require extra ceremony are changes to stable keys (`optionKey`, `optionValueKey`, and facet keys), because those affect SKU identity and long-term referential integrity.
+The only changes that require extra ceremony are changes to stable keys (`optionKey`, `optionValueKey`, and facet keys), because those affect Version identity and long-term referential integrity.

@@ -33,7 +33,7 @@ This doc is intentionally scoped to MVP workflows and avoids deep technical desi
 
 ## Cross-cutting user stories (workflow-aligned)
 
-### 1) Catalog search → item detail → SKU resolution
+### 1) Catalog search → item detail → Version resolution
 
 **Story 1.1 — Search by identifiers**
 
@@ -53,14 +53,14 @@ Acceptance criteria:
 - Hybrid retrieval/ranking (lexical + vector) is used.
 - If embeddings are unavailable, results degrade to lexical-only (with monitoring).
 
-**Story 1.3 — Deterministic SKU selection**
+**Story 1.3 — Deterministic Version selection**
 
-As a buyer or seller, I can choose version attributes (condition/grade/etc.) and the system resolves a stable `skuId`.
+As a buyer or seller, I can choose version attributes (condition/grade/etc.) and the system resolves a stable `versionId`.
 
 Acceptance criteria:
 
-- SKU resolution is deterministic and stable over time.
-- SKU identity rules are documented in the glossary.
+- Version resolution is deterministic and stable over time.
+- Version identity rules are documented in the glossary.
 
 ---
 
@@ -77,7 +77,7 @@ Acceptance criteria:
 
 **Story 2.2 — Create listing reserves inventory**
 
-As a seller, when I create a listing for a SKU and quantity at a ship-from location, the system reserves the inventory so it cannot be oversold.
+As a seller, when I create a listing for a Version and quantity at a ship-from location, the system reserves the inventory so it cannot be oversold.
 
 Acceptance criteria:
 
@@ -100,11 +100,11 @@ Acceptance criteria:
 
 **Story 3.1 — Place an offer**
 
-As a buyer, I can make an offer for a SKU and quantity so I can wait for a seller to accept.
+As a buyer, I can make an offer for a Version and quantity so I can wait for a seller to accept.
 
 Acceptance criteria:
 
-- Offers appear in the SKU market view.
+- Offers appear in the Version market view.
 - Offers are standing until canceled.
 
 **Story 3.2 — No funds hold at offer creation**
@@ -126,7 +126,7 @@ As the platform, matching must be deterministic and auditable so outcomes are ex
 
 Acceptance criteria:
 
-- Matching follows price-time priority within a SKU.
+- Matching follows price-time priority within a Version.
 - Self-trade prevention is enforced (an org cannot match itself).
 - Every execution emits `TradeExecuted(executionId, ...)` and is idempotent by `executionId`.
 
@@ -163,7 +163,7 @@ Acceptance criteria:
 
 **Story 5.3 — Cart optimizer selects listings at checkout**
 
-As a buyer, I can add `SKU + quantity` to cart, and at checkout the system selects listings to minimize my total cost.
+As a buyer, I can add `Version + quantity` to cart, and at checkout the system selects listings to minimize my total cost.
 
 Acceptance criteria:
 

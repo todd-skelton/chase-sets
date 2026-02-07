@@ -29,7 +29,7 @@ It follows the domain map in `artifacts/15-domain-map-and-integration-architectu
 **Contracts:**
 
 - **Command (Orders → Fulfillment):** `ReserveInventory`
-  - Inputs: `checkoutId`, `orderId`, `sellerOrgId`, `originLocationId?`, `lineItems[] (skuId, quantity)`
+  - Inputs: `checkoutId`, `orderId`, `sellerOrgId`, `originLocationId?`, `lineItems[] (versionId, quantity)`
 - **Event (Fulfillment → Orders):** `InventoryReserved` / `InventoryReservationFailed`
   - Includes reservation id and per-line status.
 
@@ -44,7 +44,7 @@ It follows the domain map in `artifacts/15-domain-map-and-integration-architectu
 **Contracts:**
 
 - **Event (Marketplace → Search):** `OrderBookSnapshotUpdated`
-  - Inputs: `skuId`, `bestBid`, `bestAsk`, `depthSummary`, `updatedAt`.
+  - Inputs: `versionId`, `bestBid`, `bestAsk`, `depthSummary`, `updatedAt`.
 
 **Decision rule:** Search must not be the source for trading decisions; Marketplace remains authoritative.
 

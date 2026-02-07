@@ -22,7 +22,7 @@ See also:
 
 1. **Catalog search** (primary): users search by name, set, card number.
 2. **Discovery/browse**: browse sets, categories, and high-level forms (admin-configured; examples: Conditioned/Sealed/Graded).
-3. **Market views (per SKU)**: view all listings + offers for a SKU; sorting by price/time.
+3. **Market views (per Version)**: view all listings + offers for a Version; sorting by price/time.
 
 ---
 
@@ -33,9 +33,9 @@ See also:
 - VersionPath-derived facets (admin-configured; examples: `type`, `company`, `grade`, `language`, `finish`, `condition`, `size`, `color`).
 - Item fields (set, number, rarity, etc.).
 
-Catalog owns the stable facet keys and SKU identity contract:
+Catalog owns the stable facet keys and Version identity contract:
 
-- `domains/catalog/docs/01-sku-identity-and-resolution.md`
+- `domains/catalog/docs/01-version-identity-and-resolution.md`
 - `domains/catalog/docs/02-mvp-version-keys-and-facets.md`
 
 ### Admin-defined filter configuration (must be configurable)

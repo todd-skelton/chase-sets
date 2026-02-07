@@ -22,7 +22,7 @@ This document uses the version-system framing to describe how the Catalog define
 - **Option** = the selectable characteristic that defines a Version (represented by `optionKey`).
 - **Option Value** = the selectable value within an Option (represented by `optionValueKey`).
 - **Version** = the resolved selection of Option Values (represented by `versionPath`).
-- **SKU** = the stable identifier for an Item + Version (`skuId`).
+- **Version ID** = the stable identifier for an Item + Version (`versionId`).
 
 The schema names (`VersionModel`, `Option`, `OptionValue`) reflect the config/data shapes, and the business terminology above should be used in prose and downstream docs.
 
@@ -32,7 +32,7 @@ The schema names (`VersionModel`, `Option`, `OptionValue`) reflect the config/da
 
 1. **Config over code**: all behavior defined in data.
 2. **Selection graph, not flat attributes**: selection is a path through a tree/DAG.
-3. **Single source of truth**: a resolved Version Path defines a sellable Version/SKU.
+3. **Single source of truth**: a resolved Version Path defines a sellable Version/Version ID.
 4. **Composable & reusable**: templates/modules reused across Items.
 5. **Searchable & indexable**: selections flatten into facets.
 
@@ -52,15 +52,15 @@ The version system must support these end-to-end uses without hardcoding domain-
 3. **API validates and normalizes a Version Path**
    - Accept user-provided selections.
    - Validate against the VersionModel.
-   - Normalize to canonical traversal order (identity-safe) per [01-sku-identity-and-resolution.md](01-sku-identity-and-resolution.md).
-4. **Deterministic `skuId` resolution**
-   - Resolve a stable `skuId` from `itemId + normalizedVersionPath`.
+   - Normalize to canonical traversal order (identity-safe) per [01-version-identity-and-resolution.md](01-version-identity-and-resolution.md).
+4. **Deterministic `versionId` resolution**
+   - Resolve a stable `versionId` from `itemId + normalizedVersionPath`.
    - Return the normalized path + `flattenedFacets` for downstream domains.
 5. **Search filtering and grouping**
    - Materialize `flattenedFacets` (stable keys/values) that Search can index and expose as config-driven filters.
 6. **Marketplace/Inventory compatibility**
-   - Marketplace groups bids/listings by `skuId`.
-   - Inventory tracks balances by `skuId`.
+   - Marketplace groups bids/listings by `versionId`.
+   - Inventory tracks balances by `versionId`.
 
 ---
 
@@ -75,7 +75,7 @@ Examples:
 
 ### Contract
 
-- Sorting is **presentation-only** and MUST NOT affect SKU identity. Identity is based on stable keys (`optionKey`/`optionValueKey`).
+- Sorting is **presentation-only** and MUST NOT affect Version identity. Identity is based on stable keys (`optionKey`/`optionValueKey`).
 - The model must allow admin-authored ordering for both:
   - options (within the staged traversal)
   - option values (within an option)
@@ -140,11 +140,11 @@ Example (graded card):
 
 ---
 
-## SKU model (Item + Version)
+## Version model (Item + Version)
 
-A **sellable SKU** is defined as:
+A **sellable Version** is defined as:
 
-- `SKU = Item + VersionPath`
+- `Version = Item + VersionPath`
 
 Suggested fields:
 
@@ -224,6 +224,6 @@ Allow template/Item-level overrides without modifying global modules.
 
 1. Event sourcing: which VersionModel changes are captured as events (publish, deprecate, supersede) and what is the immutable version boundary?
 2. Projections: which read models do we need first (JSON for UI, relational for analytics, search facets, caches)?
-3. SKU identifier strategy: store full `versionPath` and/or derived hash.
+3. Version identifier strategy: store full `versionPath` and/or derived hash.
 4. Validation engine boundaries: where rules live (API vs shared library).
 5. How to detect unreachable options and conflicting overrides.
