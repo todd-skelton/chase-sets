@@ -19,7 +19,7 @@ This is **documentation-only** and is expected to evolve as we validate ADRs.
 
 ## Workflow index (MVP)
 
-1. Catalog search → item detail → SKU resolution
+1. Catalog search → item detail → Version resolution
 2. Create listing (sell) with location-scoped inventory
 3. Make offer (buy)
 4. Match execution (buy-now/sell-now or crossing) → `TradeExecuted`
@@ -29,11 +29,11 @@ This is **documentation-only** and is expected to evolve as we validate ADRs.
 
 ---
 
-## 1) Catalog search → item detail → SKU resolution
+## 1) Catalog search → item detail → Version resolution
 
 **Primary domains:** Catalog, Search
 
-**Outcome:** user sees the correct Item and resolves a SKU deterministically.
+**Outcome:** user sees the correct Item and resolves a Version deterministically.
 
 ```mermaid
 sequenceDiagram
@@ -56,13 +56,13 @@ sequenceDiagram
   API-->>Web: item detail
 
   U->>Web: Select version path
-  Web->>API: POST /skus/resolve
-  API-->>Web: skuId
+  Web->>API: POST /versions/resolve
+  API-->>Web: versionId
 ```
 
 **Notes / invariants**
 
-- SKU resolution must be deterministic and stable for historical referential integrity.
+- Version resolution must be deterministic and stable for historical referential integrity.
 
 ---
 
@@ -79,10 +79,10 @@ sequenceDiagram
   participant M as Marketplace
   participant F as Fulfillment (Inventory)
 
-  S->>API: CreateListing(skuId, price, locationId)
-  API->>F: ReserveInventoryForListing(skuId, locationId, qty)
+  S->>API: CreateListing(versionId, price, locationId)
+  API->>F: ReserveInventoryForListing(versionId, locationId, qty)
   F-->>API: ReservationCreated (or rejected)
-  API->>M: PlaceListing(listingId, skuId, price, locationId)
+  API->>M: PlaceListing(listingId, versionId, price, locationId)
   M-->>API: ListingCreated
   API-->>S: ListingCreated
 ```
@@ -98,7 +98,7 @@ Locked MVP policy:
 
 **Primary domains:** Marketplace
 
-**Outcome:** a buyer offer exists in the market for that SKU.
+**Outcome:** a buyer offer exists in the market for that Version.
 
 ```mermaid
 sequenceDiagram
@@ -106,7 +106,7 @@ sequenceDiagram
   participant API as API
   participant M as Marketplace
 
-  B->>API: MakeOffer(skuId, price)
+  B->>API: MakeOffer(versionId, price)
   API->>M: PlaceBid (internal)
   M-->>API: BidPlaced
   API-->>B: BidPlaced
@@ -131,7 +131,7 @@ sequenceDiagram
   participant O as Orders
 
   M->>M: Match bids/listings (deterministic)
-  M-->>O: TradeExecuted(executionId, buyer, seller, skuId, qty, unitPrice, locationId)
+  M-->>O: TradeExecuted(executionId, buyer, seller, versionId, qty, unitPrice, locationId)
   O-->>O: Create Checkout + Order(s)
 ```
 
@@ -153,7 +153,7 @@ sequenceDiagram
 - “Buy now” is primary.
 - “Add to cart” is secondary.
 - “Make offer” is tertiary.
-- Cart semantics: cart items represent `SKU + quantity` (not a specific seller listing).
+- Cart semantics: cart items represent `Version + quantity` (not a specific seller listing).
 - At checkout submission, an optimizer selects listings to fulfill the entire order with the least cost and/or fewest shipments.
 
 Payments/payout note (MVP policy):

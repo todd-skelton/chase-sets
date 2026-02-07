@@ -1,4 +1,4 @@
-# Slice 1 — Catalog Discovery (Search → Item Detail → SKU Resolve)
+# Slice 1 — Catalog Discovery (Search → Item Detail → Version Resolve)
 
 ## Purpose
 
@@ -7,15 +7,15 @@ Define the **implementation-ready** scope for the first breadth-first MVP slice:
 - Search Items
 - Open item detail
 - Select a valid VersionPath
-- Resolve a deterministic, stable `skuId`
+- Resolve a deterministic, stable `versionId`
 
-This slice is the foundation for all later marketplace flows (listing, offers, checkout) because everything references `skuId`.
+This slice is the foundation for all later marketplace flows (listing, offers, checkout) because everything references `versionId`.
 
 Canonical story references:
 
 - Story 1.1–1.3 in [20-mvp-problem-statements-and-user-stories.md](20-mvp-problem-statements-and-user-stories.md)
 - Workflow #1 in [18-mvp-workflows-and-event-flows.md](18-mvp-workflows-and-event-flows.md)
-- Definitions for SKU/VersionPath/etc. in [02-domain-model-and-glossary.md](02-domain-model-and-glossary.md)
+- Definitions for Version/VersionPath/etc. in [02-domain-model-and-glossary.md](02-domain-model-and-glossary.md)
 
 ---
 
@@ -27,7 +27,7 @@ A user can complete, in local dev:
 2. See search results with config-driven filters
 3. Open an Item detail page
 4. Select option values through a guided selector
-5. Resolve a `skuId` deterministically
+5. Resolve a `versionId` deterministically
 
 ---
 
@@ -42,10 +42,10 @@ A user can complete, in local dev:
 ## Component owners (where work lands)
 
 - Domains:
-  - Catalog: version model, SKU identity rules
+  - Catalog: version model, Version identity rules
   - Search: query parsing, ranking rules, golden query evaluation
 - Apps:
-  - `apps/api`: search, item detail, sku resolve HTTP endpoints
+  - `apps/api`: search, item detail, version resolve HTTP endpoints
   - `apps/web`: search page, item detail page, version selector UX
   - `apps/workers`: projection → search indexing pipeline (replay-safe)
 - Packages:
@@ -56,17 +56,17 @@ A user can complete, in local dev:
 
 ## Dependency-minimizing build approach
 
-Search is a read-side domain that depends on **Catalog defining stable facet keys and SKU identity**.
+Search is a read-side domain that depends on **Catalog defining stable facet keys and Version identity**.
 
 To keep Slice 1 breadth-first without getting blocked by other domains, build it in this order:
 
-1. **Catalog first (no external dependencies):** lock VersionPath normalization, `skuId` derivation, and facet materialization keys.
+1. **Catalog first (no external dependencies):** lock VersionPath normalization, `versionId` derivation, and facet materialization keys.
 2. **Search second (depends on Catalog keys only):** index mapping/analyzers/query parsing/golden queries.
 3. **API/Web third:** wire endpoints and UX against the locked contracts.
 
 Catalog contract reference:
 
-- [../domains/catalog/docs/01-sku-identity-and-resolution.md](../domains/catalog/docs/01-sku-identity-and-resolution.md)
+- [../domains/catalog/docs/01-version-identity-and-resolution.md](../domains/catalog/docs/01-version-identity-and-resolution.md)
 - [../domains/catalog/docs/02-mvp-version-keys-and-facets.md](../domains/catalog/docs/02-mvp-version-keys-and-facets.md)
 
 ---
@@ -106,7 +106,7 @@ Catalog contract reference:
 
 ---
 
-### EP-DISC-02 — Item detail + version selector + SKU resolve
+### EP-DISC-02 — Item detail + version selector + Version resolve
 
 **Stories:** 1.3
 
@@ -114,22 +114,22 @@ Catalog contract reference:
 
 - Item detail returns a Version Model suitable for rendering the selector.
 - VersionPath normalization is deterministic (stable ordering/casing rules).
-- `skuId` resolution is deterministic across time and environments given the same Item + VersionPath.
+- `versionId` resolution is deterministic across time and environments given the same Item + VersionPath.
 
 **Dependencies**
 
 - Version system principles: [../domains/catalog/docs/15-version-system.md](../domains/catalog/docs/15-version-system.md)
-- Glossary definitions for SKU/VersionPath: [02-domain-model-and-glossary.md](02-domain-model-and-glossary.md)
+- Glossary definitions for Version/VersionPath: [02-domain-model-and-glossary.md](02-domain-model-and-glossary.md)
 
 **Tasks (by area)**
 
 - Domain (Catalog)
   - [ ] T-CAT-001 Confirm canonical version schema + validation rules
   - [ ] T-CAT-002 Define `VersionPath` normalization rules
-  - [ ] T-CAT-003 Define deterministic SKU identity + resolution rules
+  - [ ] T-CAT-003 Define deterministic Version identity + resolution rules
 - App (API)
   - [ ] T-API-003 Draft `GET /catalog/items/{itemId}` contract
-  - [ ] T-API-004 Draft `POST /skus/resolve` contract (request/response + error cases)
+  - [ ] T-API-004 Draft `POST /versions/resolve` contract (request/response + error cases)
 - App (Web)
   - [ ] T-WEB-001 Define version selector UX requirements and failure states
   - [ ] T-WEB-002 Define search results UX requirements (filters, sorting, empty states)
@@ -171,7 +171,7 @@ Returns:
 - Item fields (display name, set, number, images)
 - The Version Model (or reference + resolved view) needed for a guided selector
 
-### `POST /skus/resolve`
+### `POST /versions/resolve`
 
 **Request (draft)**
 
@@ -180,7 +180,7 @@ Returns:
 
 **Response (draft)**
 
-- `skuId`
+- `versionId`
 - `normalizedVersionPath`
 - `flattenedFacets` (for downstream filtering/indexing)
 

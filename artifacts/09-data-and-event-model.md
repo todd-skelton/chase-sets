@@ -17,7 +17,7 @@
 - **Option**
 - **OptionValue**
 - **VersionPath** (resolved selection)
-- **SKU** (sellable unit; `Item + VersionPath`)
+- **Version** (sellable unit; `Item + VersionPath`)
 - **Listing** (sell)
 - **Bid** (buy)
 - **Checkout** (a buyer purchase intent that may span multiple sellers)
@@ -32,7 +32,7 @@
 - **Package** (dimensions + weight + carrier/service; label purchase)
 - **Fee** (marketplace fees)
 - **ShippingCredit** (5% credit applied to shipping costs)
-- **InventoryBalance** (SKU quantity per Location)
+- **InventoryBalance** (Version quantity per Location)
 - **InventoryReservation** (temporary hold on InventoryBalance)
 
 ## Event sourcing
@@ -47,7 +47,7 @@ Tenant: the system is event sourced.
 This system is TypeScript-first:
 
 - **Event names** are `PascalCase` (e.g., `SkuResolved`, `TradeExecuted`).
-- **Payload field names** are `camelCase` (e.g., `itemId`, `skuId`, `versionPath`, `flattenedFacets`).
+- **Payload field names** are `camelCase` (e.g., `itemId`, `versionId`, `versionPath`, `flattenedFacets`).
 - **Type/interface names** are `PascalCase` (e.g., `VersionModel`, `VersionPath`).
 
 If a physical storage layer uses a different convention (e.g., SQL), it must be mapped at the boundary and must not leak into public contracts.
@@ -134,7 +134,7 @@ If a physical storage layer uses a different convention (e.g., SQL), it must be 
 
 ## Open questions
 
-1. Postgres event store details (ADR 007/008): stream keys (by SKU? by Order?), idempotency strategy, checkpointing, and retention.
+1. Postgres event store details (ADR 007/008): stream keys (by Version? by Order?), idempotency strategy, checkpointing, and retention.
 2. How do we handle catalog corrections (rename/merge/split) while preserving historical listings/orders?
 3. When do we credit seller balance (on payment capture vs on delivery/acceptance) and what holds/escrow rules apply?
 4. How do we version VersionModels/VersionPaths so older orders remain referentially correct?

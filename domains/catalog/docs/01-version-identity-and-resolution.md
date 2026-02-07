@@ -1,4 +1,4 @@
-# Catalog — SKU Identity, Version Path Normalization, and Resolution (MVP)
+# Catalog — Version Identity, Version Path Normalization, and Resolution (MVP)
 
 ## Purpose
 
@@ -6,10 +6,10 @@ Define the **deterministic contract** for:
 
 - Version model keys (option/option value identifiers)
 - `VersionPath` normalization
-- `skuId` derivation
+- `versionId` derivation
 - Flattened facets used by Search, Marketplace, Inventory, and Orders
 
-Goal: make `skuId` a stable referential identifier across event streams and projections.
+Goal: make `versionId` a stable referential identifier across event streams and projections.
 
 This is requirements/spec only (no implementation).
 
@@ -31,7 +31,7 @@ This spec uses version-system schema names and follows the Catalog terminology f
 - **Option** = the selectable characteristic (represented by `optionKey`).
 - **Option Value** = the selectable value (represented by `optionValueKey`).
 - **Version** = the resolved selection of Option Values (represented by `VersionPath`).
-- **SKU** = the stable identifier for an Item + Version (`skuId`).
+- **Version ID** = the stable identifier for an Item + Version (`versionId`).
 
 ---
 
@@ -43,7 +43,7 @@ This spec uses version-system schema names and follows the Catalog terminology f
 - `optionValueKey`: stable identifier for an Option Value within an Option (admin-defined data; e.g., `graded`, `m`, `red`, `en`).
 - `VersionPath`: the ordered list of selected (`optionKey`, `optionValueKey`) pairs (type name).
 - `versionPath`: the ordered list of selected (`optionKey`, `optionValueKey`) pairs (field/property name).
-- `skuId`: stable identifier for `Item + VersionPath`.
+- `versionId`: stable identifier for `Item + VersionPath`.
 
 In MVP, VersionPath supports **staged selection** (multi-step paths): selecting an early option (e.g., “Type”) enables the next required option(s).
 
@@ -59,9 +59,9 @@ Important: names like “Type”, “Graded”, “Condition”, “Size”, and
 - Human labels (`label`) may change without changing meaning.
 - Renaming a key is treated as a breaking change requiring an explicit migration plan.
 
-### R2) A SKU is defined by keys, not labels
+### R2) A Version is defined by keys, not labels
 
-A SKU is defined by:
+A Version is defined by:
 
 - `itemId`
 - normalized `VersionPath` consisting of stable keys
@@ -70,14 +70,14 @@ A SKU is defined by:
 
 The API MUST accept a VersionPath in a user-friendly form, validate it against the Version Model, and then **normalize** it to a canonical ordering.
 
-The API returns the normalized path and uses it for `skuId` derivation.
+The API returns the normalized path and uses it for `versionId` derivation.
 
 ### R4) Facets are stable contracts
 
 Flattened facets emitted by resolution MUST use stable facet keys, suitable for:
 
 - search filtering
-- market segmentation (per-SKU order book)
+- market segmentation (per-Version order book)
 - inventory balances
 
 ---
@@ -89,7 +89,7 @@ This is the minimum shape we need to define in docs to unblock API/Web work.
 ### VersionModel
 
 - `versionModelKey: string` (stable)
-- `version: number` (monotonic, informational; not used for SKU identity)
+- `version: number` (monotonic, informational; not used for Version identity)
 - `rootOptions: OptionKey[]` (entry points)
 - `options: Record<OptionKey, Option>`
 - `constraints: VersionConstraint[]` (optional)
@@ -99,7 +99,7 @@ This is the minimum shape we need to define in docs to unblock API/Web work.
 
 - `optionKey: string` (stable)
 - `label: string`
-- `sortOrder?: number` (presentation-only; does not affect SKU identity)
+- `sortOrder?: number` (presentation-only; does not affect Version identity)
 - `required: boolean`
 - `selection: "single" | "multi"`
 - `values: OptionValue[]`
@@ -109,7 +109,7 @@ This is the minimum shape we need to define in docs to unblock API/Web work.
 
 - `optionValueKey: string` (stable)
 - `label: string`
-- `sortOrder?: number` (presentation-only; does not affect SKU identity)
+- `sortOrder?: number` (presentation-only; does not affect Version identity)
 - `childOptions?: OptionKey[]` (optional)
 - `facetOverrides?: Record<string, string | number | boolean>` (optional)
 
@@ -153,8 +153,8 @@ This algorithm intentionally models flows like:
 
 Important identity rule:
 
-- The SKU is defined by the **leaf outcome** (e.g., “Sealed” or “Graded+PSA+10”) and therefore includes **all selected options along the enabled path**.
-- Intermediate selections are not “temporary”; they are part of the canonical VersionPath keys that define SKU identity.
+- The Version is defined by the **leaf outcome** (e.g., “Sealed” or “Graded+PSA+10”) and therefore includes **all selected options along the enabled path**.
+- Intermediate selections are not “temporary”; they are part of the canonical VersionPath keys that define Version identity.
 
 ### Validation rules
 
@@ -166,17 +166,17 @@ Important identity rule:
 
 ---
 
-## `skuId` derivation (deterministic)
+## `versionId` derivation (deterministic)
 
 ### Goal
 
-Given the same `itemId` and the same normalized VersionPath keys, the system MUST derive the same `skuId` forever.
+Given the same `itemId` and the same normalized VersionPath keys, the system MUST derive the same `versionId` forever.
 
-### Canonical `skuIdentityString`
+### Canonical `versionIdentityString`
 
 Define:
 
-- `skuIdentityString = itemId + ":" + join(
+- `versionIdentityString = itemId + ":" + join(
   normalizedVersionPath.map(p => p.optionKey + "=" + p.optionValueKey),
   ";"
 )`
@@ -194,19 +194,19 @@ Additional examples (illustrative; exact keys come from the Catalog version conf
 - Apparel (multi-option):
   - `cat_01...:size=m;color=red`
 
-### Canonical `skuId`
+### Canonical `versionId`
 
-- `skuId = "sku_" + base32(sha256(skuIdentityString))` (prefix is illustrative)
+- `versionId = "version_" + base32(sha256(versionIdentityString))` (prefix is illustrative)
 
 Constraints:
 
 - The encoding must be URL-safe and case-stable.
-- `skuId` MUST be treated as an opaque identifier externally.
+- `versionId` MUST be treated as an opaque identifier externally.
 
 ### Consequences
 
-- Reordering labels or adding optional options does not change existing SKU IDs.
-- Changing keys changes SKU identity and requires a deliberate migration.
+- Reordering labels or adding optional options does not change existing Version IDs.
+- Changing keys changes Version identity and requires a deliberate migration.
 
 ---
 
@@ -235,10 +235,10 @@ Rules:
 
 ## API contract implications (doc-only)
 
-When we implement `POST /skus/resolve`, it must:
+When we implement `POST /versions/resolve`, it must:
 
 - validate + normalize VersionPath
-- return `skuId`, `normalizedVersionPath`, and `flattenedFacets`
+- return `versionId`, `normalizedVersionPath`, and `flattenedFacets`
 - return explicit error codes (below)
 
 ### Error codes (MVP)
@@ -253,6 +253,6 @@ When we implement `POST /skus/resolve`, it must:
 
 ## Open questions (to answer before implementation)
 
-- Are there any SKU identity exceptions for Pokémon-specific quirks (e.g., promos, reprints), or is Item identity sufficient?
+- Are there any Version identity exceptions for Pokémon-specific quirks (e.g., promos, reprints), or is Item identity sufficient?
 - Do we need facet materialization to support conditional/computed facets beyond direct option→facet mapping (MVP default: direct mapping; see [02-mvp-version-keys-and-facets.md](02-mvp-version-keys-and-facets.md))?
-- Do we ever want SKU equivalence classes (not in MVP)?
+- Do we ever want Version equivalence classes (not in MVP)?

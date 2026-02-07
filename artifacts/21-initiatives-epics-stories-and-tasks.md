@@ -61,18 +61,18 @@ A story/epic is **Done** when:
 
 ## Initiatives (MVP)
 
-### INI-01 — Product discovery that resolves a stable SKU
+### INI-01 — Product discovery that resolves a stable Version
 
 **Problem addressed:** “Version-heavy catalog makes it hard to buy confidently.”
 
-**Outcome:** a user can search → open item detail → select version path → get a deterministic `skuId`.
+**Outcome:** a user can search → open item detail → select version path → get a deterministic `versionId`.
 
 **Primary workflow:** #1 in [18-mvp-workflows-and-event-flows.md](18-mvp-workflows-and-event-flows.md)
 
 **Epics:**
 
 - EP-DISC-01 Search and result quality
-- EP-DISC-02 Item detail + version selector + SKU resolve
+- EP-DISC-02 Item detail + version selector + Version resolve
 - EP-DISC-03 Catalog governance minimums (admin edits/corrections)
 
 Slice spec:
@@ -183,7 +183,7 @@ References:
 
 ---
 
-### EP-DISC-02 — Item detail + version selector + SKU resolve
+### EP-DISC-02 — Item detail + version selector + Version resolve
 
 **Status:** Proposed
 
@@ -191,16 +191,16 @@ Slice spec: [22-slice-1-catalog-discovery.md](22-slice-1-catalog-discovery.md)
 
 **Stories**
 
-- `US-DISC-1.3`: Deterministic SKU selection (Story 1.3)
+- `US-DISC-1.3`: Deterministic Version selection (Story 1.3)
 
 **Tasks**
 
 - [ ] T-CAT-001 Confirm canonical version schema + validation rules (Catalog)
 - [ ] T-CAT-002 Define `VersionPath` normalization rules (Catalog)
-- [ ] T-CAT-003 Define deterministic SKU identity + resolution rules (Catalog)
+- [ ] T-CAT-003 Define deterministic Version identity + resolution rules (Catalog)
 - [ ] T-WEB-001 Define the version selector UX requirements and failure states (Web)
 - [ ] T-API-003 Draft `GET /catalog/items/{itemId}` contract (API)
-- [ ] T-API-004 Draft `POST /skus/resolve` contract (API)
+- [ ] T-API-004 Draft `POST /versions/resolve` contract (API)
 - [ ] T-WORK-002 Define catalog public-view projection shape (Workers)
 
 References:
@@ -254,11 +254,11 @@ References:
 
 **Stories**
 
-- Supports: “Users can view all offers and listings for a SKU” (Decision D9 / workflow requirements)
+- Supports: “Users can view all offers and listings for a Version” (Decision D9 / workflow requirements)
 
 **Tasks**
 
-- [ ] T-MKT-004 Define SKU market view projection shape (Marketplace)
+- [ ] T-MKT-004 Define Version market view projection shape (Marketplace)
 - [ ] T-MKT-005 Define “my open orders/offers/listings” projection shape (Marketplace)
 
 ---

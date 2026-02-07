@@ -15,7 +15,7 @@ This document is the missing bridge: it defines the **bounded contexts (domains)
 ### Catalog
 
 - Curated catalog of items/sets
-- Version model configuration + SKU resolution
+- Version model configuration + Version resolution
 - Catalog correction/audit workflow
 
 ### Search
@@ -26,7 +26,7 @@ This document is the missing bridge: it defines the **bounded contexts (domains)
 ### Marketplace
 
 - Bids, listings, matching/execution
-- SKU-level order books and price-time priority
+- Version-level order books and price-time priority
 
 ### Orders (Checkout + Order lifecycle)
 
@@ -146,7 +146,7 @@ flowchart LR
 
 ## Core flow (event narrative)
 
-1. Catalog publishes item + SKU facets → Search indexes.
+1. Catalog publishes item + Version facets → Search indexes.
 2. Marketplace writes `BidPlaced` / `ListingCreated`.
 3. Marketplace executes a trade → emits `MatchCreated` / `TradeExecuted`.
 4. Orders consumes trade execution → emits `CheckoutCreated` + `OrderCreated`.
@@ -165,7 +165,7 @@ Must include:
 - `executionId` (globally unique)
 - `buyerOrgId` / `buyerAccountId`
 - `sellerOrgId`
-- `skuId`, `quantity`, `unitPrice`
+- `versionId`, `quantity`, `unitPrice`
 - references needed to compute fees/shipping policy inputs
 
 ### `CheckoutSubmitted` (Orders → Payments)

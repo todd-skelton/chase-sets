@@ -8,7 +8,7 @@ This checklist is the drill-down work plan for Search (OpenSearch + relevance).
 - Embedding strategy evidence (before go-live): `artifacts/adrs/016-embedding-strategy.md`
 - Search/filtering requirements: `domains/search/docs/19-search-and-filtering-requirements.md`
 - Relevance evaluation: `domains/search/docs/34-search-relevance-evaluation-and-golden-queries.md`
-- Catalog SKU + facets contract (must be stable first): `domains/catalog/docs/01-sku-identity-and-resolution.md`
+- Catalog Version + facets contract (must be stable first): `domains/catalog/docs/01-version-identity-and-resolution.md`
 
 ## Index design
 

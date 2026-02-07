@@ -16,7 +16,7 @@ This keeps Marketplace focused on bids/listings/matching, and keeps Payments foc
   - **Checkout**: a buyer purchase session (may span multiple sellers)
   - **Order**: a seller-scoped outcome created from a checkout
 - Turn marketplace trade executions into a checkout (and orders)
-- At checkout submission, when cart is used, select listings to fulfill `SKU + quantity` items (optimize for least cost and/or fewer shipments) and then proceed to payment.
+- At checkout submission, when cart is used, select listings to fulfill `Version + quantity` items (optimize for least cost and/or fewer shipments) and then proceed to payment.
 - Enforce checkout/order lifecycle rules and timeouts
 - Coordinate payment lifecycle (request auth/capture; react to payment events)
 - Coordinate fulfillment lifecycle (create shipments; react to shipment events)
@@ -38,7 +38,7 @@ Marketplace emits a deterministic trade execution event (e.g., `MatchCreated` / 
 
 - buyer org/account reference
 - seller org/location reference (if known)
-- SKU, quantity, unit price, fees inputs
+- Version, quantity, unit price, fees inputs
 - execution id (globally unique) for idempotency
 
 Orders consumes that and creates a `Checkout` + one `Order` per seller (and/or per origin location if that split is decided at checkout time).
@@ -80,7 +80,7 @@ Orders reacts to fulfillment events (`ShipmentCreated`, `ShipmentLabelPurchased`
   - `sellerOrgId`
   - `originLocationId` (optional if split is deferred)
   - `status` (Created/Paid/InFulfillment/Completed/Cancelled/Refunded)
-  - `lineItems[]` (skuId, quantity, unitPrice)
+  - `lineItems[]` (versionId, quantity, unitPrice)
 
 ## Lifecycle (MVP)
 

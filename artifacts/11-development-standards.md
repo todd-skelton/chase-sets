@@ -19,7 +19,7 @@
 
 We standardize identifiers to reduce friction across API ↔ events ↔ projections ↔ UI.
 
-- **Public fields/columns/JSON keys:** `camelCase` (examples: `itemId`, `skuId`, `versionPath`, `flattenedFacets`).
+- **Public fields/columns/JSON keys:** `camelCase` (examples: `itemId`, `versionId`, `versionPath`, `flattenedFacets`).
 - **Types/classes/interfaces/enums:** `PascalCase` (examples: `Item`, `VersionModel`, `VersionPath`).
 - **Constants:** `SCREAMING_SNAKE_CASE` where appropriate.
 - **Version-system stable keys:** prefer `lowerCamelCase` strings without underscores (these are authored in admin and become part of long-lived identity).

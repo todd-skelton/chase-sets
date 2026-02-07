@@ -150,9 +150,9 @@ Delivery rules:
 ## Required cross-cutting capabilities for multi-channel
 
 - **External ID mapping**: stable mapping for `externalListingId`, `externalOrderId`, `externalAccountId` per channel.
-- **Catalog mapping**: ability to map our `skuId` / `itemId` to channel identifiers (channel-specific taxonomies).
+- **Catalog mapping**: ability to map our `versionId` / `itemId` to channel identifiers (channel-specific taxonomies).
 - **Inventory as the single truth**:
-  - Availability for all channels derives from `InventoryBalance(SKU, Location)` and reservation/commit rules.
+  - Availability for all channels derives from `InventoryBalance(Version, Location)` and reservation/commit rules.
   - Avoid duplicating stock counts in adapters.
 - **Rate limiting + backoff**: per-channel quotas and safe degradation.
 - **Credential management**: OAuth tokens/API keys per org per channel, rotated and audited.

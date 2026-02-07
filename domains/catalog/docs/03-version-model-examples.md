@@ -6,13 +6,13 @@ Provide concrete, canonical VersionModel examples that demonstrate:
 
 - staged (multi-step) selection paths
 - multi-option (matrix) selection (e.g., Size × Color)
-- how keys/labels/facets relate to SKU identity
+- how keys/labels/facets relate to Version identity
 
 Important: the option/option value keys shown here are **examples**. In the product, keys and labels are authored in the version-system admin UI as data.
 
 See also:
 
-- SKU identity + normalization contract: [01-sku-identity-and-resolution.md](01-sku-identity-and-resolution.md)
+- Version identity + normalization contract: [01-version-identity-and-resolution.md](01-version-identity-and-resolution.md)
 - MVP conventions: [02-mvp-version-keys-and-facets.md](02-mvp-version-keys-and-facets.md)
 
 ---
