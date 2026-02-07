@@ -30,17 +30,23 @@ Represents a seller’s intent to sell a specific Version at a price.
 - `listing_id`
 - `version_id` (Catalog reference)
 - `seller_org_id`
+- `location_id` (Fulfillment origin)
+- `stock_id` (Inventory/stock reference)
 
 **Key attributes**
 - `price` (Money)
-- `quantity` (Quantity)
-- `remaining_quantity` (Quantity)
+- `quantity` (Quantity, listing cap)
+- `remaining_quantity` (Quantity, listing cap remaining)
+- `available_quantity` (Quantity, derived from stock availability and listing cap)
+- `purchase_policy` (optional; e.g., per-buyer limits for future enforcement)
 - `status` (`draft`, `active`, `partially_filled`, `filled`, `canceled`, `expired`)
 - `created_at`, `activated_at`, `canceled_at`, `expired_at`
 - `time_in_force` (default GTC)
 
 **Invariants**
 - A listing references exactly one Version.
+- A listing references exactly one fulfillment origin location.
+- A listing references exactly one stock/ inventory balance to draw from.
 - Quantity and remaining quantity are denominated in the Version’s unit of measure.
 - Remaining quantity cannot exceed quantity.
 - Status transitions are linear and auditable.
@@ -55,7 +61,7 @@ Represents a seller’s intent to sell a specific Version at a price.
 - `RecordListingFilled`
 
 **Events**
-- `ListingCreated`
+- `ListingCreated` (includes `location_id` and `stock_id`)
 - `ListingActivated`
 - `ListingCanceled`
 - `ListingExpired`
@@ -161,6 +167,7 @@ Represents the immutable outcome of a matching execution. Sales are created by t
 - **Price-time priority**: higher offer price and lower listing price win first; time breaks ties.
 - **Partial fills**: allowed; update `remaining_quantity` and status accordingly.
 - **Self-trade prevention**: buyer org cannot match a listing owned by the same org.
+- **Stock availability**: matches reserve/commit stock against the referenced `stock_id`.
 
 ---
 
@@ -181,6 +188,7 @@ Represents the immutable outcome of a matching execution. Sales are created by t
 
 - **Catalog**: `version_id` and unit of measure.
 - **Identity**: buyer/seller org ownership, permissions.
+- **Fulfillment/Inventory**: listings reference `location_id` and `stock_id`; stock availability is reserved/committed by the inventory system.
 - **Orders**: consumes `SaleRecorded` payload to create checkouts and orders.
 - **Payments/Fulfillment**: out of scope; referenced by Orders after sale recording.
 
