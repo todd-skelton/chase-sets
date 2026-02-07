@@ -41,6 +41,13 @@ This keeps us from building a “different system per channel”.
 - Uses the **Marketplace** domain (order book + matching).
 - Produces trades (`TradeExecuted`) consumed by **Orders**.
 
+**Implementation posture (treat it like every other channel):**
+
+- Model the first-party Marketplace as a **channel with `channelId = marketplace`** and a default org-level connection.
+- The web app should call the **same internal command APIs** as any future adapter (no special cases).
+- If we build an explicit adapter later, treat it as an **in-process adapter** that emits the same envelopes and uses the same idempotency rules.
+- Maintain the same **mapping and outbox** patterns so adding new channels does not change domain behavior.
+
 ### 2) In-store / POS channel
 
 - Often creates **orders directly** (no order book, no matching).
