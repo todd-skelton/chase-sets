@@ -2,7 +2,7 @@
 
 This document defines the ubiquitous language for the **Marketplace domain**.
 
-The Marketplace is responsible for **matching buy/sell intent** (bids/listings) and producing trade outcomes. It does not own catalog definition, payment settlement, or fulfillment execution.
+The Marketplace is responsible for **matching buy/sell intent** (offers/listings) and producing trade outcomes. It does not own catalog definition, payment settlement, or fulfillment execution.
 
 ---
 
@@ -17,21 +17,70 @@ The Marketplace is responsible for **matching buy/sell intent** (bids/listings) 
 
 ### Listing
 
-A **Listing** is a sell-side offer to sell a specific SKU at a price.
+A **Listing** is a seller’s post for a specific Version at a set price (“for sale”).
 
-### Bid (Offer)
+### Offer
 
-A **Bid** is a buy-side intent to buy a specific SKU at a price.
+An **Offer** is a buyer’s price proposal for a specific Version.
 
-In UI copy, “Offer” may be used for buyer-friendliness.
+### Buy Now
 
-### Order Book / Market
+A **Buy Now** is the action a buyer takes to immediately purchase a listing at the listed price.
 
-The **Order Book** is the internal view/projection of active bids and listings for a SKU.
+### Sell Now
 
-### Trade / Match
+A **Sell Now** is the action a seller takes to immediately accept an offer at the offered price.
 
-A **Trade** (or **Match**) is the outcome of compatible bids/listings crossing according to marketplace rules.
+### Sale
+
+A **Sale** is the successful outcome when a listing and offer agree on price and quantity.
+
+### Listings & Offers View
+
+The **Listings & Offers View** is the marketplace view of what’s available for a Version: active listings and active offers.
+
+### Quantity
+
+**Quantity** is the number of units requested on an offer or offered on a listing.
+
+Quantities are denominated in the Version’s unit of measure as defined by Catalog.
+
+### Partial Sale
+
+A **Partial Sale** is when only part of an offer or listing’s quantity is completed in a sale.
+
+### Remaining Quantity
+
+**Remaining Quantity** is the quantity still available on a listing or offer after a partial sale.
+
+### Offer/Listing Duration
+
+**Offer/Listing Duration** describes how long a listing or offer stays active (default is “stays up until canceled”).
+
+### Expiration
+
+**Expiration** is when a listing or offer is no longer active due to time limits or policy.
+
+### Cancellation
+
+**Cancellation** is the user- or admin-initiated removal of a listing or offer.
+
+### Eligible to Sell/Buy Now
+
+**Eligible to Sell/Buy Now** means a listing or offer can be accepted immediately (Version and price match, policy checks pass).
+
+### Best Offer / Lowest Listing
+
+The **Best Offer** is the highest active offer price for a Version.  
+The **Lowest Listing** is the lowest active listing price for a Version.
+
+### Spread
+
+The **Spread** is the price difference between the lowest listing and the best offer for a Version.
+
+### Listing Status / Offer Status
+
+**Statuses** capture lifecycle state: `draft`, `active`, `partially_filled`, `filled`, `canceled`, `expired`.
 
 ---
 
@@ -39,7 +88,7 @@ A **Trade** (or **Match**) is the outcome of compatible bids/listings crossing a
 
 Marketplace references:
 
-- Catalog identifiers (Item/SKU/Version as defined by Catalog)
+- Catalog identifiers (Item/Version as defined by Catalog)
 - Identity (account/org permissions)
 
 Marketplace does not own:
@@ -47,3 +96,20 @@ Marketplace does not own:
 - Inventory quantities
 - Payment settlement / ledger
 - Fulfillment workflows
+
+---
+
+## Terms to explore (draft backlog)
+
+These terms are candidates for deeper definition once policy and workflow choices are finalized.
+
+- **Offer Types**: standard offer, auto-accept thresholds, reserve price.
+- **Minimum Increment**: smallest allowed price or quantity step.
+- **Fees**: buyer premium, seller fee, marketplace fee visibility.
+- **Price Guardrails**: outlier checks, minimum/maximum listing limits.
+- **Currency & Unit**: how currency and Version units display together.
+- **Liquidity**: how to show depth, spread, and time-to-sell in a buyer-friendly way.
+- **Speed to Sale**: expected time for an offer or listing to complete.
+- **Preview**: “what you’ll pay / what you’ll receive” before confirming.
+- **Matching Rules**: clear, user-facing explanation of how offers and listings pair.
+- **Settlement Window**: how long between a sale and payment/fulfillment start.
