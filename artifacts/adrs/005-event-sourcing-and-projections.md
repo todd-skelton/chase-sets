@@ -2,11 +2,11 @@
 
 ## Status
 
-Accepted (tenant)
+Accepted
 
 ## Context
 
-A core tenant of Chase Sets is: **if there wasn’t an event, it never happened**.
+A core tenet of Chase Sets is: **if there wasn’t an event, it never happened**.
 
 We need:
 

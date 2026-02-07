@@ -12,7 +12,7 @@ Chase Sets should be built on:
 - **Static assets + CDN** for the web app
 - **Best-in-class open-source products** where feasible for core platform capabilities
 
-We also have an event-sourcing tenant (ADR 005), which implies replayable projections and operational tooling for lag/drift.
+We also have an event-sourcing tenet (ADR 005), which implies replayable projections and operational tooling for lag/drift.
 
 ## Options considered
 

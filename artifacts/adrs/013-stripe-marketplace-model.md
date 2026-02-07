@@ -19,7 +19,7 @@ Additional constraints now captured elsewhere:
 - Listings/offers are **org-owned**.
 - A buyer checkout can include **multiple sellers** and create **multiple shipments**.
 - Shipping uses a **5% shipping credit** settled against actual label cost (ADR 014).
-- We maintain an internal wallet/ledger as a projection (ADR 001 / event sourcing tenant).
+- We maintain an internal wallet/ledger as a projection (ADR 001 / event sourcing tenet).
 
 ## Options considered
 

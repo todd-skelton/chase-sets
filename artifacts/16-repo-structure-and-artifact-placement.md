@@ -132,7 +132,7 @@ Decision rule:
 
 - `artifacts/`
   - Vision, principles, roadmap, success metrics, cross-cutting architecture summary
-  - System-wide ADRs under `artifacts/adrs/` (e.g., event sourcing tenant)
+  - System-wide ADRs under `artifacts/adrs/` (e.g., event sourcing tenet)
 
 ### Applications
 
