@@ -15,6 +15,18 @@ This is requirements-only (no implementation).
 
 ---
 
+## Naming guidance (keep “Marketplace”)
+
+Even as we add multiple sales channels, keep this bounded context named **Marketplace**:
+
+- It is the canonical **Listings & Offers** domain (the internal system of record for sell/buy intent).
+- Channels are adapters/surfaces that **create or consume** listings/offers; they do not replace the core domain.
+- Keeping the name stable avoids churn as we add new channels (in-store, eBay, TikTok, Shopify, etc.).
+
+If we later add a broad “Channels” subdomain, it should live **adjacent** to Marketplace (adapter integrations + mappings), not replace it.
+
+---
+
 ## Canonical references
 
 - Matching basics: `artifacts/adrs/003-bids-listings-and-matching.md`
