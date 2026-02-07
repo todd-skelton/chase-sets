@@ -54,6 +54,11 @@ Those per-domain terms should be used to model and name entities, commands, even
 - **Physical attributes**: dimensions (L/W/H) and weight for a SKU used to estimate shipping.
 - **Shipping credit**: a credit equal to 5% of item value applied to shipping cost.
 - **Balance**: a user-held on-platform balance that can be used to pay (free) or withdrawn via payout.
+- **Reputation**: the aggregated buyer/seller feedback derived from completed orders.
+- **Rating**: a structured numeric score representing satisfaction with a transaction.
+- **Review**: written commentary attached to a rating.
+- **Feedback Window**: the time period after an order in which feedback can be submitted.
+- **Reputation Profile**: the public view of aggregated ratings, reviews, and reputation signals.
 
 ## UI terminology (retail-friendly)
 
