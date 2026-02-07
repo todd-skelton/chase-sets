@@ -37,6 +37,7 @@ If a term is shared across multiple domains, it should also appear (or be reconc
 - [domains/fulfillment/README.md](fulfillment/README.md)
 - [domains/search/README.md](search/README.md)
 - [domains/identity/README.md](identity/README.md)
+- [domains/reputation/README.md](reputation/README.md)
 - [domains/risk/README.md](risk/README.md)
 - [domains/trust-safety/README.md](trust-safety/README.md)
 
