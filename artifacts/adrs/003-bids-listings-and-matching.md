@@ -15,13 +15,13 @@ We need to define the matching/execution rules so the marketplace is predictable
 
 ## Options considered
 
-1. Order book per CatalogItem+attributes (best bid/best ask; price-time priority)
+1. Order book per Item+attributes (best bid/best ask; price-time priority)
 2. Fixed-price listings + offers (bids) with seller acceptance; no automatic matching
 3. Hybrid: fixed price + optional automatic match when crossing
 
 ## Decision
 
-Use an order book per sellable SKU, where `SKU = CatalogItem + Variant`. "Buy now" and "Sell now" execute at the best available price in the relevant SKU order book. Matching follows price-time priority.
+Use an order book per sellable SKU, where `SKU = Item + VersionPath`. "Buy now" and "Sell now" execute at the best available price in the relevant SKU order book. Matching follows price-time priority.
 
 Execution price rule (MVP):
 
@@ -40,14 +40,14 @@ Additional MVP policies:
 - Clear, predictable price discovery and best-price execution.
 - Scales to high-volume items while keeping markets distinct.
 - Cons:
-- More complexity around the Variant system and preventing fragmented liquidity.
+- More complexity around the Version system and preventing fragmented liquidity.
 - Risks:
-- If Variants are too granular, liquidity will fragment and time-to-fill will suffer.
+- If Versions are too granular, liquidity will fragment and time-to-fill will suffer.
 
 ## Consequences / follow-ups
 
-- Variant model and SKU mapping are defined in ADR 004 (config-driven variant system).
-- Define the variant selector UI requirements (how users reliably choose the correct SKU).
+- Version model and SKU mapping are defined in ADR 004 (config-driven version system).
+- Define the version selector UI requirements (how users reliably choose the correct SKU).
 - Define minimum tick sizes (price increments).
 - Define cancellation rules and any fees/penalties.
 - Define visibility (public order book vs partial depth).

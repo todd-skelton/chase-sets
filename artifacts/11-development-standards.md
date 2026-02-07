@@ -18,15 +18,15 @@
 
 We standardize identifiers to reduce friction across API ↔ events ↔ projections ↔ UI.
 
-- **Public fields/columns/JSON keys:** `camelCase` (examples: `catalogItemId`, `skuId`, `variantPath`, `flattenedFacets`).
-- **Types/classes/interfaces/enums:** `PascalCase` (examples: `CatalogItem`, `VariantModel`, `VariantPath`).
+- **Public fields/columns/JSON keys:** `camelCase` (examples: `itemId`, `skuId`, `versionPath`, `flattenedFacets`).
+- **Types/classes/interfaces/enums:** `PascalCase` (examples: `Item`, `VersionModel`, `VersionPath`).
 - **Constants:** `SCREAMING_SNAKE_CASE` where appropriate.
-- **Variant-system stable keys:** prefer `lowerCamelCase` strings without underscores (these are authored in admin and become part of long-lived identity).
+- **Version-system stable keys:** prefer `lowerCamelCase` strings without underscores (these are authored in admin and become part of long-lived identity).
 
 Important clarification:
 
-- `VariantPath` is a **type name** (PascalCase).
-- `variantPath` is a **field/property name** (camelCase) in API/event payloads.
+- `VersionPath` is a **type name** (PascalCase).
+- `versionPath` is a **field/property name** (camelCase) in API/event payloads.
 
 Postgres implementation details may remain `snake_case` internally, but they must be mapped at the boundary and must not leak into public contracts.
 

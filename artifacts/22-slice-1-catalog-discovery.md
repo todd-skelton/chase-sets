@@ -4,9 +4,9 @@
 
 Define the **implementation-ready** scope for the first breadth-first MVP slice:
 
-- Search catalog items
+- Search Items
 - Open item detail
-- Select a valid VariantPath
+- Select a valid VersionPath
 - Resolve a deterministic, stable `skuId`
 
 This slice is the foundation for all later marketplace flows (listing, offers, checkout) because everything references `skuId`.
@@ -15,7 +15,7 @@ Canonical story references:
 
 - Story 1.1–1.3 in [20-mvp-problem-statements-and-user-stories.md](20-mvp-problem-statements-and-user-stories.md)
 - Workflow #1 in [18-mvp-workflows-and-event-flows.md](18-mvp-workflows-and-event-flows.md)
-- Definitions for SKU/VariantPath/etc. in [02-domain-model-and-glossary.md](02-domain-model-and-glossary.md)
+- Definitions for SKU/VersionPath/etc. in [02-domain-model-and-glossary.md](02-domain-model-and-glossary.md)
 
 ---
 
@@ -25,8 +25,8 @@ A user can complete, in local dev:
 
 1. Enter a query (identifier or natural language)
 2. See search results with config-driven filters
-3. Open a catalog item detail page
-4. Select variant attributes through a guided selector
+3. Open an Item detail page
+4. Select option values through a guided selector
 5. Resolve a `skuId` deterministically
 
 ---
@@ -42,11 +42,11 @@ A user can complete, in local dev:
 ## Component owners (where work lands)
 
 - Domains:
-  - Catalog: variant model, SKU identity rules
+  - Catalog: version model, SKU identity rules
   - Search: query parsing, ranking rules, golden query evaluation
 - Apps:
   - `apps/api`: search, item detail, sku resolve HTTP endpoints
-  - `apps/web`: search page, item detail page, variant selector UX
+  - `apps/web`: search page, item detail page, version selector UX
   - `apps/workers`: projection → search indexing pipeline (replay-safe)
 - Packages:
   - `packages/config`: filter configuration schema + validation
@@ -60,14 +60,14 @@ Search is a read-side domain that depends on **Catalog defining stable facet key
 
 To keep Slice 1 breadth-first without getting blocked by other domains, build it in this order:
 
-1. **Catalog first (no external dependencies):** lock VariantPath normalization, `skuId` derivation, and facet materialization keys.
+1. **Catalog first (no external dependencies):** lock VersionPath normalization, `skuId` derivation, and facet materialization keys.
 2. **Search second (depends on Catalog keys only):** index mapping/analyzers/query parsing/golden queries.
 3. **API/Web third:** wire endpoints and UX against the locked contracts.
 
 Catalog contract reference:
 
 - [../domains/catalog/docs/01-sku-identity-and-resolution.md](../domains/catalog/docs/01-sku-identity-and-resolution.md)
-- [../domains/catalog/docs/02-mvp-variant-keys-and-facets.md](../domains/catalog/docs/02-mvp-variant-keys-and-facets.md)
+- [../domains/catalog/docs/02-mvp-version-keys-and-facets.md](../domains/catalog/docs/02-mvp-version-keys-and-facets.md)
 
 ---
 
@@ -106,34 +106,34 @@ Catalog contract reference:
 
 ---
 
-### EP-DISC-02 — Item detail + variant selector + SKU resolve
+### EP-DISC-02 — Item detail + version selector + SKU resolve
 
 **Stories:** 1.3
 
 **Acceptance check**
 
-- Item detail returns a Variant Model suitable for rendering the selector.
-- VariantPath normalization is deterministic (stable ordering/casing rules).
-- `skuId` resolution is deterministic across time and environments given the same CatalogItem + VariantPath.
+- Item detail returns a Version Model suitable for rendering the selector.
+- VersionPath normalization is deterministic (stable ordering/casing rules).
+- `skuId` resolution is deterministic across time and environments given the same Item + VersionPath.
 
 **Dependencies**
 
-- Variant system principles: [../domains/catalog/docs/15-variant-system.md](../domains/catalog/docs/15-variant-system.md)
-- Glossary definitions for SKU/VariantPath: [02-domain-model-and-glossary.md](02-domain-model-and-glossary.md)
+- Version system principles: [../domains/catalog/docs/15-version-system.md](../domains/catalog/docs/15-version-system.md)
+- Glossary definitions for SKU/VersionPath: [02-domain-model-and-glossary.md](02-domain-model-and-glossary.md)
 
 **Tasks (by area)**
 
 - Domain (Catalog)
-  - [ ] T-CAT-001 Confirm canonical variant schema + validation rules
-  - [ ] T-CAT-002 Define `VariantPath` normalization rules
+  - [ ] T-CAT-001 Confirm canonical version schema + validation rules
+  - [ ] T-CAT-002 Define `VersionPath` normalization rules
   - [ ] T-CAT-003 Define deterministic SKU identity + resolution rules
 - App (API)
-  - [ ] T-API-003 Draft `GET /catalog/items/{catalogItemId}` contract
+  - [ ] T-API-003 Draft `GET /catalog/items/{itemId}` contract
   - [ ] T-API-004 Draft `POST /skus/resolve` contract (request/response + error cases)
 - App (Web)
-  - [ ] T-WEB-001 Define variant selector UX requirements and failure states
+  - [ ] T-WEB-001 Define version selector UX requirements and failure states
   - [ ] T-WEB-002 Define search results UX requirements (filters, sorting, empty states)
-  - [ ] T-WEB-003 Define item detail UX requirements (images, set/number, variant selector placement)
+  - [ ] T-WEB-003 Define item detail UX requirements (images, set/number, version selector placement)
 - App (Workers)
   - [ ] T-WORK-002 Define catalog public-view projection shape (for item detail)
 
@@ -154,8 +154,8 @@ These are intentionally minimal and will evolve. The goal is to lock the **shape
 
 **Response (draft)**
 
-- `results[]`: catalog items
-  - `catalogItemId`
+- `results[]`: Items
+  - `itemId`
   - `displayName`
   - `setName`
   - `cardNumber` (nullable for sealed)
@@ -168,26 +168,26 @@ These are intentionally minimal and will evolve. The goal is to lock the **shape
 
 Returns:
 
-- Catalog item fields (display name, set, number, images)
-- The Variant Model (or reference + resolved view) needed for a guided selector
+- Item fields (display name, set, number, images)
+- The Version Model (or reference + resolved view) needed for a guided selector
 
 ### `POST /skus/resolve`
 
 **Request (draft)**
 
-- `catalogItemId`
-- `variantPath`: ordered selections (`dimensionKey` + `optionKey`)
+- `itemId`
+- `versionPath`: ordered selections (`optionKey` + `optionValueKey`)
 
 **Response (draft)**
 
 - `skuId`
-- `normalizedVariantPath`
+- `normalizedVersionPath`
 - `flattenedFacets` (for downstream filtering/indexing)
 
 **Error cases (must be explicit)**
 
-- invalid dimension/option
-- missing required dimensions
+- invalid option/option value
+- missing required options
 - invalid combination (constraint violation)
 
 ---

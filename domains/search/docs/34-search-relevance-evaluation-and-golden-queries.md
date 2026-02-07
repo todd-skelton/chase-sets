@@ -48,7 +48,7 @@ A small curated set of representative queries with expected results.
 ### For each query, capture
 
 - Query text
-- Expected top results (CatalogItems)
+- Expected top results (Items)
 - “Must-not” results (common confusions)
 - Notes (why it matters)
 
@@ -64,7 +64,7 @@ The canonical “top queries we must nail” list lives in `domains/search/docs/
 |   2 | `Charizard 4/102`                   | Base Set Charizard #4/102                   | Charizard promos / other sets | Missing set name        |
 |   3 | `151 Charizard`                     | SV 151 Charizard entries                    | Base Set Charizard            | Modern set shorthand    |
 |   4 | `Moonbreon`                         | Umbreon VMAX alt art (Evolving Skies)       | Umbreon non-alt-art           | Nickname/alias          |
-|   5 | `shiny charizard`                   | Shiny Charizard variants (multiple sets)    | Non-shiny Charizard           | Semantic intent         |
+|   5 | `shiny charizard`                   | Shiny Charizard versions (multiple sets)    | Non-shiny Charizard           | Semantic intent         |
 |   6 | `alt art gengar`                    | Gengar alt-art entries (if cataloged)       | Regular Gengar cards          | Informal term           |
 |   7 | `Pikachu promo`                     | Promo Pikachu items                         | Base set Pikachu              | Promo vs set cards      |
 |   8 | `1st edition machamp`               | 1st Edition Machamp                         | Unlimited Machamp             | Common attribute + name |

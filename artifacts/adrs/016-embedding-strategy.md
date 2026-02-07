@@ -10,7 +10,7 @@ We require vector + semantic search in MVP (see ADR 012).
 
 To support this we need a consistent approach for:
 
-- Generating embeddings for catalog items (and potentially SKUs)
+- Generating embeddings for Items (and potentially SKUs)
 - Generating embeddings for user queries
 - Cost/latency control
 - Operational posture (hosted vs self-hosted)

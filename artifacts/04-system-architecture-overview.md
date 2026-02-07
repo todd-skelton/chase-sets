@@ -16,8 +16,8 @@ The system serves a curated catalog and enables buyers/sellers to transact via i
 - **API (core)**: catalog read APIs, marketplace APIs (offers/listings/matching), checkout/order APIs, payment APIs.
 - **Container runtime/orchestrator**: runs API + background processors as containers (local compose; prod Kubernetes).
 - **Edge/Ingress**: routes to API containers; terminates TLS (NGINX Ingress).
-- **Variant system**: configuration-driven Variant Models and validation powering the variant selector UI.
-- **Search/index**: OpenSearch indexing CatalogItems plus SKU facets derived from VariantPath (hybrid lexical + vector; see ADR 012).
+- **Version system**: configuration-driven Version Models and validation powering the version selector UI.
+- **Search/index**: OpenSearch indexing Items plus SKU facets derived from VersionPath (hybrid lexical + vector; see ADR 012).
 - **Event Store (system of record)**: append-only event streams; if it wasn’t an event, it never happened.
 - **Projections / Read models**: materialized views derived from events (JSON documents, relational tables, caches) depending on use case.
 - **Projectors**: background processors that consume events and maintain projections.
@@ -40,7 +40,7 @@ High-level domain responsibilities and integration contracts are captured in:
 
 1. User loads the web app via CDN → static assets served.
 2. User searches catalog → API serves results from projections/read models.
-3. User selects a catalog item → variant selector UI resolves a VariantPath (SKU).
+3. User selects an Item → version selector UI resolves a VersionPath (SKU).
 4. User creates listing (sell) or offer (buy) OR adds to cart (cart items are `SKU + quantity`, not a specific listing).
 5. For offers/listings: API validates and appends domain events to the Event Store.
 6. Projectors consume events → update projections (market views / order books, user portfolios, search facets, etc.).

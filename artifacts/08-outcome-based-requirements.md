@@ -2,7 +2,7 @@
 
 ## Capability statements (MVP)
 
-- **C1:** Users can search and browse a curated Pokémon TCG catalog and select a specific sellable SKU via a guided variant selector UI.
+- **C1:** Users can search and browse a curated Pokémon TCG catalog and select a specific sellable SKU via a guided version selector UI.
 - **C2:** Users can create and manage sell-side listings for a specific SKU with price.
 - **C3:** Users can create and manage buy-side offers for a specific SKU with price.
 - **C4:** Users can execute an immediate buy/sell or match offers/listings to create an order.
@@ -12,9 +12,9 @@
 
 ## System-level acceptance criteria
 
-- Search results return the correct catalog items for common queries (name + set + number).
-- A user can complete: search → select item → select variant (SKU) → buy now OR make an offer.
-- A user can complete: search → select item → select variant (SKU) → create listing.
+- Search results return the correct Items for common queries (name + set + number).
+- A user can complete: search → select item → select version (SKU) → buy now OR make an offer.
+- A user can complete: search → select item → select version (SKU) → create listing.
 - Orders have a clear lifecycle and can’t end up in ambiguous “stuck” states.
 - Customer/payment data is never exposed to other users; access is least-privilege.
 - The platform APIs used by the web app are durable platform contracts (no special-case “internal-only” endpoints).

@@ -38,7 +38,7 @@ The Marketplace domain does NOT own:
 - Capturing external payments (Payments domain)
 - Inventory counts, reservations, and stock adjustments (Fulfillment domain)
 - Shipping label purchase, tracking, delivery exceptions (Fulfillment domain)
-- Catalog item curation and variant definitions (Catalog domain)
+- Catalog item curation and version definitions (Catalog domain)
 
 ---
 

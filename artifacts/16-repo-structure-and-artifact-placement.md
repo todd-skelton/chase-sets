@@ -116,7 +116,7 @@ Mitigation:
 
 ## Recommendation (to finalize)
 
-For Chase Sets’ goals (event-sourced, domain correctness, configurable variants/filters), this is the strongest default:
+For Chase Sets’ goals (event-sourced, domain correctness, configurable versions/filters), this is the strongest default:
 
 - Keep `apps/` for deployables.
 - Keep `domains/` for bounded contexts and business invariants.
@@ -170,7 +170,7 @@ Each domain package contains:
   - Shared primitives used across domains and apps (ids, event envelope, validation utilities)
 
 - `packages/config/`
-  - Config schemas + validation for admin-defined configuration (variants, filters, etc.)
+  - Config schemas + validation for admin-defined configuration (versions, filters, etc.)
 
 - `packages/ui/`
   - Shared UI components
@@ -203,7 +203,7 @@ Each domain package contains:
 ### What moves/gets created at module level (later)
 
 - Marketplace matching details: `domains/marketplace/adrs/`
-- Catalog/variant model details: `domains/catalog/docs/` and `domains/catalog/adrs/`
+- Catalog/version model details: `domains/catalog/docs/` and `domains/catalog/adrs/`
 - Auth and org/RBAC details: `domains/identity/docs/` and `domains/identity/adrs/`
 - Shipping flow details: `domains/fulfillment/docs/` and `domains/fulfillment/adrs/`
 

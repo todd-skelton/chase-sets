@@ -17,8 +17,8 @@ This doc is intentionally scoped to MVP workflows and avoids deep technical desi
 
 ## Problem statements (MVP)
 
-1. **Variant-heavy catalog makes it hard to buy confidently**
-   - Buyers struggle to find the exact item form (single vs sealed vs graded), variant attributes, and condition/grade.
+1. **Version-heavy catalog makes it hard to buy confidently**
+   - Buyers struggle to find the exact item form (single vs sealed vs graded), version attributes, and condition/grade.
 
 2. **Selling is high-friction without trustworthy listing + fulfillment workflows**
    - Sellers need a clear, low-effort way to list inventory tied to a ship-from location, fulfill reliably, and get paid.
@@ -55,7 +55,7 @@ Acceptance criteria:
 
 **Story 1.3 — Deterministic SKU selection**
 
-As a buyer or seller, I can choose variant attributes (condition/grade/etc.) and the system resolves a stable `skuId`.
+As a buyer or seller, I can choose version attributes (condition/grade/etc.) and the system resolves a stable `skuId`.
 
 Acceptance criteria:
 

@@ -12,7 +12,7 @@ These principles are decision filters. If a proposal violates a principle, it ne
      - Buyer pays payment processing fees and can reduce them by choosing lower-cost rails.
 
 2. **Catalog truth over convenience**
-   - Prefer correct canonical items/variants even if it slows feature delivery.
+   - Prefer correct canonical items/versions even if it slows feature delivery.
    - Catalog changes are auditable.
 
 3. **Fast to value**

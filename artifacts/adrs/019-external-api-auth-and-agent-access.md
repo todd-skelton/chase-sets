@@ -19,7 +19,7 @@ Chase Sets is **API-first**: the marketplace web client uses the same platform A
 
 A key external-client use case is **AI assistants/agents** (e.g., ChatGPT, Gemini, etc.) acting on behalf of consumers to:
 
-- search and compare catalog items
+- search and compare Items
 - watch prices / monitor listings & offers
 
 Later phases may include:

@@ -9,7 +9,7 @@ Module-level docs:
 - `docs/00-todo.md`
 - Terminology & definitions: [docs/terminology-and-definitions.md](docs/terminology-and-definitions.md)
 - `docs/01-sku-identity-and-resolution.md`
-- `docs/02-mvp-variant-keys-and-facets.md`
-- `docs/03-variant-model-examples.md`
-- `docs/15-variant-system.md`
+- `docs/02-mvp-version-keys-and-facets.md`
+- `docs/03-version-model-examples.md`
+- `docs/15-version-system.md`
 - `docs/24-catalog-governance-and-corrections.md`

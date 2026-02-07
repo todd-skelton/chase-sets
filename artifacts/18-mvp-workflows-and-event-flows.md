@@ -33,7 +33,7 @@ This is **documentation-only** and is expected to evolve as we validate ADRs.
 
 **Primary domains:** Catalog, Search
 
-**Outcome:** user sees the correct CatalogItem and resolves a SKU deterministically.
+**Outcome:** user sees the correct Item and resolves a SKU deterministically.
 
 ```mermaid
 sequenceDiagram
@@ -46,16 +46,16 @@ sequenceDiagram
   U->>Web: Search query
   Web->>API: GET /search?q=...
   API->>Search: query index
-  Search-->>API: results (catalogItemId + facets)
+  Search-->>API: results (itemId + facets)
   API-->>Web: results
 
   U->>Web: Open item detail
   Web->>API: GET /catalog/items/{id}
-  API->>Catalog: read item + variant model
-  Catalog-->>API: item + variant model
+  API->>Catalog: read item + version model
+  Catalog-->>API: item + version model
   API-->>Web: item detail
 
-  U->>Web: Select variant path
+  U->>Web: Select version path
   Web->>API: POST /skus/resolve
   API-->>Web: skuId
 ```

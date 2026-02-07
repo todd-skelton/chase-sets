@@ -9,15 +9,15 @@
 - **ExternalIdMapping** (maps external IDs to internal IDs per channel/org)
 - **Location**
 - **CatalogSet** (Pokémon expansion)
-- **CatalogItem** (single card / sealed product)
+- **Item** (single card / sealed product)
 - **CatalogAlias** (synonyms/alternate spellings; search + redirects)
 - **CatalogChangeRequest** (proposed correction with review + publish)
-- **Variant** (edition/language/foil; grader+grade for graded)
-- **VariantModel** (configuration template)
-- **VariantDimension**
-- **VariantOption**
-- **VariantPath** (resolved selection)
-- **SKU** (sellable unit; `CatalogItem + VariantPath`)
+- **Version** (edition/language/foil; grader+grade for graded)
+- **VersionModel** (configuration template)
+- **Option**
+- **OptionValue**
+- **VersionPath** (resolved selection)
+- **SKU** (sellable unit; `Item + VersionPath`)
 - **Listing** (sell)
 - **Bid** (buy)
 - **Checkout** (a buyer purchase intent that may span multiple sellers)
@@ -47,8 +47,8 @@ Tenant: the system is event sourced.
 This system is TypeScript-first:
 
 - **Event names** are `PascalCase` (e.g., `SkuResolved`, `TradeExecuted`).
-- **Payload field names** are `camelCase` (e.g., `catalogItemId`, `skuId`, `variantPath`, `flattenedFacets`).
-- **Type/interface names** are `PascalCase` (e.g., `VariantModel`, `VariantPath`).
+- **Payload field names** are `camelCase` (e.g., `itemId`, `skuId`, `versionPath`, `flattenedFacets`).
+- **Type/interface names** are `PascalCase` (e.g., `VersionModel`, `VersionPath`).
 
 If a physical storage layer uses a different convention (e.g., SQL), it must be mapped at the boundary and must not leak into public contracts.
 
@@ -57,14 +57,14 @@ If a physical storage layer uses a different convention (e.g., SQL), it must be 
 - `UserRegistered`
 - `ChannelConnected` / `ChannelDisconnected`
 - `ExternalIdMapped` (e.g., external order/listing id ↔ internal id)
-- `CatalogItemCreated` / `CatalogItemUpdated`
+- `ItemCreated` / `ItemUpdated`
 - `CatalogAliasAdded` / `CatalogAliasRemoved`
 - `CatalogChangeRequested` / `CatalogChangeReviewed` / `CatalogChangePublished` / `CatalogChangeRejected`
-- `CatalogItemSuperseded`
-- `CatalogItemsMerged` / `CatalogItemSplit`
-- `CatalogItemDeprecated` / `CatalogItemReactivated`
-- `VariantModelVersionPublished`
-- `SkuResolved` (VariantPath resolved for a CatalogItem)
+- `ItemSuperseded`
+- `ItemsMerged` / `ItemSplit`
+- `ItemDeprecated` / `ItemReactivated`
+- `VersionModelVersionPublished`
+- `SkuResolved` (VersionPath resolved for an Item)
 - `ListingCreated` / `ListingUpdated` / `ListingCancelled`
 - `BidPlaced` / `BidUpdated` / `BidCancelled`
 - `MatchCreated` (offer/listing execution; internal terms may still use bid/listing)
@@ -137,6 +137,6 @@ If a physical storage layer uses a different convention (e.g., SQL), it must be 
 1. Postgres event store details (ADR 007/008): stream keys (by SKU? by Order?), idempotency strategy, checkpointing, and retention.
 2. How do we handle catalog corrections (rename/merge/split) while preserving historical listings/orders?
 3. When do we credit seller balance (on payment capture vs on delivery/acceptance) and what holds/escrow rules apply?
-4. How do we version VariantModels/VariantPaths so older orders remain referentially correct?
+4. How do we version VersionModels/VersionPaths so older orders remain referentially correct?
 5. Export formats (CSV/JSON) and which entities must be portable.
 6. Money math invariants: rounding rules and allocation determinism for multi-seller + split shipments.

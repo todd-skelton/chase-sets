@@ -30,13 +30,13 @@ See also:
 
 ### Inputs
 
-- VariantPath-derived facets (admin-configured; examples: `type`, `company`, `grade`, `language`, `finish`, `condition`, `size`, `color`).
-- CatalogItem fields (set, number, rarity, etc.).
+- VersionPath-derived facets (admin-configured; examples: `type`, `company`, `grade`, `language`, `finish`, `condition`, `size`, `color`).
+- Item fields (set, number, rarity, etc.).
 
 Catalog owns the stable facet keys and SKU identity contract:
 
 - `domains/catalog/docs/01-sku-identity-and-resolution.md`
-- `domains/catalog/docs/02-mvp-variant-keys-and-facets.md`
+- `domains/catalog/docs/02-mvp-version-keys-and-facets.md`
 
 ### Admin-defined filter configuration (must be configurable)
 
@@ -86,7 +86,7 @@ What are the top 10 search queries we must nail (examples)? This doc is the cano
 Draft MVP top 10 (edit/replace as needed):
 
 1. Exact set + number: “Base Set Charizard 4/102”
-2. Exact set + number + variant cue: “Charizard 4/102 shadowless”
+2. Exact set + number + version cue: “Charizard 4/102 shadowless”
 3. Card name + set name: “Pikachu promo” / “Pikachu promo SWSH020”
 4. Nickname/descriptor: “shiny charizard”
 5. Edition cue: “1st edition blastoise”
