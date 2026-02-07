@@ -39,6 +39,7 @@ For module/domain-specific documentation (Catalog, Marketplace, Orders, Payments
 - [13-ownership-and-responsibilities.md](13-ownership-and-responsibilities.md)
 - [14-living-artifacts-and-roadmap.md](14-living-artifacts-and-roadmap.md)
 - [16-repo-structure-and-artifact-placement.md](16-repo-structure-and-artifact-placement.md)
+- [23-domain-boundary-ownership-clarifications.md](23-domain-boundary-ownership-clarifications.md)
 - [25-admin-support-tooling-and-operations.md](25-admin-support-tooling-and-operations.md)
 - [26-observability-slos-audit-and-incident-response.md](26-observability-slos-audit-and-incident-response.md)
 - [27-data-privacy-retention-export-and-deletion.md](27-data-privacy-retention-export-and-deletion.md)
