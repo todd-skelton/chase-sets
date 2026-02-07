@@ -6,6 +6,7 @@
 - **OSS-first**: prefer best-in-class open-source infrastructure components.
 - **Event-first**: write domain events as the source of truth; projections are derived.
 - **API-first**: the web app is the first API consumer, using the same platform APIs available to external clients.
+- **Ubiquitous language first**: model terms should match the words people use in conversations, UI, and documentation; avoid internal-only jargon or abbreviations.
 
 ## Coding standards
 
