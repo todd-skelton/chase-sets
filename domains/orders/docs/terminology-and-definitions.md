@@ -19,6 +19,14 @@ The Orders domain owns the **Checkout → Order** lifecycle: turning marketplace
 
 A **Checkout** is a buyer purchase session that may include items from multiple sellers and can produce multiple Orders/Shipments.
 
+### Buyer
+
+A **Buyer** is the customer who initiates a checkout and is responsible for payment and receiving the order.
+
+### Seller
+
+A **Seller** is the merchant responsible for fulfilling the order lines assigned to their order.
+
 ### Order
 
 An **Order** is a seller-scoped transaction record created from a checkout and representing what must be fulfilled.
@@ -27,9 +35,57 @@ An **Order** is a seller-scoped transaction record created from a checkout and r
 
 An **Order Line** is a line item within an Order referencing a SKU and quantity.
 
+### Order Split
+
+An **Order Split** is the deterministic division of a checkout into multiple orders, typically by seller (and optionally by fulfillment origin), so each seller receives a single, clear fulfillment obligation.
+
 ### Order State
 
 **Order State** is the domain-owned status progression (created → paid → fulfilled → delivered/canceled/refunded), coordinated via events from Payments and Fulfillment.
+
+### Checkout State
+
+**Checkout State** is the buyer-facing status of the checkout as a whole (draft → submitted → paid → completed/abandoned), reflecting the aggregate state of all associated orders.
+
+### Pricing Summary
+
+A **Pricing Summary** is the computed breakdown of totals for a checkout or order (items, taxes, fees, discounts, shipping), used to request payment authorization and capture.
+
+### Shipping Selection
+
+A **Shipping Selection** is the buyer’s chosen delivery method or speed for a given order (or shipment), used by Orders to request fulfillment.
+
+### Fulfillment Request
+
+A **Fulfillment Request** is the instruction Orders sends to Fulfillment to create shipments, reserve inventory, and eventually mark items as shipped or delivered.
+
+### Payment Request
+
+A **Payment Request** is the instruction Orders sends to Payments to authorize or capture funds based on the checkout or order totals.
+
+### External Order
+
+An **External Order** is an order originating outside the marketplace (e.g., in-store or third-party channel) that is ingested into Orders using a channel-provided idempotency key.
+
+### Idempotency Key
+
+An **Idempotency Key** is the stable identifier used to ensure creating a checkout or order from the same source event does not produce duplicates.
+
+### Cancellation
+
+A **Cancellation** is the reversal of an order prior to fulfillment, initiated by buyer, seller, or system policy, and coordinated with Payments for refund or void.
+
+### Refund
+
+A **Refund** is the monetary return to the buyer for an order (partial or full), triggered by cancellation, return, or dispute outcomes.
+
+### Return
+
+A **Return** is a post-delivery flow that brings items back from buyer to seller and may result in a refund.
+
+### Adjustment
+
+An **Adjustment** is a post-order correction to quantities, pricing, taxes, or fees that requires reauthorization or refund coordination.
 
 ---
 
