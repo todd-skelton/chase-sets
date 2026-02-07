@@ -39,7 +39,7 @@ A **Trade** (or **Match**) is the outcome of compatible bids/listings crossing a
 
 Marketplace references:
 
-- Catalog identifiers (Item/SKU/Variant/Version as defined by Catalog)
+- Catalog identifiers (Item/SKU/Version as defined by Catalog)
 - Identity (account/org permissions)
 
 Marketplace does not own:

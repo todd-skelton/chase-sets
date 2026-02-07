@@ -63,16 +63,16 @@ A story/epic is **Done** when:
 
 ### INI-01 — Product discovery that resolves a stable SKU
 
-**Problem addressed:** “Variant-heavy catalog makes it hard to buy confidently.”
+**Problem addressed:** “Version-heavy catalog makes it hard to buy confidently.”
 
-**Outcome:** a user can search → open item detail → select variant path → get a deterministic `skuId`.
+**Outcome:** a user can search → open item detail → select version path → get a deterministic `skuId`.
 
 **Primary workflow:** #1 in [18-mvp-workflows-and-event-flows.md](18-mvp-workflows-and-event-flows.md)
 
 **Epics:**
 
 - EP-DISC-01 Search and result quality
-- EP-DISC-02 Item detail + variant selector + SKU resolve
+- EP-DISC-02 Item detail + version selector + SKU resolve
 - EP-DISC-03 Catalog governance minimums (admin edits/corrections)
 
 Slice spec:
@@ -183,7 +183,7 @@ References:
 
 ---
 
-### EP-DISC-02 — Item detail + variant selector + SKU resolve
+### EP-DISC-02 — Item detail + version selector + SKU resolve
 
 **Status:** Proposed
 
@@ -195,18 +195,18 @@ Slice spec: [22-slice-1-catalog-discovery.md](22-slice-1-catalog-discovery.md)
 
 **Tasks**
 
-- [ ] T-CAT-001 Confirm canonical variant schema + validation rules (Catalog)
-- [ ] T-CAT-002 Define `VariantPath` normalization rules (Catalog)
+- [ ] T-CAT-001 Confirm canonical version schema + validation rules (Catalog)
+- [ ] T-CAT-002 Define `VersionPath` normalization rules (Catalog)
 - [ ] T-CAT-003 Define deterministic SKU identity + resolution rules (Catalog)
-- [ ] T-WEB-001 Define the variant selector UX requirements and failure states (Web)
-- [ ] T-API-003 Draft `GET /catalog/items/{catalogItemId}` contract (API)
+- [ ] T-WEB-001 Define the version selector UX requirements and failure states (Web)
+- [ ] T-API-003 Draft `GET /catalog/items/{itemId}` contract (API)
 - [ ] T-API-004 Draft `POST /skus/resolve` contract (API)
 - [ ] T-WORK-002 Define catalog public-view projection shape (Workers)
 
 References:
 
 - Catalog TODOs: [../domains/catalog/docs/00-todo.md](../domains/catalog/docs/00-todo.md)
-- Variant system: [../domains/catalog/docs/15-variant-system.md](../domains/catalog/docs/15-variant-system.md)
+- Version system: [../domains/catalog/docs/15-version-system.md](../domains/catalog/docs/15-version-system.md)
 
 ---
 

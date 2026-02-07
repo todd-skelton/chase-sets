@@ -6,7 +6,7 @@ Chase Sets is a fair marketplace for buying and selling Pokémon TCG collectible
 
 ## Problem
 
-Collectors and TCG players want to buy/sell quickly with confidence, but existing solutions can be unfair (fees/price gaps), error-prone (messy catalog/variants), or high-friction (hard to find the exact condition/grade).
+Collectors and TCG players want to buy/sell quickly with confidence, but existing solutions can be unfair (fees/price gaps), error-prone (messy catalog/versions), or high-friction (hard to find the exact condition/grade).
 
 For MVP, “fair” means providing a transparent and equitable marketplace where buyers and sellers can transact with confidence, supported by clear policies, competitive fees, and protections against fraud and non-fulfillment. Operational costs are shared equitably and shaped by behavior where users can reduce cost (e.g., larger orders to reduce shipping cost per item).
 
@@ -16,7 +16,7 @@ Primary: collectors and Pokémon TCG players.
 
 ## Why now
 
-The Pokémon TCG market is active and variant-heavy (singles, sealed, graded). A curated catalog + fair marketplace mechanics is a wedge to earn trust and liquidity.
+The Pokémon TCG market is active and version-heavy (singles, sealed, graded). A curated catalog + fair marketplace mechanics is a wedge to earn trust and liquidity.
 
 ## The product (future state)
 
@@ -34,7 +34,7 @@ Chase Sets provides:
 ## What success looks like (1–3 years)
 
 - Strong, repeat liquidity: collectors reliably buy/sell weekly.
-- Catalog trust: low mismatch rates, clear variants, and consistent item definitions.
+- Catalog trust: low mismatch rates, clear versions, and consistent item definitions.
 - Expandable platform: additional channels and integrations can be layered on without redesign.
 
 ## Explicit non-goals / out of scope

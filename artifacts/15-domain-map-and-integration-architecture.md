@@ -15,7 +15,7 @@ This document is the missing bridge: it defines the **bounded contexts (domains)
 ### Catalog
 
 - Curated catalog of items/sets
-- Variant model configuration + SKU resolution
+- Version model configuration + SKU resolution
 - Catalog correction/audit workflow
 
 ### Search
@@ -88,7 +88,7 @@ flowchart LR
 
   subgraph C[Catalog]
     C1[Catalog items]
-    C2[Variant models]
+    C2[Version models]
   end
 
   subgraph S[Search]

@@ -14,7 +14,7 @@
 
 ## Quality / correctness guardrails
 
-- Data accuracy: catalog item identity and variant correctness (wrong item == trust loss).
+- Data accuracy: Item identity and version correctness (wrong item == trust loss).
 - Search/lookup quality: users can reliably find the exact form they want (single vs sealed vs graded + grade/condition).
 
 ## Constraints

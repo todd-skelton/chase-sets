@@ -24,25 +24,25 @@ Those per-domain terms should be used to model and name entities, commands, even
 - **API key / token**: a credential used by an API client to authenticate; keys/tokens must be scoped, revocable, rotated, and audited.
 - **Catalog**: the curated system-managed catalog of Pokémon TCG products.
 - **Catalog Set**: an official Pokémon TCG expansion/set (e.g., “Base Set”, “Evolving Skies”).
-- **Catalog Item**: a canonical product entry in the catalog.
+- **Item**: a canonical product entry in the catalog.
   - Examples: a specific single card, a specific sealed product.
 - **Item Form**: the high-level inventory form.
   - Admin-configured values (examples): **Conditioned** (raw/ungraded), **Sealed**, **Graded**.
-- **Variant**: a specific distinguishable version of a catalog item.
+- **Version**: a specific distinguishable version of an Item.
   - Examples (MVP): language, foil/non-foil, edition/printing where relevant; for graded items: grading company + grade.
-- **Variant Model**: the configuration template that defines allowed variant selection for a Catalog Item.
-- **Variant Dimension**: a decision point in the selection flow (required/optional; single/multi select).
-- **Variant Option**: a selectable value within a dimension (may reveal child dimensions).
-- **Variant Path**: an ordered list of selected dimension-option pairs (validated against the Variant Model).
-- **SKU (Sellable SKU)**: a unique sellable unit defined by `CatalogItem + VariantPath`.
-- **Variant selector**: the UI workflow that guides a user to choose a valid VariantPath (and therefore SKU) for listing/offering/buying.
+- **Version Model**: the configuration template that defines allowed version selection for an Item.
+- **Option**: a decision point in the selection flow (required/optional; single/multi select).
+- **Option Value**: a selectable value within an Option (may reveal child Options).
+- **Version Path**: an ordered list of selected option-optionValue pairs (validated against the Version Model).
+- **SKU (Sellable SKU)**: a unique sellable unit defined by `Item + VersionPath`.
+- **Version selector**: the UI workflow that guides a user to choose a valid VersionPath (and therefore SKU) for listing/offering/buying.
 - **Condition**: the condition for raw singles.
   - Scale is admin-configured; MVP default example: **NM, LP, MP, HP, DMG**.
 - **Grade**: a numeric/label grade for graded items (e.g., PSA 10).
   - Companies and grade scales are admin-configured; MVP default examples: **PSA, BGS, CGC**.
   - Grade encoding is typically modeled as two dimensions/facets (example): `company` + `gradeLabel`.
-- **Listing**: a sell-side offer to sell a specific catalog item (and its attributes) at a price.
-- **Bid**: a buy-side intent to buy a specific catalog item (and its attributes) at a price.
+- **Listing**: a sell-side offer to sell a specific Item (and its attributes) at a price.
+- **Bid**: a buy-side intent to buy a specific Item (and its attributes) at a price.
 - **Order book**: the internal projection that represents the active bids and listings for a SKU.
 - **Order**: a transaction created when a listing/bid results in a purchase.
 - **Checkout**: a buyer purchase session that can include items from multiple sellers and may produce multiple Orders/Shipments.
@@ -72,10 +72,10 @@ Recommended mapping (UI → internal):
 - Organization → owns Listings and Bids
 - Organization → has Locations
 - Location → holds Inventory
-- Catalog Set → contains Catalog Items
-- Catalog Item → has Variants
-- Catalog Item → references a Variant Model
-- Catalog Item + VariantPath → defines a SKU
+- Catalog Set → contains Items
+- Item → has Versions
+- Item → references a Version Model
+- Item + VersionPath → defines a SKU
 - Listing/Bid → references exactly one SKU
 - Listing/Bid → belongs to exactly one Order book / market view (defined by SKU)
 - Order → references the listing/bid that resulted in the purchase + payment/fulfillment state
@@ -84,7 +84,7 @@ Recommended mapping (UI → internal):
 
 - “Chase Sets” (brand/platform) vs “Catalog Set” (Pokémon expansion).
 - Whether we need a first-class “Collection tracking” domain at all (explicitly out of MVP).
-- What fields define a “variant” in Pokémon TCG for our use cases.
+- What fields define a “version” in Pokémon TCG for our use cases.
 
 ## Diagrams
 
@@ -93,8 +93,8 @@ erDiagram
   ACCOUNT ||--o{ MEMBERSHIP : has
   ORGANIZATION ||--o{ MEMBERSHIP : has
   ORGANIZATION ||--o{ LOCATION : owns
-  CATALOG_SET ||--o{ CATALOG_ITEM : contains
-  CATALOG_ITEM ||--o{ SKU : derives
+  CATALOG_SET ||--o{ ITEM : contains
+  ITEM ||--o{ SKU : derives
   ORGANIZATION ||--o{ LISTING : owns
   ORGANIZATION ||--o{ BID : owns
   SKU ||--o{ LISTING : for
@@ -110,9 +110,9 @@ erDiagram
 
 ## Open questions
 
-1. What is the canonical identifier strategy for catalog items (set + card number; UPC for sealed; something else)?
+1. What is the canonical identifier strategy for Items (set + card number; UPC for sealed; something else)?
 2. What is the condition scale for singles (and does it vary by category)?
 3. Which graders are supported (PSA/BGS/CGC/etc) and how we encode grade.
-4. How is the Variant model represented in the catalog (schema) and how do we ensure it stays stable over time?
+4. How is the Version model represented in the catalog (schema) and how do we ensure it stays stable over time?
 5. Are listings/bids strict SKU equality only (recommended for MVP), or do we allow equivalency rules later?
 6. What organization roles do we need early (owner, admin, lister, finance, support)?

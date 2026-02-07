@@ -345,7 +345,7 @@ Create only what we need to start slicing the MVP:
   - `apps/workers` (projectors/background)
 - [ ] Define shared packages:
   - `packages/shared` (ids, time, event envelope)
-  - `packages/config` (variant schemas, validation)
+  - `packages/config` (version schemas, validation)
 
 ## 4) Domain drill-down TODOs (what to build)
 
@@ -379,7 +379,7 @@ Create only what we need to start slicing the MVP:
 ### Catalog
 
 - [ ] Track drill-down tasks: [domains/catalog/docs/00-todo.md](domains/catalog/docs/00-todo.md)
-- [ ] Confirm variant model schema and validation rules: [domains/catalog/docs/15-variant-system.md](domains/catalog/docs/15-variant-system.md)
+- [ ] Confirm version model schema and validation rules: [domains/catalog/docs/15-version-system.md](domains/catalog/docs/15-version-system.md)
 - [ ] Confirm catalog correction/audit workflow: [domains/catalog/docs/24-catalog-governance-and-corrections.md](domains/catalog/docs/24-catalog-governance-and-corrections.md)
 
 ### Search

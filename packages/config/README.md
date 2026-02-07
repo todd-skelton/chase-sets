@@ -4,5 +4,5 @@ Placeholder for config-driven schemas and validation.
 
 Likely owners:
 
-- Variant schemas (Catalog)
+- Version schemas (Catalog)
 - Filter configuration schemas (Search)

@@ -33,7 +33,7 @@ This is requirements-only (no implementation).
 Define and apply a consistent classification:
 
 1. **Public catalog data**
-   - Product names, sets, variants
+   - Product names, sets, versions
 2. **Operational marketplace data**
    - Listings/offers/orders/shipments (mostly non-PII but can include references)
 3. **Personal data (PII)**

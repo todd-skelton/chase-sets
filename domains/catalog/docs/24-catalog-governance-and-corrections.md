@@ -50,8 +50,8 @@ MVP constraint: even if org RBAC is minimal, internal/admin roles still need sep
 
 1. **Create**
    - Add CatalogSet
-   - Add CatalogItem
-   - Publish VariantModel version (already captured)
+   - Add Item
+   - Publish VersionModel version (already captured)
 2. **Update (non-identity / non-breaking edits)**
    - Display name corrections (typos)
    - Description text
@@ -94,7 +94,7 @@ When a correction occurs:
 
 Requirements:
 
-- Existing Orders must continue to reference the original CatalogItem/SKU they were created with.
+- Existing Orders must continue to reference the original Item/SKU they were created with.
 - Listings/Bids may:
   - continue referencing their original SKU but be displayed under the canonical replacement, OR
   - be migrated to a new SKU via an explicit migration workflow (policy-driven).
@@ -158,29 +158,29 @@ Requirements:
 - Deprecated/superseded items should:
   - not show as primary results for browsing
   - still resolve if directly referenced (deep link) and display redirect messaging
-- Filter facets must remain stable across corrections; if a variant model changes, older orders must remain referentially correct.
+- Filter facets must remain stable across corrections; if a version model changes, older orders must remain referentially correct.
 
 ---
 
 ## Required events (conceptual)
 
 - `CatalogSetCreated` / `CatalogSetUpdated`
-- `CatalogItemCreated` / `CatalogItemUpdated`
+- `ItemCreated` / `ItemUpdated`
 - `CatalogAliasAdded` / `CatalogAliasRemoved`
 - `CatalogChangeRequested` / `CatalogChangeReviewed` / `CatalogChangePublished` / `CatalogChangeRejected`
-- `CatalogItemSuperseded` (old → new canonical mapping)
-- `CatalogItemsMerged`
-- `CatalogItemSplit`
-- `CatalogItemDeprecated` / `CatalogItemReactivated`
+- `ItemSuperseded` (old → new canonical mapping)
+- `ItemsMerged`
+- `ItemSplit`
+- `ItemDeprecated` / `ItemReactivated`
 
-(Variant events remain separate, e.g. `VariantModelVersionPublished`.)
+(Version events remain separate, e.g. `VersionModelVersionPublished`.)
 
 ---
 
 ## Open questions
 
-1. Who is allowed to create new CatalogItems at launch (internal only vs trusted sellers)?
+1. Who is allowed to create new Items at launch (internal only vs trusted sellers)?
 2. Do we allow sellers to “report catalog issue” in MVP (and what triage SLA)?
 3. When do we merge order books vs keep separate and just redirect search/browse?
 4. For a split correction, do we require migrating existing listings/bids, or allow them to remain on the old item until edited?
-5. What canonical identifier strategy do you want for Singles (set + number + variant flags) vs Sealed (UPC?)?
+5. What canonical identifier strategy do you want for Singles (set + number + version flags) vs Sealed (UPC?)?

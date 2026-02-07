@@ -13,7 +13,7 @@
 - [001-payments-and-payouts.md](001-payments-and-payouts.md)
 - [002-auth-and-account-recovery.md](002-auth-and-account-recovery.md)
 - [003-bids-listings-and-matching.md](003-bids-listings-and-matching.md)
-- [004-config-driven-variant-system.md](004-config-driven-variant-system.md)
+- [004-config-driven-version-system.md](004-config-driven-version-system.md)
 - [005-event-sourcing-and-projections.md](005-event-sourcing-and-projections.md)
 - [006-containers-cdn-and-oss-baseline.md](006-containers-cdn-and-oss-baseline.md)
 - [007-postgres-event-store.md](007-postgres-event-store.md)

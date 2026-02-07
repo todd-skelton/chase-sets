@@ -6,11 +6,11 @@ Accepted
 
 ## Context
 
-Search is a core workflow: users must find the correct catalog item and then filter/choose the exact SKU (via VariantPath-derived facets).
+Search is a core workflow: users must find the correct Item and then filter/choose the exact SKU (via VersionPath-derived facets).
 
 We need:
 
-- Fast text search for catalog items
+- Fast text search for Items
 - Faceting/filtering on flattened SKU facets (language, foil, grade, etc.)
 - Filters must be **admin-defined and config-driven** (no per-filter code changes).
 - Vector + semantic search day one (hybrid lexical + vector retrieval/ranking)
