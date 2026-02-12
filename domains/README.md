@@ -41,4 +41,4 @@ If a term is shared across multiple domains, it should also appear (or be reconc
 - [domains/risk/README.md](risk/README.md)
 - [domains/trust-safety/README.md](trust-safety/README.md)
 
-Suggested drill-down order (MVP): Marketplace → Orders → Payments → Fulfillment → Catalog/Search → Identity/Risk/Trust & Safety.
+Suggested drill-down order (MVP): Identity → Catalog → Marketplace → Search → Orders → Payments → Fulfillment → Risk → Trust & Safety → Reputation.
