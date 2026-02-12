@@ -2,11 +2,11 @@
 
 ## Purpose
 
-Define a cross-cutting step-up authentication policy for high-risk and high-impact actions.
+Define cross-cutting step-up authentication policy for high-risk and high-impact actions.
 
-This complements:
+This document complements:
 
-- Fraud/risk controls
+- Risk controls
 - Seller onboarding/KYC and payout gating
 - Admin/support tooling and auditability
 - Legal/policy acceptance
@@ -17,21 +17,23 @@ This is requirements-only (no implementation).
 
 ## Goals
 
-- Reduce account takeover impact for financial and security-sensitive actions.
+- Reduce account-takeover impact for financial and security-sensitive actions.
 - Make triggers, UX expectations, and audit requirements explicit.
-- Keep MVP friction reasonable (email-first, magic link baseline).
+- Keep MVP friction reasonable (email-first, magic-link baseline).
 
 ## Non-goals (MVP)
 
-- Full MFA app support (can come later).
-- Continuous risk scoring ML.
+- Full authenticator-app MFA support.
+- Continuous ML risk scoring.
 
 ---
 
 ## Definitions
 
-- **Step-up auth**: an additional verification step beyond the current session.
-- **Sensitive action**: an action that can move money, change payout destinations, or weaken account security.
+- **Step-up authentication**: an additional verification step beyond the active session.
+- **Sensitive action**: an action that can move money, weaken account security, or materially change access.
+- **StepUp Challenge**: action-bound challenge with nonce, method, and expiry.
+- **Actor**: account performing an action in self or organization acting context.
 
 ---
 
@@ -41,21 +43,21 @@ Step-up must be required for:
 
 ### Finance-sensitive
 
-- Add/update/remove payout destination
-- Initiate payout
-- Change tax/KYC settings (if it affects payout eligibility)
+- Add/update/remove payout destination.
+- Initiate payout.
+- Change tax/KYC settings when payout eligibility may be affected.
 
 ### Security-sensitive
 
-- Change primary email
-- Create/revoke API keys or authorize external integrations (including AI assistants/agents) acting on behalf of the user/org
-- Delete account / request data deletion
-- Download data export (large or high-sensitivity export)
+- Change primary email.
+- Create/revoke integration credentials or approve delegated grants (post-MVP) for API clients acting on behalf of account/org.
+- Delete account / request data deletion.
+- Download high-sensitivity data exports.
 
 ### High-risk marketplace actions (policy-driven)
 
-- High-value checkout submission (threshold)
-- Rapid bidding/listing churn from a new device/session
+- High-value checkout submission above configured threshold.
+- Rapid bidding/listing churn from a new device/session.
 
 ---
 
@@ -63,22 +65,22 @@ Step-up must be required for:
 
 Step-up triggers should include:
 
-- New device/session
-- Unusual geo/IP reputation signals (best-effort)
-- Time since last step-up exceeds threshold
-- Action value exceeds threshold
-- Risk flags on the account/org
+- New device/session.
+- Unusual geo/IP reputation signals (best effort).
+- Time since last successful step-up exceeds threshold.
+- Action value exceeds threshold.
+- Risk flags on account/org.
 
-The trigger system must be configurable.
+Trigger logic must be configurable.
 
 ---
 
-## Step-up methods (MVP-friendly)
+## Step-up methods (MVP)
 
 Allowed methods for MVP:
 
-- Re-auth via magic link confirmation for the specific action
-- Email OTP confirmation for the specific action
+- Re-auth via magic-link confirmation for the specific action intent.
+- Email OTP confirmation for the specific action intent.
 
 Method selection can be policy-driven.
 
@@ -86,9 +88,9 @@ Method selection can be policy-driven.
 
 ## UX requirements
 
-- The user must be told _why_ step-up is required in general terms (without leaking risk signals).
-- Step-up must be bound to a specific action intent (nonce) and expire.
-- Failures must be safe:
+- User is told why step-up is required in general terms without leaking internal risk signals.
+- Challenge is bound to specific action intent and expires.
+- Failure behavior is safe:
   - action is not executed
   - user can retry
   - repeated failures may trigger temporary lockout
@@ -97,54 +99,45 @@ Method selection can be policy-driven.
 
 ## Audit requirements
 
-Every step-up request and outcome must be auditable:
+Every step-up request and outcome must be auditable with:
 
-- who requested (user/account id)
-- what action was attempted
+- actor identity (`identityId`, `accountId`, optional `orgId`/`membershipId`)
+- attempted action and target
 - timestamp
 - method used
-- outcome (required, satisfied, failed, expired)
+- outcome (`required`, `satisfied`, `failed`, `expired`, `bypassed`)
 
 ---
 
 ## Admin/support requirements
 
-- Support agents can see whether step-up is required/has been satisfied for a requested action.
-- Support should not be able to bypass step-up for finance actions without a privileged role and a reason-coded override.
+- Support can see whether step-up is required or satisfied for a requested action.
+- Support cannot bypass step-up for finance actions without privileged role and reason-coded override.
 
 ---
 
 ## Required events (conceptual)
 
-Existing events:
-
 - `StepUpAuthRequired`
 - `StepUpAuthSatisfied`
-
-Recommended additions:
-
 - `StepUpAuthFailed`
 - `StepUpAuthExpired`
-- `StepUpAuthBypassed` (admin-only; reason-coded)
+- `StepUpAuthBypassed` (admin-only, reason-coded)
 
 ---
 
-## Open questions
-
-## MVP defaults (proposed)
+## MVP defaults
 
 1. **High-value checkout threshold**
 
 - Require step-up at checkout submission when cart total (items + shipping) >= **$250** (configurable).
 
-2. **Payout destination**
+2. **Payout destination changes**
 
-- Require step-up for **creating the first** payout destination and for all subsequent updates/removals.
+- Require step-up for creating first payout destination and all subsequent updates/removals.
 
 3. **Lockout policy**
 
-- Step-up attempts are rate limited:
-  - max **5** failures per **15 minutes** (per account)
-  - after exceeding, block step-up attempts for **30 minutes**
-- Escalation:
-  - if **10** failures in **24 hours**, require support review to unlock
+- Max **5** failed step-up attempts per **15 minutes** per account.
+- After limit is exceeded, block step-up attempts for **30 minutes**.
+- If **10** failures occur in **24 hours**, require support review to unlock.

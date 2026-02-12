@@ -2,53 +2,58 @@
 
 ## Purpose
 
-Capture the requirements for **company / organization accounts**, supporting:
+Capture requirements for organization accounts and role-based access control.
 
-- Multiple members per seller organization
-- Role-based access control (RBAC)
-- Clean future evolution (more auth methods; more roles; compliance needs)
+This document is requirements-only (no implementation).
 
-This is requirements-only (no implementation).
+---
 
-## MVP decision (confirmed)
+## Canonical decisions
 
-- The system is designed to support **Organizations + RBAC**.
-- **MVP constraint:** only **one member/account per organization**.
-- The design must allow a clean future move to multi-member orgs with configurable RBAC (without rewriting core ownership models).
+- Identity terminology is **Identity-first**:
+  - **Identity** is the authentication subject.
+  - **Account** is the platform profile linked to an Identity.
+  - **User** is the human represented by an Identity.
+- The system is designed for **Organizations + RBAC**.
+- **MVP constraint:** one member/account per organization.
+- **MVP operational role:** `Owner` only.
+- **Role Assignment target:** membership-scoped by default.
+  - Account-level/global roles are platform-admin exceptions (Post-MVP).
+- Finance-sensitive organization actions require step-up authentication in MVP.
 
 ---
 
 ## Concepts
 
-- **Identity**: a login-capable person (auth credential holder).
-- **Account**: the platform profile for an identity (settings, preferences).
-- **Organization**: a business/team container that can own resources.
+- **Organization**: business/team container that owns seller resources.
 - **Membership**: link between an Account and an Organization.
-- **Role**: named permissions.
+- **Role**: named permission set.
+- **Role Assignment**: attachment of a Role to a Membership.
+- **Acting Context**: whether an account is acting for itself or on behalf of an organization.
 
-Ownership targets (resources that may be owned by an Org):
+Ownership targets (resources that may be owned by an Organization):
 
-- Catalog operations (admin-only)
-- Listings/Bids (seller-side)
-- Locations and inventory (fulfillment origins; stock tracking)
-- Payout settings / tax settings
+- Listings and bids
+- Locations and inventory
+- Payout settings and tax/KYC configuration pointers
 - Support/dispute workflows
 
 ---
 
 ## MVP scope
 
-### MVP (single-member orgs)
+### MVP (single-member organizations)
 
 - Organizations exist and can own seller resources.
-- Each organization has exactly one member in MVP.
-- RBAC is modeled, but in MVP it effectively collapses to a single role (Owner).
+- Each organization has exactly one membership in MVP.
+- RBAC remains modeled for expansion, but enforcement effectively maps to `Owner` only.
+- Ownership boundaries are explicit even without UI context switching.
 
 ---
 
-## RBAC model (ready for future expansion)
+## RBAC model (future-compatible)
 
-Roles (starter set):
+Starter role set:
 
 - **Owner**: manage org, members, payout/tax settings.
 - **Admin**: manage members, manage listings, view financials.
@@ -59,25 +64,24 @@ Roles (starter set):
 MVP simplification:
 
 - MVP ships with only **Owner** operationally.
-- The data model and permission checks must be compatible with adding the other roles later.
+- Data model and permission checks must support adding other roles without ownership rewrites.
 
 Permission buckets:
 
-- Org settings: create/update org profile
-- Member management: invite/remove/change roles
-- Marketplace: create/update/cancel listings; view bids; manage inventory
-- Orders: view orders; update fulfillment
-- Finance: view wallet/ledger; configure payout destination; request payouts
+- Org settings: create/update org profile.
+- Member management: invite/remove/change roles.
+- Marketplace: create/update/cancel listings, view bids, manage inventory.
+- Orders: view orders, update fulfillment-relevant status.
+- Finance: view wallet/ledger, configure payout destination, request payouts.
 
 ---
 
 ## UX requirements
 
-- Users can belong to multiple orgs (future-ready), but MVP may show only one.
-- “Acting as” context switching is not required in MVP UI, but ownership boundaries must be explicit.
-- Invitations and multi-member onboarding are not required in MVP, but should be supported by the model later.
-- Auditability:
-  - record who performed what actions (especially finance/payout actions)
+- Users may belong to multiple organizations (future-ready), even if MVP UI emphasizes one.
+- "Acting as" context switching is not required in MVP UI.
+- Invitation and multi-member onboarding are Post-MVP, but lifecycle terms remain canonical now.
+- Auditability must capture actor + acting context for finance and role-management operations.
 
 ---
 
@@ -87,12 +91,12 @@ Permission buckets:
   - payout destination changes
   - payout initiation
   - role changes
-- Rate limits and bot protection for invites and auth.
+- Step-up policies and lockout/rate-limit controls follow identity step-up policy.
+- Rate limits and bot protection apply to invites and authentication flows.
 
 ---
 
-## Open questions (need your answers)
+## Open questions
 
-1. Do we need step-up auth for finance actions in MVP (email re-confirm), or is magic-link session sufficient?
-2. Locations/inventory: is MVP strictly single default location per org (recommended), with multi-location coming later?
-3. When we expand beyond single-member orgs, do we want invitations or admin-added members first?
+1. Locations/inventory: is MVP strictly single default location per org, with multi-location later?
+2. For multi-member expansion, should invitations or admin-added members ship first?

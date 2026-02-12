@@ -2,7 +2,7 @@
 
 This document defines the ubiquitous language for the **Identity domain**.
 
-Identity owns authentication and authorization primitives: accounts, organizations, roles, memberships, and delegated access.
+Identity owns authentication and authorization primitives: identities, accounts, sessions, organizations, memberships, RBAC, API client access, and step-up policy evaluation.
 
 ---
 
@@ -13,99 +13,152 @@ Identity owns authentication and authorization primitives: accounts, organizatio
 
 ---
 
-## Core concepts (MVP)
+## Canonical concepts
 
-### Account
+Phase tags:
 
-An **Account** is a user identity with authentication credentials and preferences.
+- **MVP**: in scope today
+- **Post-MVP**: intentionally future-facing
+- **Cross-Phase**: applies to both
 
-### User
+### Identity (Cross-Phase)
 
-A **User** is the human (or service actor) represented by an Account.
+An **Identity** is the canonical authentication subject (login-capable principal) that owns credentials and sessions.
 
-### Credential
+### User (Cross-Phase)
 
-A **Credential** is a verifiable secret or proof (password, passkey, MFA factor) tied to an Account.
+A **User** is a human represented by an Identity.
 
-### Organization
+### Account (Cross-Phase)
 
-An **Organization** is a company/team container that can own listings, inventory, and payment settings.
+An **Account** is a platform profile linked to an Identity, containing preferences and marketplace-facing profile data.
 
-### Membership
+### Actor (Cross-Phase)
+
+An **Actor** is the effective entity performing an action (an account acting for itself or on behalf of an organization).
+
+### Acting Context (Cross-Phase)
+
+**Acting Context** is the scope in which authorization is evaluated:
+
+- self context (account scope)
+- organization context (membership scope)
+
+### Credential (Cross-Phase)
+
+A **Credential** is a verifiable proof used to authenticate an Identity (for example magic link proof, password, passkey, MFA factor).
+
+### Session (MVP)
+
+A **Session** is a revocable authenticated interaction window bound to an Identity (and optionally device context).
+
+### Authentication (Cross-Phase)
+
+**Authentication** is the process of proving an Identity.
+
+### Authorization (Cross-Phase)
+
+**Authorization** is the process of deciding whether an Actor in a given Acting Context can perform an action.
+
+### Organization (MVP)
+
+An **Organization** is a company/team container that can own seller resources.
+
+### Membership (MVP)
 
 A **Membership** links an Account to an Organization.
 
-### Role Assignment
+### Role (MVP)
 
-A **Role Assignment** attaches a Role to a Membership or Account, defining what actions are allowed.
+A **Role** is a named permission set.
 
-### Role / RBAC
-
-A **Role** is a named permission set; **RBAC** enforces permissions based on roles.
-
-### Permission
+### Permission (MVP)
 
 A **Permission** is an explicit allowance to perform an action on a resource.
 
-### Delegated Access
+### Role Assignment (MVP)
 
-**Delegated Access** is a grant that allows an API client to act on behalf of an account/org with scoped permissions.
+A **Role Assignment** attaches a Role to a Membership. This is the canonical RBAC attachment point.
 
-### API Client
+### Global Role Assignment (Post-MVP)
 
-An **API Client** is an application or service identified to Identity to request delegated access.
+A **Global Role Assignment** attaches a role directly to an Account for platform-level administration and is not the default seller RBAC model.
 
-### Session
+### RBAC (MVP)
 
-A **Session** is the authenticated interaction window created after successful sign-in.
+**RBAC** enforces permissions through Role Assignments.
 
-### Authentication
+### API Client (MVP)
 
-**Authentication** is the process of proving an Account’s identity.
+An **API Client** is an application or service identified to Identity for non-browser API access.
 
-### Authorization
+### Integration Access (MVP)
 
-**Authorization** is the process of deciding whether an authenticated actor can perform an action.
+**Integration Access** is scoped API access for allowlisted external clients using integration credentials (for MVP: read-only catalog/search scope).
 
-### Multi-Factor Authentication (MFA)
+### Delegated Access Grant (Post-MVP)
 
-**MFA** is an additional verification step required to increase confidence in an Account’s identity.
+A **Delegated Access Grant** allows an API client to act on behalf of an account or organization with explicit consent and scoped permissions.
 
-### Step-Up Authentication
+### Multi-Factor Authentication (Post-MVP)
 
-**Step-Up Authentication** is a temporary elevation in verification required before sensitive actions.
+**MFA** is an additional verification factor beyond the primary sign-in method.
 
-### Sensitive Action
+### Step-Up Authentication (MVP)
 
-A **Sensitive Action** is an operation that needs heightened verification due to risk (e.g., payout changes).
+**Step-Up Authentication** is action-bound re-verification required before a Sensitive Action can execute.
 
-### Identity Provider (IdP)
+### StepUp Challenge (MVP)
 
-An **Identity Provider (IdP)** is an external system that authenticates users and issues assertions.
+A **StepUp Challenge** is a short-lived challenge tied to a specific action intent, method, and expiry.
 
-### Single Sign-On (SSO)
+### Sensitive Action (MVP)
 
-**SSO** is the ability to authenticate once via an IdP and access multiple services without re-entering credentials.
+A **Sensitive Action** is an operation requiring heightened assurance (for example payout destination change, payout initiation, role changes, credential reset).
 
-### Verification
+### Verification (MVP)
 
-**Verification** is checking a claim about an Account (email, phone, legal name) for correctness.
+**Verification** checks a claim about an account or user contact point (email, phone).
 
-### Recovery
+### Identity Proofing (Post-MVP)
 
-**Recovery** is the process of restoring access to an Account after lost credentials.
+**Identity Proofing** validates a user's real-world identity beyond basic authentication and contact verification.
 
-### Access Policy
+### Recovery (MVP)
 
-An **Access Policy** is a set of rules that determine which permissions apply in a context.
+**Recovery** restores account access when primary credentials are unavailable.
 
-### Audit Log
+### Access Policy (Cross-Phase)
 
-An **Audit Log** is a tamper-evident record of identity-related actions for compliance and investigation.
+An **Access Policy** is a configurable rule set that determines when permissions apply and when step-up is required.
 
-### Identity Proofing
+### Audit Log (Cross-Phase)
 
-**Identity Proofing** is validating a user’s real-world identity beyond basic authentication.
+An **Audit Log** is a tamper-evident record of identity-sensitive actions, including actor, context, target, and outcome.
+
+### Identity Provider (Post-MVP)
+
+An **Identity Provider (IdP)** is an external system that authenticates identities and issues assertions.
+
+### Single Sign-On (Post-MVP)
+
+**SSO** is the ability to authenticate through an external IdP and access multiple services without repeated sign-in.
+
+---
+
+## Canonical identifiers
+
+Use these names consistently in APIs, events, and projections:
+
+- `identityId`
+- `accountId`
+- `orgId`
+- `membershipId`
+- `roleAssignmentId`
+- `sessionId`
+- `clientId`
+- `grantId`
+- `stepUpChallengeId`
 
 ---
 
@@ -113,9 +166,19 @@ An **Audit Log** is a tamper-evident record of identity-related actions for comp
 
 Identity is referenced by all domains.
 
-Identity does not own:
+Identity owns:
+
+- Authentication and session lifecycle
+- Organization membership and RBAC primitives
+- Access policy evaluation inputs for authz and step-up
+- External client credentials and delegated grant primitives
+- Identity-sensitive audit records
+
+Identity references but does not own:
 
 - Catalog definition
 - Marketplace state
 - Payment money math
 - Fulfillment execution
+- Risk scoring decisions
+- Payments KYC/payout eligibility policy

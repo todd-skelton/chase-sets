@@ -18,15 +18,18 @@ Those per-domain terms should be used to model and name entities, commands, even
 
 ## Glossary (canonical terms)
 
-- **User**: a person who buys and/or sells on the marketplace.
-- **Account**: a user identity with authentication, preferences, and marketplace permissions.
+- **Identity**: the canonical authentication subject that owns credentials and sessions.
+- **User**: a human represented by an Identity.
+- **Account**: the platform profile linked to an Identity, with preferences and marketplace-facing attributes.
 - **Organization**: a company/team container that can own listings, payment settings, and operational permissions.
 - **Location**: a physical fulfillment origin for an Organization (warehouse/shop/kiosk). Locations can have their own inventory and fulfillment methods.
 - **Membership**: a link between an Account and an Organization.
 - **Role**: a named permission set within an Organization.
+- **Role Assignment**: attachment of a Role to a Membership (canonical org RBAC attachment point).
 - **RBAC**: role-based access control to enforce what members can do.
 - **API client**: any software client that calls the Chase Sets platform APIs (web app, partner integration, AI assistant/agent).
-- **Delegated access**: an authorization grant where a user/org allows an external API client to act on their behalf with scoped permissions.
+- **Integration access (MVP)**: allowlisted external API access using scoped integration credentials (read-only catalog/search in MVP).
+- **Delegated access (Post-MVP)**: an authorization grant where a user/org allows an external API client to act on their behalf with scoped permissions.
 - **API key / token**: a credential used by an API client to authenticate; keys/tokens must be scoped, revocable, rotated, and audited.
 - **Catalog**: the curated system-managed catalog of Pokémon TCG products.
 - **Catalog Set**: an official Pokémon TCG expansion/set (e.g., “Base Set”, “Evolving Skies”).
@@ -78,7 +81,7 @@ Recommended mapping (UI → internal):
 
 ## Core relationships (first draft)
 
-- Account (acting on behalf of an Organization) → creates Listings and Bids (offers in UI)
+- Identity -> Account -> Membership provides acting context for creating Listings and Bids.
 - Organization → owns Listings and Bids
 - Organization → has Locations
 - Location → holds Inventory
