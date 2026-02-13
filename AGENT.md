@@ -1,90 +1,99 @@
-﻿# AGENT.md - Chase Sets
+﻿# Chase Sets Marketplace — Agent Operating Guide (AGENT.md)
 
-## Purpose
-- Provide durable implementation guardrails for this repository.
-- Keep behavior aligned with accepted ADRs and locked MVP decisions.
+## North Star
 
-## Current State
-- Repository is documentation-first; code is being introduced incrementally.
-- Prefer thin vertical slices over deep subsystem build-out.
+Build a multi-tenant collectibles marketplace (Chase Sets Marketplace) that is:
 
-## Canonical Source Order
-1. Locked MVP decisions: `artifacts/19-mvp-decisions-to-lock.md`
-2. Accepted ADRs: `artifacts/adrs/*.md`
-3. Cross-cutting architecture/standards: `artifacts/11-development-standards.md`, `artifacts/15-domain-map-and-integration-architecture.md`, `artifacts/23-domain-boundary-ownership-clarifications.md`
-4. Domain docs: `domains/<domain>/docs/*`
-5. Slice and backlog docs: `artifacts/22-slice-1-catalog-discovery.md`, `artifacts/21-initiatives-epics-stories-and-tasks.md`
+- Scalable (domain + infra boundaries hold under growth)
+- Maintainable (clear ownership, predictable patterns)
+- Testable (fast unit tests, reliable integration tests)
+- AI-leveragable (small, authoritative context; self-describing repo)
 
-## Decision Status Rule
-- Treat only `Accepted` ADRs and explicitly locked MVP decisions as hard constraints.
-- Treat `Proposed` ADRs and open questions as non-binding; do not implement them as final policy without confirmation.
+## Repo Map (authoritative entry points)
 
-## Architecture Invariants
-- Event sourcing is the system of record.
-- Event store is append-only Postgres streams with optimistic concurrency.
-- Projectors run with at-least-once semantics and must be idempotent.
-- Projectors checkpoint by global position.
-- Side effects must be replay-safe via outbox/intent-event pattern.
-- Avoid raw PII in event payloads; prefer IDs and references.
-- Event store retention is indefinite for MVP; redaction/deletion happens in projections or side stores.
+- `docs/architecture/README.md` — high-level system architecture
+- `docs/domain/README.md` — domain glossary + bounded contexts
+- `docs/adr/` — architecture decision records (ADRs)
+- `docs/runbooks/` — operational runbooks
+- `services/` — deployable services (each with local AGENT.md)
+- `packages/` — shared libraries (types, UI, SDKs)
+- `infrastructure/` — IaC, deployments, environments
+- `scripts/` — repo automation
 
-## Event Envelope Contract (MVP)
-- Required event fields:
-  - `eventId` (ULID)
-  - `streamId`
-  - `streamPosition`
-  - `position` (global ordering cursor)
-  - `occurredAt`
-  - `schemaVersion`
-  - `correlationId`
-  - `causationId`
+## Non-Negotiables (quality bars)
 
-## Repository Boundaries
-- `domains/*` own business invariants and domain meaning.
-- `packages/*` are supporting primitives and config; no domain policy ownership.
-- `apps/*` wire domains and expose IO surfaces (HTTP, workers, UI).
-- `domains/*` must not depend on infrastructure SDKs or provider clients directly.
+- Every change includes tests appropriate to its layer.
+- Public APIs and domain events are versioned.
+- No cross-domain data coupling without an explicit ADR.
+- No “magic” conventions: all conventions are documented in `docs/`.
 
-## Naming and Ubiquitous Language
-- Use domain terminology docs as naming authority: `domains/<domain>/docs/terminology-and-definitions.md`.
-- Reconcile shared terms in `artifacts/02-domain-model-and-glossary.md`.
-- Type names and events use PascalCase; payload fields and public JSON keys use camelCase.
-- Keep SQL naming differences internal; do not leak snake_case into public contracts.
+## Default Architecture
 
-## API Guardrails
-- Single platform API posture: web client and external clients use the same API contracts.
-- All write endpoints require idempotency keys (`clientRequestId`).
-- Enforce pagination, max page sizes, rate limits, and quotas.
-- MVP external agent posture is read-only discovery behind allowlisted integration keys and strict guardrails.
+- Modular monolith acceptable initially ONLY if it preserves bounded contexts and can split cleanly.
+- Prefer: “packages (shared) + services (deployable)” with explicit APIs.
+- Domain boundaries first; persistence is an implementation detail.
 
-## Security, Privacy, and Audit
-- Finance/security-sensitive actions require step-up auth.
-- Never log secrets.
-- Keep PII access role-gated and auditable.
-- Admin actions must be reason-coded and auditable with actor and target references.
+## Bounded Contexts
 
-## Cross-Domain SoR Rules
-- Commands flow to the owning system of record (SoR); events flow out.
-- Projections are read-only and never become SoR.
-- Cross-domain state changes require explicit contracts and idempotency rules.
+- Identity
+- Catalog
+- Marketplace
+- Search
+- Orders
+- Payments
+- Fulfillment
+- Reputation
+  Each context owns its data and emits events.
 
-## Build and Validation Expectations
-- Add deterministic tests for domain rules.
-- Add replay/idempotency tests for projectors.
-- Add contract tests for cross-domain event payloads.
-- Keep observability hooks in place for critical flows (correlation IDs, projector lag, dependency failures).
+## Tech Stack (initial assumptions)
 
-## Default Slice Execution Order
-1. Catalog version identity and facet contracts
-2. Search indexing and query behavior
-3. API contracts for slice endpoints
-4. Web flow integration
-5. Worker/projector replay-safety checks
+- Language: TypeScript
+- DB: Postgres
+- API: REST (OpenAPI); Server-sent events for async updates; GraphQL considered for future read APIs.
+- Observability: structured logs + tracing + metrics
 
-## Implementation Checklist (Per Change)
-1. Confirm owning domain and SoR.
-2. Confirm accepted ADR or locked decision supports the change.
-3. Define command/event contract and idempotency key.
-4. Verify event payload avoids raw PII.
-5. Verify replay behavior and side-effect safety.
-6. Update the owning domain docs and ADR/task artifacts when behavior changes.
+## Naming & Layout Rules
+
+- Domain code: `services/<context>/src/domain/*`
+- Application layer: `services/<context>/src/app/*`
+- Infrastructure adapters: `services/<context>/src/infra/*`
+- No importing `infra` from `domain`.
+- Shared types: `packages/types/*` (versioned)
+
+## Commands (must be kept current)
+
+- Install: `pnpm i`
+- Lint: `pnpm lint`
+- Unit tests: `pnpm test`
+- Integration tests: `pnpm test:integration`
+- Local dev: `pnpm dev`
+- Migrations: `pnpm db:migrate`
+- Seed: `pnpm db:seed`
+
+## “Definition of Done”
+
+- Tests added/updated
+- OpenAPI/schema updated (if API change)
+- ADR added (if architectural decision)
+- Docs updated (if changes affect usage or conventions)
+- Observability hooks added (if new workflow)
+
+## How Agents Should Work Here
+
+1. Read `AGENT.md`, then the local `services/<x>/AGENT.md` for scope.
+2. Prefer modifying existing patterns over inventing new ones.
+3. If a new pattern is required, write an ADR first.
+4. Keep changes small and composable; avoid refactors + features in one PR.
+
+## Where To Put New Knowledge
+
+- Domain terms → `docs/domain/glossary.md`
+- Decisions → `docs/adr/XXXX-title.md`
+- “How to do X” → relevant `SKILL.md` or `docs/playbooks/`
+- Operational procedures → `docs/runbooks/`
+
+## Safety / Secrets
+
+- Never commit secrets.
+- Use `.env.example` and secret manager references.
+- Redact sensitive data from logs; follow `docs/security/logging.md`.
