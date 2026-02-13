@@ -72,21 +72,3 @@ High-level domain responsibilities and integration contracts are captured in:
 ```
 
 ---
-
-## Questions to answer
-
-## Open questions
-
-Locked MVP answers (captured elsewhere):
-
-1. Stripe posture (ADR 013): Connect Express, platform merchant-of-record, separate charges/transfers, delayed seller withdrawability until delivery confirmation; platform initially liable for chargebacks.
-2. Matching model: partial fills allowed; crossing auto-matches; execution price is the resting order price; self-trade prevention required.
-3. Launch constraints: US-only + USD.
-4. Embeddings: semantic/vector search is in MVP; hosted embedding API posture in ADR 016.
-
-Still open:
-
-1. Expected scale in first 90 days (active users, listings, QPS) to size search and DB.
-2. Semantic search specifics: day-1 facets and top queries (canonical list lives in the Search requirements doc).
-3. Locations/inventory: pickup/kiosk/in-store scope and any constraints that affect fulfillment.
-4. Company accounts: do we require step-up auth for finance actions in MVP?

@@ -63,17 +63,6 @@ A: Web-first for MVP.
 
 ---
 
-## Questions to answer
-
-## Open questions
-
-Locked MVP answers:
-
-1. Launch constraints: **US-only + USD**.
-2. 3-year “we won” headline:
+## Goal
 
 - In 3 years, Chase Sets is the leading online marketplace for Pokémon TCG items, with over 1 million active users, facilitating $100 million in annual transaction volume, and maintaining a 95% customer satisfaction rate.
-
-Still open:
-
-1. Confirm how shipping is presented in MVP UX (EasyPost labels; buyer vs seller label payment).

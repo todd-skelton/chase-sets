@@ -11,7 +11,6 @@
 ## Coding standards
 
 - Language(s): TypeScript (end-to-end)
-- Frontend: React Router 7 (fullstack)
 - Style tooling: ESLint + Prettier (auto-format on save; CI enforces).
 - Container standard: each service has a `Dockerfile`; local dev uses Compose.
 
@@ -23,20 +22,6 @@ We standardize identifiers to reduce friction across API ↔ events ↔ projecti
 - **Types/classes/interfaces/enums:** `PascalCase` (examples: `Item`, `VersionModel`, `VersionPath`).
 - **Constants:** `SCREAMING_SNAKE_CASE` where appropriate.
 - **Version-system stable keys:** prefer `lowerCamelCase` strings without underscores (these are authored in admin and become part of long-lived identity).
-
-Important clarification:
-
-- `VersionPath` is a **type name** (PascalCase).
-- `versionPath` is a **field/property name** (camelCase) in API/event payloads.
-
-Postgres implementation details may remain `snake_case` internally, but they must be mapped at the boundary and must not leak into public contracts.
-
-## Testing philosophy
-
-- Unit: Vitest (fast local feedback) for domain logic and pure utilities.
-- Integration: container-backed tests for Postgres/OpenSearch + core flows (projectors, checkout/payment state transitions).
-- E2E: Playwright for critical user journeys (search → item → checkout; seller listing; admin refund).
-- Event/projection tests: validate projectors are idempotent and replay-safe.
 
 ## API rules
 
@@ -57,18 +42,3 @@ Postgres implementation details may remain `snake_case` internally, but they mus
 - Versioning (MVP): avoid breaking changes; prefer additive evolution. If/when we need explicit API versioning strategy, capture it as an ADR before external GA.
 - Backward compatibility: prefer additive changes; for breaking changes, coordinate a single deploy window (no long-lived multi-version support in MVP).
 - Event schema compatibility: events are versioned; breaking changes require explicit migration/replay plan.
-
-## Documentation expectations
-
-- ADR required for major infra/architecture decisions (event store, stream transport, search engine, ingress).
-
----
-
-## Questions to answer
-
-## Open questions
-
-1. Package manager and tooling preferences (npm/pnpm/yarn; lint/format).
-2. How much automated testing is “enough” for MVP?
-3. Will there be multiple contributors immediately?
-4. Any existing standards you want to follow?
