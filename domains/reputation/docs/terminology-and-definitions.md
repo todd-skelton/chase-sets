@@ -1,4 +1,4 @@
-# Reputation Terminology & Definitions
+﻿# Reputation Terminology & Definitions
 
 This document defines the ubiquitous language for the **Reputation domain**.
 
@@ -9,7 +9,7 @@ The Reputation domain owns buyer/seller feedback, ratings, reviews, and aggregat
 ## Required usage
 
 - Use these terms to model and name entities, commands, events, APIs, and projections in this domain.
-- Reconcile shared terms in [artifacts/02-domain-model-and-glossary.md](../../../artifacts/02-domain-model-and-glossary.md).
+- Reconcile shared terms in [docs/domain/glossary.md](../../../docs/domain/glossary.md).
 
 ---
 
@@ -21,7 +21,7 @@ The Reputation domain owns buyer/seller feedback, ratings, reviews, and aggregat
 
 ### Rating
 
-A **Rating** is a structured numeric score that represents satisfaction (example: 1–5).
+A **Rating** is a structured numeric score that represents satisfaction (example: 1â€“5).
 
 ### Review
 
@@ -60,3 +60,4 @@ Reputation does not own:
 
 - Enforcement decisions or account bans.
 - Order creation, payment state, or fulfillment tracking.
+

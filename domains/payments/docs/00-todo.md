@@ -1,11 +1,11 @@
-# Payments Domain — TODOs (Build Checklist)
+﻿# Payments Domain â€” TODOs (Build Checklist)
 
 This checklist is the drill-down work plan for Payments (Stripe + wallet/ledger + payouts).
 
 ## Inputs / dependencies
 
-- Stripe model validation evidence (before go-live): `artifacts/adrs/013-stripe-marketplace-model.md`
-- Single checkout split: `artifacts/adrs/017-single-charge-multi-seller-split.md`
+- Stripe model validation evidence (before go-live): `docs/adrs/013-stripe-marketplace-model.md`
+- Single checkout split: `docs/adrs/017-single-charge-multi-seller-split.md`
 - Money math invariants: `domains/payments/docs/31-money-math-fees-shipping-credit-and-ledger-invariants.md`
 - Disputes/unwind: `domains/payments/docs/21-disputes-refunds-chargebacks-and-ledger-unwind.md`
 - Seller onboarding/gating: `domains/payments/docs/28-seller-onboarding-kyc-tax-and-payout-gating.md`
@@ -13,7 +13,7 @@ This checklist is the drill-down work plan for Payments (Stripe + wallet/ledger 
 
 ## Stripe integration decisions (must lock)
 
-- [ ] Record validation evidence before go-live (ADR is Accepted (MVP)): `artifacts/adrs/013-stripe-marketplace-model.md`
+- [ ] Record validation evidence before go-live (ADR is Accepted (MVP)): `docs/adrs/013-stripe-marketplace-model.md`
 - [ ] Confirm supported flow for multi-seller checkout and any constraints/limits
 
 ## Ledger model & events (doc-first)
@@ -27,11 +27,11 @@ This checklist is the drill-down work plan for Payments (Stripe + wallet/ledger 
 - [ ] Define reconciliation approach (Stripe source-of-truth IDs, periodic checks, mismatch handling)
 - [ ] Define negative balance policy enforcement (what happens operationally)
 
-## Webhooks → events mapping
+## Webhooks â†’ events mapping
 
 - [ ] Enumerate required Stripe webhooks and the domain events they produce
 - [ ] Define idempotency keys for webhook ingestion and event emission
-- [ ] Define retry/backoff and “stuck state” remediation
+- [ ] Define retry/backoff and â€œstuck stateâ€ remediation
 
 ## Payout gating & risk hooks
 
@@ -51,3 +51,4 @@ This checklist is the drill-down work plan for Payments (Stripe + wallet/ledger 
 - [ ] Invariant tests for rounding/allocation/unwind
 - [ ] Replay tests for wallet balance projection
 - [ ] Stripe webhook fixture tests
+

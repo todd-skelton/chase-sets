@@ -1,4 +1,4 @@
-# Marketplace Domain — Scope & Model (Requirements)
+﻿# Marketplace Domain â€” Scope & Model (Requirements)
 
 ## Purpose
 
@@ -9,13 +9,13 @@ Define the module-level scope and core model for the marketplace bounded context
 - Matching and execution (price-time priority)
 - Order creation boundaries (what belongs here vs Orders/Payments/Fulfillment)
 
-Retail-friendly UI terminology is defined in `artifacts/02-domain-model-and-glossary.md`.
+Retail-friendly UI terminology is defined in `docs/domain/glossary.md`.
 
 This is requirements-only (no implementation).
 
 ---
 
-## Naming guidance (keep “Marketplace”)
+## Naming guidance (keep â€œMarketplaceâ€)
 
 Even as we add multiple sales channels, keep this bounded context named **Marketplace**:
 
@@ -23,15 +23,15 @@ Even as we add multiple sales channels, keep this bounded context named **Market
 - Channels are adapters/surfaces that **create or consume** listings/offers; they do not replace the core domain.
 - Keeping the name stable avoids churn as we add new channels (in-store, eBay, TikTok, Shopify, etc.).
 
-If we later add a broad “Channels” subdomain, it should live **adjacent** to Marketplace (adapter integrations + mappings), not replace it.
+If we later add a broad â€œChannelsâ€ subdomain, it should live **adjacent** to Marketplace (adapter integrations + mappings), not replace it.
 
 ---
 
 ## Canonical references
 
-- Matching basics: `artifacts/adrs/003-bids-listings-and-matching.md`
-- SKU identity rule: `artifacts/02-domain-model-and-glossary.md`
-- Event sourcing posture: `artifacts/adrs/005-event-sourcing-and-projections.md`
+- Matching basics: `docs/adrs/003-bids-listings-and-matching.md`
+- SKU identity rule: `docs/domain/glossary.md`
+- Event sourcing posture: `docs/adrs/005-event-sourcing-and-projections.md`
 
 ---
 
@@ -56,10 +56,10 @@ The Marketplace domain does NOT own:
 
 ## Core entities (conceptual)
 
-- **Listing** (org-owned): a sell-side intent for a specific SKU at a price (UI: “listing” / “for sale”)
-- **Bid** (org-owned): a buy-side intent for a specific SKU at a price (UI: “offer”)
-- **OrderBook (per SKU)**: ordered sets of active bids and listings (internal projection; UI: “all listings & offers”)
-- **Match / Execution**: the act of crossing bid/listing that creates a trade (UI: “offer accepted” / “item sold” / “you bought it”)
+- **Listing** (org-owned): a sell-side intent for a specific SKU at a price (UI: â€œlistingâ€ / â€œfor saleâ€)
+- **Bid** (org-owned): a buy-side intent for a specific SKU at a price (UI: â€œofferâ€)
+- **OrderBook (per SKU)**: ordered sets of active bids and listings (internal projection; UI: â€œall listings & offersâ€)
+- **Match / Execution**: the act of crossing bid/listing that creates a trade (UI: â€œoffer acceptedâ€ / â€œitem soldâ€ / â€œyou bought itâ€)
 
 ---
 
@@ -67,7 +67,7 @@ The Marketplace domain does NOT own:
 
 - A listing or bid must reference exactly one SKU.
 - Each SKU has its own order book; there is no cross-SKU matching.
-- Matching is deterministic and auditable (event-sourced): if there wasn’t an event, it didn’t happen.
+- Matching is deterministic and auditable (event-sourced): if there wasnâ€™t an event, it didnâ€™t happen.
 - Price-time priority governs matching within a SKU.
 - Self-trade prevention is enforced (an org cannot match against itself).
 - All marketplace actions are org-owned and auditable.
@@ -89,7 +89,7 @@ The Marketplace domain does NOT own:
 - SKU market view (all listings + all offers; plus optional summaries like best price)
 - Listing detail view
 - Bid detail view
-- User/org “open orders” view
+- User/org â€œopen ordersâ€ view
 
 ---
 
@@ -102,5 +102,6 @@ Locked MVP policy:
 
 Still to define (implementation details):
 
-3. Cancellation policy during payment processing (what’s the lock / timeout story?).
+3. Cancellation policy during payment processing (whatâ€™s the lock / timeout story?).
 4. What is the minimum stable `TradeExecuted` payload to create checkouts/orders deterministically?
+

@@ -1,15 +1,15 @@
-# Fulfillment Domain — TODOs (Build Checklist)
+﻿# Fulfillment Domain â€” TODOs (Build Checklist)
 
 This checklist is the drill-down work plan for Fulfillment (shipping, shipments, tracking).
 
 ## Inputs / dependencies
 
-- Shipping provider baseline: `artifacts/adrs/010-shipping-easypost.md`
-- Shipping credit model: `artifacts/adrs/014-shipping-rebate-cap.md`
-- Locations/inventory scope (ADR): `artifacts/adrs/015-locations-and-inventory-scope.md`
+- Shipping provider baseline: `docs/adrs/010-shipping-easypost.md`
+- Shipping credit model: `docs/adrs/014-shipping-rebate-cap.md`
+- Locations/inventory scope (ADR): `docs/adrs/015-locations-and-inventory-scope.md`
 - Fulfillment modes scope: `domains/fulfillment/docs/33-fulfillment-modes-and-pickup-scope.md`
 - Locations/inventory posture: `domains/fulfillment/docs/20-locations-inventory-and-fulfillment-modes.md`
-- Privacy posture (PII): `artifacts/27-data-privacy-retention-export-and-deletion.md`
+- Privacy posture (PII): `docs/engineering/SECURITY.md`
 
 ## Inventory model (doc-first)
 
@@ -50,3 +50,4 @@ This checklist is the drill-down work plan for Fulfillment (shipping, shipments,
 
 - [ ] Replay tests for shipment status projections
 - [ ] Provider webhook fixture tests (tracking)
+

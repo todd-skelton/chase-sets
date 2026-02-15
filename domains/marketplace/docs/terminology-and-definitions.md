@@ -1,4 +1,4 @@
-# Marketplace Terminology & Definitions
+﻿# Marketplace Terminology & Definitions
 
 This document defines the ubiquitous language for the **Marketplace domain**.
 
@@ -9,7 +9,7 @@ The Marketplace is responsible for **matching buy/sell intent** (offers/listings
 ## Required usage
 
 - Use these terms to model and name entities, commands, events, APIs, and projections in this domain.
-- Reconcile shared terms in [artifacts/02-domain-model-and-glossary.md](../../../artifacts/02-domain-model-and-glossary.md).
+- Reconcile shared terms in [docs/domain/glossary.md](../../../docs/domain/glossary.md).
 
 ---
 
@@ -17,11 +17,11 @@ The Marketplace is responsible for **matching buy/sell intent** (offers/listings
 
 ### Listing
 
-A **Listing** is a seller’s post for a specific Version at a set price (“for sale”).
+A **Listing** is a sellerâ€™s post for a specific Version at a set price (â€œfor saleâ€).
 
 ### Offer
 
-An **Offer** is a buyer’s price proposal for a specific Version.
+An **Offer** is a buyerâ€™s price proposal for a specific Version.
 
 ### Buy Now
 
@@ -37,17 +37,17 @@ A **Sale** is the successful outcome when a listing and offer agree on price and
 
 ### Listings & Offers View
 
-The **Listings & Offers View** is the marketplace view of what’s available for a Version: active listings and active offers.
+The **Listings & Offers View** is the marketplace view of whatâ€™s available for a Version: active listings and active offers.
 
 ### Quantity
 
 **Quantity** is the number of units requested on an offer or offered on a listing.
 
-Quantities are denominated in the Version’s unit of measure as defined by Catalog.
+Quantities are denominated in the Versionâ€™s unit of measure as defined by Catalog.
 
 ### Partial Sale
 
-A **Partial Sale** is when only part of an offer or listing’s quantity is completed in a sale.
+A **Partial Sale** is when only part of an offer or listingâ€™s quantity is completed in a sale.
 
 ### Remaining Quantity
 
@@ -55,7 +55,7 @@ A **Partial Sale** is when only part of an offer or listing’s quantity is comp
 
 ### Offer/Listing Duration
 
-**Offer/Listing Duration** describes how long a listing or offer stays active (default is “stays up until canceled”).
+**Offer/Listing Duration** describes how long a listing or offer stays active (default is â€œstays up until canceledâ€).
 
 ### Expiration
 
@@ -110,6 +110,7 @@ These terms are candidates for deeper definition once policy and workflow choice
 - **Currency & Unit**: how currency and Version units display together.
 - **Liquidity**: how to show depth, spread, and time-to-sell in a buyer-friendly way.
 - **Speed to Sale**: expected time for an offer or listing to complete.
-- **Preview**: “what you’ll pay / what you’ll receive” before confirming.
+- **Preview**: â€œwhat youâ€™ll pay / what youâ€™ll receiveâ€ before confirming.
 - **Matching Rules**: clear, user-facing explanation of how offers and listings pair.
 - **Settlement Window**: how long between a sale and payment/fulfillment start.
+

@@ -1,4 +1,4 @@
-# 3.x Shipping & Fulfillment (MVP Requirements)
+﻿# 3.x Shipping & Fulfillment (MVP Requirements)
 
 ## Purpose
 
@@ -45,7 +45,7 @@ Out of scope (MVP, unless you explicitly want them):
 ### 1) Seller ships to buyer (standard)
 
 1. Buyer pays for an order.
-2. Seller receives “ready to ship” notification.
+2. Seller receives â€œready to shipâ€ notification.
 3. Seller purchases a label (or platform purchases on their behalf).
 4. Seller ships package; tracking begins.
 5. Delivery confirmed; order completes.
@@ -97,7 +97,7 @@ Locked MVP posture:
 
 - Quote shipping before checkout submit (for transparency + authorization sizing).
 - On checkout submit, authorize payment sized to totals + shipping buffer.
-- Shipping buffer sizing policy is defined in `artifacts/19-mvp-decisions-to-lock.md` (D7).
+- Shipping buffer sizing policy is defined in `docs/adrs/014-shipping-rebate-cap.md` (D7).
 - Purchase labels promptly after authorization (attempt within the checkout timeout window).
 - Settle to actual label cost; buyer pays shipping net of the 5% shipping credit.
 
@@ -153,3 +153,4 @@ Notes:
 
 4. Do we require signature confirmation for high-value orders?
 5. What is the refund/cancellation policy for shipping labels if an order is cancelled?
+

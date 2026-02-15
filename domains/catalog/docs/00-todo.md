@@ -1,4 +1,4 @@
-# Catalog Domain — TODOs (Build Checklist)
+﻿# Catalog Domain â€” TODOs (Build Checklist)
 
 This checklist is the drill-down work plan for Catalog (curation, versions, corrections).
 
@@ -6,7 +6,7 @@ This checklist is the drill-down work plan for Catalog (curation, versions, corr
 
 - Version system: `domains/catalog/docs/15-version-system.md`
 - Catalog governance: `domains/catalog/docs/24-catalog-governance-and-corrections.md`
-- Glossary/Version identity: `artifacts/02-domain-model-and-glossary.md`
+- Glossary/Version identity: `docs/domain/glossary.md`
 
 ## Version model
 
@@ -24,10 +24,11 @@ This checklist is the drill-down work plan for Catalog (curation, versions, corr
 
 ## Projection outputs
 
-- [ ] Define the “public Item view” projection
+- [ ] Define the â€œpublic Item viewâ€ projection
 - [ ] Define Version facet materialization rules for search filtering (feeds Search filter config)
 
 ## Tests (when code starts)
 
 - [ ] Validation tests for version rules
 - [ ] Migration tests for merge/split correctness
+

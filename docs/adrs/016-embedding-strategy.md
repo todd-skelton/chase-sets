@@ -1,4 +1,4 @@
-# ADR 016: Embedding Strategy (Semantic Search)
+﻿# ADR 016: Embedding Strategy (Semantic Search)
 
 ## Status
 
@@ -98,10 +98,11 @@ Acceptance criteria:
   - lexical-only baseline
   - hybrid lexical + vector
   - semantic/vector-heavy (if applicable)
-- Demonstrate we do not regress “exact identifier” queries (set + card number, exact name) in top-k behavior.
-- Demonstrate end-to-end search latency still meets the current target (**Search P95 <= 500ms**) defined in `artifacts/10-non-functional-requirements.md` and `artifacts/26-observability-slos-audit-and-incident-response.md`.
+- Demonstrate we do not regress â€œexact identifierâ€ queries (set + card number, exact name) in top-k behavior.
+- Demonstrate end-to-end search latency still meets the current target (**Search P95 <= 500ms**) defined in `docs/architecture/QUALITY_ATTRIBUTES.md` and `docs/engineering/OBSERVABILITY.md`.
 - Establish cost guardrails (rate limits + caching strategy + re-embed policy) and confirm projected cost is acceptable at the scale assumptions.
 
 If any acceptance criterion fails:
 
 - Document the failing case(s) and adopt a fallback posture (lexical-only with vectors disabled, or hybrid-only with tighter gating).
+

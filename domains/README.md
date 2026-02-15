@@ -1,34 +1,26 @@
 # Domains (Module-Level Documentation)
 
-[← Back to repository index](../README.md)
+[Back to repository index](../README.md)
 
-This folder contains **domain/module-level** documentation.
+This folder contains domain-level documentation.
 
-Rule of thumb:
+## Guidance
 
-- `artifacts/` = cross-cutting product + platform context (vision, principles, architecture overview, NFRs, operability, privacy, go-live readiness)
-- `domains/*/docs/` = module scope/details (fulfillment, payments, search, catalog, risk, identity)
+- `docs/` holds cross-cutting canonical platform context.
+- `domains/*/docs/` holds domain-specific scope, requirements, and terminology.
+- Each domain should keep a small `README.md` and a drill-down checklist at `domains/<domain>/docs/00-todo.md`.
 
-Each domain should maintain a small `README.md` index.
+## Required: Terminology and Definitions
 
-Each domain also maintains a drill-down checklist at `domains/<domain>/docs/00-todo.md`.
-
-## Required: Terminology & Definitions
-
-Each domain must maintain a **Terminology & Definitions** doc at:
+Each domain should maintain:
 
 - `domains/<domain>/docs/terminology-and-definitions.md`
 
-This doc defines the domain’s **ubiquitous language** and should be treated as an input to modeling:
+If a term is shared across multiple domains, reconcile it in:
 
-- Entity names (aggregates/entities/value objects)
-- Command and event names
-- API resource names (when a domain is exposed)
-- Projections/read model names
+- `docs/domain/glossary.md`
 
-If a term is shared across multiple domains, it should also appear (or be reconciled) in the cross-cutting glossary: `artifacts/02-domain-model-and-glossary.md`.
-
-## Domain index
+## Domain Index
 
 - [domains/catalog/README.md](catalog/README.md)
 - [domains/marketplace/README.md](marketplace/README.md)
@@ -38,7 +30,5 @@ If a term is shared across multiple domains, it should also appear (or be reconc
 - [domains/search/README.md](search/README.md)
 - [domains/identity/README.md](identity/README.md)
 - [domains/reputation/README.md](reputation/README.md)
-- [domains/risk/README.md](risk/README.md)
-- [domains/trust-safety/README.md](trust-safety/README.md)
 
-Suggested drill-down order (MVP): Identity → Catalog → Marketplace → Search → Orders → Payments → Fulfillment → Risk → Trust & Safety → Reputation.
+Planned capabilities (not yet standalone domain doc roots): Risk, Trust & Safety.

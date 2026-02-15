@@ -1,13 +1,13 @@
-# Identity Domain — TODOs (Build Checklist)
+﻿# Identity Domain â€” TODOs (Build Checklist)
 
 This checklist is the drill-down work plan for Identity (auth, orgs, RBAC, step-up).
 
 ## Inputs / dependencies
 
-- Auth baseline: `artifacts/adrs/002-auth-and-account-recovery.md`
+- Auth baseline: `docs/adrs/002-auth-and-account-recovery.md`
 - Org/RBAC: `domains/identity/docs/17-org-accounts-and-rbac.md`
 - Step-up policy: `domains/identity/docs/32-step-up-auth-and-sensitive-actions-policy.md`
-- Audit requirements: `artifacts/26-observability-slos-audit-and-incident-response.md`
+- Audit requirements: `docs/engineering/OBSERVABILITY.md`
 
 ## Auth & session model
 
@@ -35,3 +35,4 @@ This checklist is the drill-down work plan for Identity (auth, orgs, RBAC, step-
 
 - [ ] Abuse tests for login rate-limits
 - [ ] Permission matrix tests
+

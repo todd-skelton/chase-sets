@@ -1,4 +1,4 @@
-# ADR 018: Event Store Operability, Retention, and Idempotency
+﻿# ADR 018: Event Store Operability, Retention, and Idempotency
 
 ## Status
 
@@ -120,7 +120,7 @@ Resolved for MVP:
   - pause a projector
   - reset its checkpoint
   - replay deterministically into a read model
-  - run a backfill in a “no-side-effects” mode
+  - run a backfill in a â€œno-side-effectsâ€ mode
 
 ## Validation worksheet (required evidence)
 
@@ -139,12 +139,13 @@ Acceptance criteria:
   - at-least-once semantics
   - idempotency rule (what key is used to dedupe)
 - Side-effects contract is defined so replays are safe-by-default:
-  - “intent/outbox” style events (or equivalent)
+  - â€œintent/outboxâ€ style events (or equivalent)
   - dedupe key and replay behavior documented
 - Retention posture is aligned with privacy requirements:
   - event payloads avoid raw PII by design
-  - deletion/redaction happens in projections/side stores per `artifacts/27-data-privacy-retention-export-and-deletion.md`
+  - deletion/redaction happens in projections/side stores per `docs/engineering/SECURITY.md`
 
 If any acceptance criterion fails:
 
 - Document the risk and adopt a mitigation (e.g., stricter event payload minimization, stronger dedupe keys, or tighter replay tooling requirements).
+

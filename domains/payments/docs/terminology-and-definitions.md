@@ -1,4 +1,4 @@
-# Payments Terminology & Definitions
+﻿# Payments Terminology & Definitions
 
 This document defines the ubiquitous language for the **Payments domain**.
 
@@ -9,7 +9,7 @@ The Payments domain owns money movement semantics: charging buyers, paying selle
 ## Required usage
 
 - Use these terms to model and name entities, commands, events, APIs, and projections in this domain.
-- Reconcile shared terms in [artifacts/02-domain-model-and-glossary.md](../../../artifacts/02-domain-model-and-glossary.md).
+- Reconcile shared terms in [docs/domain/glossary.md](../../../docs/domain/glossary.md).
 
 ---
 
@@ -21,7 +21,7 @@ A **Charge** is a buyer payment attempt (authorization and/or capture depending 
 
 ### Authorization
 
-An **Authorization** is a temporary hold for funds on a buyer’s payment method, reserving an amount for a future capture.
+An **Authorization** is a temporary hold for funds on a buyerâ€™s payment method, reserving an amount for a future capture.
 
 ### Capture
 
@@ -29,11 +29,11 @@ A **Capture** is the act of finalizing an authorized amount (full or partial) in
 
 ### Payment Intent
 
-A **Payment Intent** is the internal representation of the buyer’s payment plan for an order, including required amount, method, and current state.
+A **Payment Intent** is the internal representation of the buyerâ€™s payment plan for an order, including required amount, method, and current state.
 
 ### Payout
 
-A **Payout** is money sent to a seller (or seller’s connected account) after eligibility gates and settlement rules.
+A **Payout** is money sent to a seller (or sellerâ€™s connected account) after eligibility gates and settlement rules.
 
 ### Ledger
 
@@ -77,7 +77,7 @@ A **Payout Hold** is a gating state that temporarily blocks payout availability 
 
 ### Payment Method
 
-A **Payment Method** is the buyer’s funding source (card, bank transfer, wallet, etc.) used for authorization and capture.
+A **Payment Method** is the buyerâ€™s funding source (card, bank transfer, wallet, etc.) used for authorization and capture.
 
 ---
 
@@ -93,3 +93,4 @@ Payments does not own:
 
 - Order fulfillment execution
 - Marketplace matching
+

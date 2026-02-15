@@ -1,4 +1,4 @@
-# Reputation Domain — Scope & Model (Requirements)
+﻿# Reputation Domain â€” Scope & Model (Requirements)
 
 ## Purpose
 
@@ -14,7 +14,7 @@ This is requirements-only (no implementation).
 
 ## Canonical references
 
-- Ubiquitous language: `artifacts/02-domain-model-and-glossary.md`
+- Ubiquitous language: `docs/domain/glossary.md`
 - Orders lifecycle: `domains/orders/docs/01-orders-scope-and-lifecycle.md`
 - Trust & Safety enforcement: `domains/trust-safety/docs/23-trust-safety-counterfeit-and-enforcement.md`
 
@@ -39,7 +39,7 @@ The Reputation domain does NOT own:
 
 ## Core entities (conceptual)
 
-- **Rating**: a structured score (e.g., 1–5) left by a buyer or seller.
+- **Rating**: a structured score (e.g., 1â€“5) left by a buyer or seller.
 - **Review**: the written narrative and tags attached to a rating.
 - **Feedback Window**: the time period after a completed order in which feedback can be submitted.
 - **Reputation Profile**: an aggregated view of ratings/reviews for an organization or account.
@@ -76,8 +76,9 @@ The Reputation domain does NOT own:
 
 ## Open questions
 
-1. Do buyers and sellers rate each other symmetrically, or do we start buyer → seller only?
+1. Do buyers and sellers rate each other symmetrically, or do we start buyer â†’ seller only?
 2. What is the feedback window duration (e.g., 30 days post-delivery)?
 3. Are ratings optional if a review is submitted, or always required together?
 4. What are the minimum moderation triggers for suppression or escalation?
 5. How do we handle partial refunds/returns in eligibility?
+

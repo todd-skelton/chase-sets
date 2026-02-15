@@ -6,9 +6,11 @@
 
 - One ADR per decision that would be painful to revisit later.
 - Keep them short; record _why_.
+- Historical terminology may differ from current canonical prose (for example `Bid` vs `Offer`).
 
 ## Index
 
+- [0001-initial-architecture.md](0001-initial-architecture.md)
 - [000-template.md](000-template.md)
 - [001-payments-and-payouts.md](001-payments-and-payouts.md)
 - [002-auth-and-account-recovery.md](002-auth-and-account-recovery.md)

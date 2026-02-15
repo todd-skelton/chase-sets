@@ -1,18 +1,18 @@
-# Orders Domain — TODOs (Build Checklist)
+﻿# Orders Domain â€” TODOs (Build Checklist)
 
 This checklist is the drill-down work plan for Orders (Checkout + Order lifecycle orchestration).
 
 ## Inputs / dependencies
 
-- Domain map & contracts: `artifacts/15-domain-map-and-integration-architecture.md`
-- Event sourcing posture: `artifacts/adrs/005-event-sourcing-and-projections.md`
-- Event store operability contract (must accept before go-live): `artifacts/adrs/018-event-store-operability-and-retention.md`
-- Matching baseline (trade execution inputs): `artifacts/adrs/003-bids-listings-and-matching.md`
-- Single-charge multi-seller split: `artifacts/adrs/017-single-charge-multi-seller-split.md`
-- Stripe marketplace model (record validation evidence before go-live): `artifacts/adrs/013-stripe-marketplace-model.md`
+- Domain map & contracts: `docs/domain/BOUNDED_CONTEXTS.md`
+- Event sourcing posture: `docs/adrs/005-event-sourcing-and-projections.md`
+- Event store operability contract (must accept before go-live): `docs/adrs/018-event-store-operability-and-retention.md`
+- Matching baseline (trade execution inputs): `docs/adrs/003-bids-listings-and-matching.md`
+- Single-charge multi-seller split: `docs/adrs/017-single-charge-multi-seller-split.md`
+- Stripe marketplace model (record validation evidence before go-live): `docs/adrs/013-stripe-marketplace-model.md`
 - Fulfillment baseline (ship-only MVP): `domains/fulfillment/docs/18-shipping-and-fulfillment-mvp.md`
 - Money math invariants (allocation requirements): `domains/payments/docs/31-money-math-fees-shipping-credit-and-ledger-invariants.md`
-- Channels/integrations posture: [artifacts/17-channels-and-integrations-architecture.md](../../../artifacts/17-channels-and-integrations-architecture.md)
+- Channels/integrations posture: [docs/architecture/SYSTEM_OVERVIEW.md](../../../docs/architecture/SYSTEM_OVERVIEW.md)
 
 ## Domain model & boundaries
 
@@ -67,3 +67,4 @@ This checklist is the drill-down work plan for Orders (Checkout + Order lifecycl
 - [ ] Do we allow multi-quantity line items in MVP (sealed) or force quantity=1 always?
 - [ ] How do we represent shipping addresses in events (PII reference vs inline)?
 - [ ] What is the minimal seller experience for marking shipped/delivered (manual vs carrier webhooks only)?
+

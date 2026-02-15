@@ -1,4 +1,4 @@
-# Orders Domain — Scope & Lifecycle
+﻿# Orders Domain â€” Scope & Lifecycle
 
 ## Summary
 
@@ -32,7 +32,7 @@ This keeps Marketplace focused on bids/listings/matching, and keeps Payments foc
 
 ## Domain boundaries (high-level)
 
-### Marketplace → Orders
+### Marketplace â†’ Orders
 
 Marketplace emits a deterministic trade execution event (e.g., `MatchCreated` / `TradeExecuted`) containing:
 
@@ -43,11 +43,11 @@ Marketplace emits a deterministic trade execution event (e.g., `MatchCreated` / 
 
 Orders consumes that and creates a `Checkout` + one `Order` per seller (and/or per origin location if that split is decided at checkout time).
 
-### Channels (in-store / third-party) → Orders
+### Channels (in-store / third-party) â†’ Orders
 
 Non-marketplace channels may create **orders directly** (no matching). In that case, a channel adapter ingests an external order and issues an Orders command (idempotent by `(channel, externalOrderId)`) to create an internal `Checkout`/`Order`.
 
-### Orders → Payments
+### Orders â†’ Payments
 
 Orders requests Payments to:
 
@@ -56,7 +56,7 @@ Orders requests Payments to:
 
 Orders reacts to payment events (`PaymentAuthorized`, `PaymentCaptured`, `PaymentFailed`) to advance state.
 
-### Orders → Fulfillment
+### Orders â†’ Fulfillment
 
 Once paid, Orders requests Fulfillment to:
 
@@ -86,15 +86,15 @@ Orders reacts to fulfillment events (`ShipmentCreated`, `ShipmentLabelPurchased`
 
 Checkout (proposed):
 
-- Created → Submitted → Paid → Completed
-- Created → Abandoned
-- Created/Submitted → Cancelled (if policy allows)
+- Created â†’ Submitted â†’ Paid â†’ Completed
+- Created â†’ Abandoned
+- Created/Submitted â†’ Cancelled (if policy allows)
 
 Order (proposed):
 
-- Created → Paid → InFulfillment → Completed
-- Created → Cancelled (pre-capture)
-- Paid → Refunded (via Payments-led refund/dispute flow)
+- Created â†’ Paid â†’ InFulfillment â†’ Completed
+- Created â†’ Cancelled (pre-capture)
+- Paid â†’ Refunded (via Payments-led refund/dispute flow)
 
 ## Events & commands (doc-first)
 
@@ -133,7 +133,8 @@ Order (proposed):
 
 ## References
 
-- Data & event model: `artifacts/09-data-and-event-model.md`
-- Stripe + split checkout: `artifacts/adrs/013-stripe-marketplace-model.md`, `artifacts/adrs/017-single-charge-multi-seller-split.md`
+- Data & event model: `docs/data/EVENT_STORE.md`
+- Stripe + split checkout: `docs/adrs/013-stripe-marketplace-model.md`, `docs/adrs/017-single-charge-multi-seller-split.md`
 - Fulfillment baseline: `domains/fulfillment/docs/18-shipping-and-fulfillment-mvp.md`
 - Money math invariants: `domains/payments/docs/31-money-math-fees-shipping-credit-and-ledger-invariants.md`
+

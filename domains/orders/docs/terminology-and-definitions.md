@@ -1,15 +1,15 @@
-# Orders Terminology & Definitions
+﻿# Orders Terminology & Definitions
 
 This document defines the ubiquitous language for the **Orders domain**.
 
-The Orders domain owns the **Checkout → Order** lifecycle: turning marketplace outcomes into buyer checkouts and seller-scoped orders and coordinating with Payments and Fulfillment.
+The Orders domain owns the **Checkout â†’ Order** lifecycle: turning marketplace outcomes into buyer checkouts and seller-scoped orders and coordinating with Payments and Fulfillment.
 
 ---
 
 ## Required usage
 
 - Use these terms to model and name entities, commands, events, APIs, and projections in this domain.
-- Reconcile shared terms in [artifacts/02-domain-model-and-glossary.md](../../../artifacts/02-domain-model-and-glossary.md).
+- Reconcile shared terms in [docs/domain/glossary.md](../../../docs/domain/glossary.md).
 
 ---
 
@@ -41,11 +41,11 @@ An **Order Split** is the deterministic division of a checkout into multiple ord
 
 ### Order State
 
-**Order State** is the domain-owned status progression (created → paid → fulfilled → delivered/canceled/refunded), coordinated via events from Payments and Fulfillment.
+**Order State** is the domain-owned status progression (created â†’ paid â†’ fulfilled â†’ delivered/canceled/refunded), coordinated via events from Payments and Fulfillment.
 
 ### Checkout State
 
-**Checkout State** is the buyer-facing status of the checkout as a whole (draft → submitted → paid → completed/abandoned), reflecting the aggregate state of all associated orders.
+**Checkout State** is the buyer-facing status of the checkout as a whole (draft â†’ submitted â†’ paid â†’ completed/abandoned), reflecting the aggregate state of all associated orders.
 
 ### Pricing Summary
 
@@ -53,7 +53,7 @@ A **Pricing Summary** is the computed breakdown of totals for a checkout or orde
 
 ### Shipping Selection
 
-A **Shipping Selection** is the buyer’s chosen delivery method or speed for a given order (or shipment), used by Orders to request fulfillment.
+A **Shipping Selection** is the buyerâ€™s chosen delivery method or speed for a given order (or shipment), used by Orders to request fulfillment.
 
 ### Fulfillment Request
 
@@ -102,3 +102,4 @@ Orders does not own:
 - Catalog definition
 - Ledger correctness rules
 - Shipping label purchasing
+
