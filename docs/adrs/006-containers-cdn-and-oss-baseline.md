@@ -1,4 +1,4 @@
-# ADR 006: Containers, CDN, and OSS Baseline
+﻿# ADR 006: Containers, CDN, and OSS Baseline
 
 ## Status
 
@@ -69,7 +69,7 @@ Proposed (MVP default):
   - Strong control over infra behavior via OSS
   - CDN delivers fast web performance and cheap bandwidth
 - Cons:
-  - Still requires operational investment (upgrades, backups, monitoring)
+  - Still requires operational investment (patching, backups, monitoring)
   - Some pieces (CDN) are typically not OSS and will be provider-backed
 
 ## Consequences / follow-ups
@@ -78,3 +78,4 @@ Proposed (MVP default):
 2. Choose event store + transport.
 3. Choose search engine and projection store strategy.
 4. Define container image build/publish and deployment workflow.
+

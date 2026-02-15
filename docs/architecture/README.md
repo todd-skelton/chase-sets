@@ -1,18 +1,27 @@
-# Architecture Docs
+﻿# Architecture Docs
 
 ## Purpose
-- Provide canonical architecture pointers for implementation and review decisions.
+Provide the canonical architecture documentation map.
+
+## Audience
+- Engineers defining runtime boundaries and cross-cutting constraints.
+- AI agents producing architecture-consistent updates.
 
 ## Scope
-- System boundaries, quality attributes, deployment shape, and security posture.
+Covers system boundaries, quality attributes, deployment topology, and threat posture.
 
-## Links
-- `docs/architecture/SYSTEM_OVERVIEW.md`
-- `docs/architecture/QUALITY_ATTRIBUTES.md`
-- `docs/architecture/DEPLOYMENT_TOPOLOGY.md`
-- `docs/architecture/THREAT_MODEL.md`
-- `docs/adrs/0001-initial-architecture.md`
+## Start Here
+1. [System Overview](SYSTEM_OVERVIEW.md)
+2. [Quality Attributes](QUALITY_ATTRIBUTES.md)
+3. [Deployment Topology](DEPLOYMENT_TOPOLOGY.md)
+4. [Threat Model](THREAT_MODEL.md)
+5. [ADR 0001](../adrs/0001-initial-architecture.md)
 
-## Checklist
-- [ ] Keep architecture docs consistent with ADR decisions.
-- [ ] Add ADR links when new cross-cutting patterns are introduced.
+## Rules
+- Architecture docs must remain consistent with accepted ADRs.
+- Cross-cutting decisions must be recorded in `docs/adrs/`.
+- Runtime claims must remain aligned with repository source-of-truth docs.
+
+## References
+- [ADR Index](../adrs/README.md)
+- [Domain Docs](../domain/README.md)

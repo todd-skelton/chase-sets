@@ -16,7 +16,7 @@ This is requirements-only (no implementation).
 
 - Ubiquitous language: `docs/domain/glossary.md`
 - Orders lifecycle: `domains/orders/docs/01-orders-scope-and-lifecycle.md`
-- Trust & Safety enforcement: `domains/trust-safety/docs/23-trust-safety-counterfeit-and-enforcement.md`
+- Trust & Safety enforcement: `services/trust-safety/AGENT.md`
 
 ---
 

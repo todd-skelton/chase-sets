@@ -1,10 +1,10 @@
-# 3.x Catalog Governance: Curation, Corrections, and Audit (Requirements)
+﻿# 3.x Catalog Governance: Curation, Corrections, and Audit (Requirements)
 
 ## Purpose
 
 Define how the curated catalog is managed over time without breaking:
 
-- Event sourcing (if it wasn’t an event, it never happened)
+- Event sourcing (if it wasnâ€™t an event, it never happened)
 - Stable SKU and order book behavior
 - Search and filtering (aliases, synonyms, redirects)
 
@@ -36,7 +36,7 @@ Minimum roles (names are illustrative):
 - **Catalog Viewer**: can view internal catalog metadata.
 - **Catalog Editor**: can propose changes, attach evidence, and preview impact.
 - **Catalog Approver**: can approve and publish changes.
-- **Catalog Admin**: can perform emergency actions (takedown/deprecate) and manage roles.
+- **Catalog Admin**: can perform emergency actions (takedown/retire) and manage roles.
 
 MVP constraint: even if org RBAC is minimal, internal/admin roles still need separation of duties.
 
@@ -57,9 +57,9 @@ MVP constraint: even if org RBAC is minimal, internal/admin roles still need sep
    - Images/asset links (if any)
 3. **Identity/canonical corrections (breaking if done naively)**
    - **Rekey** (canonical identifiers change: card number correction, set assignment correction)
-   - **Merge** (two items are duplicates → one canonical)
-   - **Split** (one item incorrectly represented → multiple canonicals)
-   - **Deprecate** (item should not be listable going forward)
+   - **Merge** (two items are duplicates â†’ one canonical)
+   - **Split** (one item incorrectly represented â†’ multiple canonicals)
+   - **Retire** (item should not be listable going forward)
 4. **Alias/synonym management**
    - Add/remove aliases for search (nicknames, alternate spellings)
    - Add redirects/supersede mappings
@@ -68,7 +68,7 @@ MVP constraint: even if org RBAC is minimal, internal/admin roles still need sep
 
 - Catalog items and SKUs must not be hard-deleted.
 - All identity/canonical corrections must be represented as explicit events.
-- The system must be able to explain to an operator: “why does this listing still show under the old item?”
+- The system must be able to explain to an operator: â€œwhy does this listing still show under the old item?â€
 
 ---
 
@@ -82,7 +82,7 @@ MVP constraint: even if org RBAC is minimal, internal/admin roles still need sep
 
 When a correction occurs:
 
-- A **supersede mapping** links old → new canonical.
+- A **supersede mapping** links old â†’ new canonical.
 - Search/browse uses the new canonical by default but can resolve old references.
 
 ### Orders, listings, and order books
@@ -92,7 +92,7 @@ Requirements:
 - Existing Orders must continue to reference the original Item/SKU they were created with.
 - Listings/Offers may:
   - continue referencing their original SKU but be displayed under the canonical replacement, OR
-  - be migrated to a new SKU via an explicit migration workflow (policy-driven).
+  - be remapped to a new SKU via an explicit compatibility workflow (policy-driven).
 
 Order book continuity:
 
@@ -103,7 +103,7 @@ Order book continuity:
 
 ## Catalog change workflow
 
-### Standard workflow (propose → review → publish)
+### Standard workflow (propose â†’ review â†’ publish)
 
 1. **Propose change**
    - Select change type
@@ -119,13 +119,13 @@ Order book continuity:
 3. **Publish**
    - Apply change
    - Update projections/search index
-   - Generate an operator-visible “change summary”
+   - Generate an operator-visible publication summary
 
 ### Emergency workflow
 
 For urgent issues (e.g., fraudulent/counterfeit catalog entry, wrong item enabling abuse):
 
-- Allow immediate **deprecate/unlist** action by Catalog Admin.
+- Allow immediate **retire/unlist** action by Catalog Admin.
 - Must still produce auditable events and a reversible trail.
 
 ---
@@ -161,10 +161,10 @@ Requirements:
 - `ItemCreated` / `ItemUpdated`
 - `CatalogAliasAdded` / `CatalogAliasRemoved`
 - `CatalogChangeRequested` / `CatalogChangeReviewed` / `CatalogChangePublished` / `CatalogChangeRejected`
-- `ItemSuperseded` (old → new canonical mapping)
+- `ItemSuperseded` (old â†’ new canonical mapping)
 - `ItemsMerged`
 - `ItemSplit`
-- `ItemDeprecated` / `ItemReactivated`
+- `ItemRetired` / `ItemReactivated`
 
 (Version events remain separate, e.g. `VersionModelVersionPublished`.)
 

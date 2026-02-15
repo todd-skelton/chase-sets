@@ -1,4 +1,4 @@
-# Orders Service Guide
+﻿# Orders Service Guide
 
 ## Purpose
 Define checkout and seller-order orchestration ownership.
@@ -9,11 +9,11 @@ Define checkout and seller-order orchestration ownership.
 
 ## Scope
 - Owns: checkout creation, order lifecycle transitions, and order totals snapshots.
-- Does not own: payment processor internals and shipping carrier APIs.
+- Does not own: payment processor internals or shipping carrier APIs.
 
 ## Interfaces
 - Canonical API contract: `../../docs/api/openapi.yaml`
-- Service-local OpenAPI/event directories are not present yet in this pre-code repository.
+- Service guide contract: `../SERVICE_GUIDE_CONTRACT.md`
 
 ## Invariants
 - Order totals must be immutable after placement except explicit adjustment flows.
@@ -21,5 +21,5 @@ Define checkout and seller-order orchestration ownership.
 
 ## References
 - `../../services/README.md`
-- `../../AGENT.md`
 - `../../docs/domain/BOUNDED_CONTEXTS.md`
+- `../../domains/orders/README.md`

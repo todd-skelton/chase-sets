@@ -1,4 +1,4 @@
-# ADR 016: Embedding Strategy (Semantic Search)
+﻿# ADR 016: Embedding Strategy (Semantic Search)
 
 ## Status
 
@@ -19,7 +19,7 @@ To support this we need a consistent approach for:
 
 1. Hosted embedding API (fastest path)
 2. Self-hosted open-source embedding model
-3. Hybrid (hosted for queries, offline/self-hosted for catalog; or staged migration)
+3. Hybrid (hosted for queries, offline/self-hosted for catalog; or staged rollout)
 
 ## Decision
 
@@ -98,11 +98,12 @@ Acceptance criteria:
   - lexical-only baseline
   - hybrid lexical + vector
   - semantic/vector-heavy (if applicable)
-- Demonstrate we do not regress “exact identifier” queries (set + card number, exact name) in top-k behavior.
+- Demonstrate we do not regress â€œexact identifierâ€ queries (set + card number, exact name) in top-k behavior.
 - Demonstrate end-to-end search latency still meets the current target (**Search P95 <= 500ms**) defined in `docs/architecture/QUALITY_ATTRIBUTES.md` and `docs/engineering/OBSERVABILITY.md`.
 - Establish cost guardrails (rate limits + caching strategy + re-embed policy) and confirm projected cost is acceptable at the scale assumptions.
 
 If any acceptance criterion fails:
 
 - Document the failing case(s) and adopt a fallback posture (lexical-only with vectors disabled, or hybrid-only with tighter gating).
+
 

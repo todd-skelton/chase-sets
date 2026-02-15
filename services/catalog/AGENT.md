@@ -1,4 +1,4 @@
-# Catalog Service Guide
+﻿# Catalog Service Guide
 
 ## Purpose
 Define catalog metadata and version identity ownership.
@@ -9,11 +9,11 @@ Define catalog metadata and version identity ownership.
 
 ## Scope
 - Owns: catalog item metadata, version model definitions, and catalog validation rules.
-- Does not own: offer/listing state, checkout orchestration, and payment capture.
+- Does not own: listing and offer state, checkout orchestration, or payment capture.
 
 ## Interfaces
 - Canonical API contract: `../../docs/api/openapi.yaml`
-- Service-local OpenAPI/event directories are not present yet in this pre-code repository.
+- Service guide contract: `../SERVICE_GUIDE_CONTRACT.md`
 
 ## Invariants
 - Catalog identity must remain stable once published.
@@ -21,5 +21,5 @@ Define catalog metadata and version identity ownership.
 
 ## References
 - `../../services/README.md`
-- `../../AGENT.md`
 - `../../docs/domain/BOUNDED_CONTEXTS.md`
+- `../../domains/catalog/README.md`

@@ -1,10 +1,10 @@
-# Catalog — MVP Version Modeling Conventions, Keys, and Facets
+﻿# Catalog â€” MVP Version Modeling Conventions, Keys, and Facets
 
 ## Purpose
 
 Describe the **MVP conventions** for how Catalog authors Options/Option Values and how resolution materializes flattened facets.
 
-Important: option names like “Type”, “Graded”, “Condition”, “Size”, and “Color” are **admin-authored data** in the version system. The engine must be category-agnostic.
+Important: option names like â€œTypeâ€, â€œGradedâ€, â€œConditionâ€, â€œSizeâ€, and â€œColorâ€ are **admin-authored data** in the version system. The engine must be category-agnostic.
 
 This doc exists so Search/Marketplace/Inventory can safely depend on:
 
@@ -40,8 +40,8 @@ This doc follows the Catalog terminology for concepts while keeping version-syst
 
 - **Config-driven**: options/option values/constraints/facet rules are data authored in admin.
 - **Stable identity**: `optionKey`, `optionValueKey`, and facet keys remain stable once published.
-- **Category-agnostic**: no Pokémon-only hardcoding in the engine; category specifics live in config.
-- **Supports both**: staged (wizard-like) paths _and_ multi-option matrices (e.g., Size × Color).
+- **Category-agnostic**: no PokÃ©mon-only hardcoding in the engine; category specifics live in config.
+- **Supports both**: staged (wizard-like) paths _and_ multi-option matrices (e.g., Size Ã— Color).
 - **Sortable choices**: options/option values must support admin-authored ordering for UI/filter display (presentation-only; see [15-version-system.md](15-version-system.md)).
 
 ---
@@ -53,14 +53,14 @@ In MVP, we treat these as **Item identity**, not Version/Version distinctions (u
 - Set membership and set names
 - Card number
 - Reprints/promos that have different official identifiers
-- “Printing” differences that materially change identity (e.g., shadowless vs unlimited) unless we intentionally choose to model them as an option
+- â€œPrintingâ€ differences that materially change identity (e.g., shadowless vs unlimited) unless we intentionally choose to model them as an option
 
 Rationale:
 
 - Keeps Versions focused on buyer/seller-selectable attributes at listing/offer time.
 - Prevents Version explosion and confusing selector UX.
 
-If we later decide “printing/edition” is an option, it must be added explicitly with a migration plan.
+If we later decide â€œprinting/editionâ€ is an option, it must be added explicitly with a compatibility workflow.
 
 ---
 
@@ -80,7 +80,7 @@ What constraint types must the system support in MVP?
 
 ### Q2) Authoring model and reuse
 
-Do we require the system to support reusable “modules” (subtrees) and overrides in MVP?
+Do we require the system to support reusable â€œmodulesâ€ (subtrees) and overrides in MVP?
 
 - Reuse modules like `GradedCard` across many Items
 - Per-item overrides (disable option values, reorder option values, label override)
@@ -91,7 +91,7 @@ When a Version Model changes, what must remain true?
 
 - Existing Versions remain referentially valid forever
 - New options create new Versions without changing old `versionId`s
-- Breaking key changes require an explicit migration plan (never silent)
+- Breaking key changes require an explicit compatibility workflow (never silent)
 
 ### Q4) Validation + error reporting
 
@@ -99,13 +99,13 @@ What is the minimum validation and error surface?
 
 - Deterministic normalization (server-side)
 - Machine-readable error codes (see [01-version-identity-and-resolution.md](01-version-identity-and-resolution.md))
-- “Explainability” payloads (which option is missing/invalid) to support good UX
+- â€œExplainabilityâ€ payloads (which option is missing/invalid) to support good UX
 
 ### Q5) Facet materialization rules
 
 What facet behaviors must be supported?
 
-- Direct mapping from selected option values → facet key/value
+- Direct mapping from selected option values â†’ facet key/value
 - Conditional facets (only present for certain paths)
 - Ability to add a new facet/filter via config without code changes
 
@@ -122,8 +122,8 @@ What changes must be safe (no code changes) in MVP?
 ## Key stability rules (contract)
 
 1. `optionKey`, `optionValueKey`, and facet keys are authored in admin and MUST be treated as **stable identifiers**.
-2. Human-facing labels (e.g., “10 GEM MT”) are display-only and may change.
-3. Changing a key is a breaking change and requires an explicit migration plan.
+2. Human-facing labels (e.g., â€œ10 GEM MTâ€) are display-only and may change.
+3. Changing a key is a breaking change and requires an explicit compatibility workflow.
 
 See: [01-version-identity-and-resolution.md](01-version-identity-and-resolution.md)
 
@@ -150,9 +150,9 @@ These are canonical examples for MVP implementation and UI/UX discussion. They a
 
 More complete examples (JSON-ish): [03-version-model-examples.md](03-version-model-examples.md)
 
-### Example A — Trading card: staged “Type → …”
+### Example A â€” Trading card: staged â€œType â†’ â€¦â€
 
-Intent: a staged selector where choosing a “Type” enables the next option(s).
+Intent: a staged selector where choosing a â€œTypeâ€ enables the next option(s).
 
 Example VersionPath (graded):
 
@@ -174,7 +174,7 @@ Notes:
 - The specific option keys/values are admin-configured and can differ per category.
 - The Version identity includes all selected steps along the enabled path.
 
-### Example B — Apparel: multi-option matrix (Size × Color)
+### Example B â€” Apparel: multi-option matrix (Size Ã— Color)
 
 Intent: options are independent and both required; order is canonical (`rootOptions` defines it).
 
@@ -185,7 +185,7 @@ Example VersionPath:
 
 Notes:
 
-- This is the main “multiple options” shape (as opposed to staged branching).
+- This is the main â€œmultiple optionsâ€ shape (as opposed to staged branching).
 
 ---
 
@@ -194,4 +194,5 @@ Notes:
 Adding new options (new colors, new sizes, new grading companies, new grade values, etc.) should be treated as **data/config expansion**.
 
 The only changes that require extra ceremony are changes to stable keys (`optionKey`, `optionValueKey`, and facet keys), because those affect Version identity and long-term referential integrity.
+
 

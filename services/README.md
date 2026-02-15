@@ -1,29 +1,33 @@
-# Services Documentation
+﻿# Services Documentation
 
 ## Purpose
-Provide the canonical entry point for service-level ownership guides.
+Provide the canonical entry point for service ownership guides.
 
 ## Audience
-- Engineers defining service boundaries.
-- AI agents applying service-local rules.
+- Engineers defining service boundaries and contracts.
+- AI agents applying service-local constraints.
 
 ## Scope
-Each service guide defines ownership, interfaces, invariants, and references.
+Each service guide defines ownership, interfaces, invariants, and cross-context references.
+
+## Service Guide Contract
+All service guides must follow [Service Guide Contract](SERVICE_GUIDE_CONTRACT.md).
 
 ## Service Guides
-- `accounts/AGENT.md`
-- `catalog/AGENT.md`
-- `integrations/AGENT.md`
-- `listings/AGENT.md`
-- `orders/AGENT.md`
-- `search/AGENT.md`
-- `shipping/AGENT.md`
-- `trust-safety/AGENT.md`
+- [Accounts](accounts/AGENT.md)
+- [Catalog](catalog/AGENT.md)
+- [Integrations](integrations/AGENT.md)
+- [Listings](listings/AGENT.md)
+- [Orders](orders/AGENT.md)
+- [Search](search/AGENT.md)
+- [Shipping](shipping/AGENT.md)
+- [Trust-Safety](trust-safety/AGENT.md)
 
 ## Interface Status
-Service-local OpenAPI/event directories are planned but not yet present in this pre-code repository. The canonical API contract currently lives at `../docs/api/openapi.yaml`.
+Service-local OpenAPI and event directories are not present in this pre-code repository.
+The canonical API contract is `../docs/api/openapi.yaml`.
 
 ## References
-- `../AGENT.md`
-- `../docs/api/SKILL.md`
-- `../docs/domain/SKILL.md`
+- [Agent Guide](../AGENT.md)
+- [API Playbook](../docs/api/SKILL.md)
+- [Domain Playbook](../docs/domain/SKILL.md)

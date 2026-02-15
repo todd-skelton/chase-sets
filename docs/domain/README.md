@@ -1,18 +1,28 @@
-# Domain Docs
+﻿# Domain Docs
 
 ## Purpose
-- Provide canonical domain model and bounded context references.
+Provide canonical domain modeling documentation and ownership boundaries.
+
+## Audience
+- Engineers defining domain behavior and boundaries.
+- AI agents writing domain-consistent requirements and contracts.
 
 ## Scope
-- Glossary, context boundaries, event taxonomy, and state machines.
+Covers glossary terms, bounded contexts, aggregates, events, and lifecycle indexes.
 
-## Links
-- `docs/domain/glossary.md`
-- `docs/domain/BOUNDED_CONTEXTS.md`
-- `docs/domain/DOMAIN_MODEL.md`
-- `docs/domain/EVENT_TAXONOMY.md`
-- `docs/domain/STATE_MACHINES.md`
+## Start Here
+1. [Glossary](glossary.md)
+2. [Bounded Contexts](BOUNDED_CONTEXTS.md)
+3. [Domain Model](DOMAIN_MODEL.md)
+4. [Event Taxonomy](EVENT_TAXONOMY.md)
+5. [State Machines](STATE_MACHINES.md)
 
-## Checklist
-- [ ] Update glossary when new business language is introduced.
-- [ ] Keep bounded context ownership aligned with `services/*/AGENT.md`.
+## Rules
+- New business terms must be added to the glossary.
+- Cross-context handoffs must be modeled as explicit events.
+- Aggregate invariants must be explicit and testable.
+
+## References
+- [Architecture Docs](../architecture/README.md)
+- [Services Documentation](../../services/README.md)
+- [Domains Index](../../domains/README.md)

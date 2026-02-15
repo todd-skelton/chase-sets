@@ -1,4 +1,4 @@
-# Shipping Service Guide
+﻿# Shipping Service Guide
 
 ## Purpose
 Define shipment planning and tracking behavior ownership.
@@ -9,11 +9,11 @@ Define shipment planning and tracking behavior ownership.
 
 ## Scope
 - Owns: shipment planning, label orchestration, and tracking status updates.
-- Does not own: checkout creation and payment authorization ownership.
+- Does not own: checkout creation or payment authorization ownership.
 
 ## Interfaces
 - Canonical API contract: `../../docs/api/openapi.yaml`
-- Service-local OpenAPI/event directories are not present yet in this pre-code repository.
+- Service guide contract: `../SERVICE_GUIDE_CONTRACT.md`
 
 ## Invariants
 - Shipments must reference valid fulfillable order data.
@@ -21,5 +21,5 @@ Define shipment planning and tracking behavior ownership.
 
 ## References
 - `../../services/README.md`
-- `../../AGENT.md`
 - `../../docs/domain/BOUNDED_CONTEXTS.md`
+- `../../domains/fulfillment/README.md`

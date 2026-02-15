@@ -1,4 +1,4 @@
-# Integrations Service Guide
+﻿# Integrations Service Guide
 
 ## Purpose
 Define external adapter and provider boundary behavior.
@@ -13,13 +13,13 @@ Define external adapter and provider boundary behavior.
 
 ## Interfaces
 - Canonical API contract: `../../docs/api/openapi.yaml`
-- Service-local OpenAPI/event directories are not present yet in this pre-code repository.
+- Service guide contract: `../SERVICE_GUIDE_CONTRACT.md`
 
 ## Invariants
-- Provider payload mapping must be explicit.
+- Provider payload mapping must be explicit and version-aware.
 - External side effects must be idempotent and retry-safe.
 
 ## References
 - `../../services/README.md`
-- `../../AGENT.md`
 - `../../docs/domain/BOUNDED_CONTEXTS.md`
+- `../../docs/api/WEBHOOKS.md`

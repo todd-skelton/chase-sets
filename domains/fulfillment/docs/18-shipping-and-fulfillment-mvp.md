@@ -1,4 +1,4 @@
-# 3.x Shipping & Fulfillment (MVP Requirements)
+﻿# 3.x Shipping & Fulfillment (MVP Requirements)
 
 ## Purpose
 
@@ -18,7 +18,7 @@ See also:
 
 - `domains/payments/docs/31-money-math-fees-shipping-credit-and-ledger-invariants.md` (rounding, allocation, unwind invariants)
 
-Update: shipping is now modeled as a **shipping credit** equal to **5% of item value** on purchase (applies to offers and listing purchases).
+Shipping is modeled as a **shipping credit** equal to **5% of item value** on purchase (applies to offers and listing purchases).
 
 ---
 
@@ -45,7 +45,7 @@ Out of scope (MVP, unless you explicitly want them):
 ### 1) Seller ships to buyer (standard)
 
 1. Buyer pays for an order.
-2. Seller receives “ready to ship” notification.
+2. Seller receives â€œready to shipâ€ notification.
 3. Seller purchases a label (or platform purchases on their behalf).
 4. Seller ships package; tracking begins.
 5. Delivery confirmed; order completes.
@@ -146,3 +146,4 @@ Notes:
 - Fulfillment services should define deterministic handling for label purchase failures.
 - Fulfillment services should define delivery exception handling for lost, damaged, and return-to-sender states.
 - Fulfillment contracts should define tracking ingestion mapping from provider payloads.
+

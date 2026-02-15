@@ -1,4 +1,4 @@
-# Catalog — Version Identity, Version Path Normalization, and Resolution (MVP)
+﻿# Catalog â€” Version Identity, Version Path Normalization, and Resolution (MVP)
 
 ## Purpose
 
@@ -45,9 +45,9 @@ This spec uses version-system schema names and follows the Catalog terminology f
 - `versionPath`: the ordered list of selected (`optionKey`, `optionValueKey`) pairs (field/property name).
 - `versionId`: stable identifier for `Item + VersionPath`.
 
-In MVP, VersionPath supports **staged selection** (multi-step paths): selecting an early option (e.g., “Type”) enables the next required option(s).
+In MVP, VersionPath supports **staged selection** (multi-step paths): selecting an early option (e.g., â€œTypeâ€) enables the next required option(s).
 
-Important: names like “Type”, “Graded”, “Condition”, “Size”, and “Color” are not special-cased in code. They are authored in the version-system admin UI as VersionModel data (options, option values, constraints, facet rules). The contract here is the normalization + identity algorithm and the stability rules.
+Important: names like â€œTypeâ€, â€œGradedâ€, â€œConditionâ€, â€œSizeâ€, and â€œColorâ€ are not special-cased in code. They are authored in the version-system admin UI as VersionModel data (options, option values, constraints, facet rules). The contract here is the normalization + identity algorithm and the stability rules.
 
 ---
 
@@ -146,20 +146,20 @@ Notes:
 
 This algorithm intentionally models flows like:
 
-- `Type: Graded → Company: PSA → Grade: 10 GEM MT`
-- `Type: Conditioned → Condition: Near Mint`
+- `Type: Graded â†’ Company: PSA â†’ Grade: 10 GEM MT`
+- `Type: Conditioned â†’ Condition: Near Mint`
 - `Type: Sealed`
 
 Important identity rule:
 
-- The Version is defined by the **leaf outcome** (e.g., “Sealed” or “Graded+PSA+10”) and therefore includes **all selected options along the enabled path**.
-- Intermediate selections are not “temporary”; they are part of the canonical VersionPath keys that define Version identity.
+- The Version is defined by the **leaf outcome** (e.g., â€œSealedâ€ or â€œGraded+PSA+10â€) and therefore includes **all selected options along the enabled path**.
+- Intermediate selections are not â€œtemporaryâ€; they are part of the canonical VersionPath keys that define Version identity.
 
 ### Validation rules
 
-- Missing required options → error
-- Unknown `optionKey`/`optionValueKey` → error
-- Invalid combination (constraint violation) → error
+- Missing required options â†’ error
+- Unknown `optionKey`/`optionValueKey` â†’ error
+- Invalid combination (constraint violation) â†’ error
 - Multi-select options (if used) must normalize to a stable ordering rule:
   - MVP rule: sort selected `optionValueKey`s lexicographically for that option
 
@@ -205,7 +205,7 @@ Constraints:
 ### Consequences
 
 - Reordering labels or adding optional options does not change existing Version IDs.
-- Changing keys changes Version identity and requires a deliberate migration.
+- Changing keys changes Version identity and requires an explicit compatibility workflow.
 
 ---
 
@@ -213,7 +213,7 @@ Constraints:
 
 Resolution returns `flattenedFacets` derived from the VersionPath.
 
-Facet keys are defined by the VersionModel’s `facetRules` (config/data).
+Facet keys are defined by the VersionModelâ€™s `facetRules` (config/data).
 
 Common examples (illustrative; not hardcoded):
 

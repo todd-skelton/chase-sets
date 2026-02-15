@@ -1,22 +1,30 @@
-# Test Strategy
+﻿# Test Strategy
 
-Related: `docs/domain/STATE_MACHINES.md`, `docs/api/openapi.yaml`
+## Purpose
+Define repository-level testing execution guidance.
 
-## Test Pyramid
+## Audience
+- Engineers planning and reviewing test coverage.
+- AI agents generating test plans and acceptance checks.
 
-- Unit tests: aggregate decision logic and invariants
-- Integration tests: repository, event store append, projector behavior
-- Contract tests: API and webhook payload compatibility
-- End-to-end tests: critical buyer/seller journeys
+## Scope
+This document complements the canonical [Testing Standard](../standards/testing.md) with repository-specific focus areas.
 
-## Event-sourcing Specific Coverage
+## Priority Coverage Areas
+- Domain invariants and aggregate decision logic.
+- Event append concurrency and idempotency behavior.
+- Projection replay determinism and checkpoint handling.
+- API and webhook contract compatibility.
+- Critical buyer and seller lifecycle flows.
 
-- Given-when-then tests over event histories
-- Upcaster and event version compatibility tests
-- Replay tests for projection determinism
+## Procedure
+1. Start with requirements and acceptance criteria in product/domain docs.
+2. Map each requirement to at least one test layer.
+3. Prefer unit and integration tests before end-to-end coverage.
+4. Add regression coverage for any production-facing contract risk.
+5. Keep fixtures deterministic (IDs, timestamps, and payload ordering).
 
-## Test Data and Fixtures
-
-- Use canonical fixtures for collectible versions and condition grades.
-- Keep deterministic IDs and timestamps for reproducibility.
-- Isolate Stripe integration tests via adapter boundaries and test doubles where possible.
+## References
+- [Testing Standard](../standards/testing.md)
+- [State Machines](../domain/STATE_MACHINES.md)
+- `../api/openapi.yaml`

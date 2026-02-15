@@ -1,4 +1,4 @@
-# Accounts Service Guide
+﻿# Accounts Service Guide
 
 ## Purpose
 Define identity-account boundary and authorization policy ownership.
@@ -9,11 +9,11 @@ Define identity-account boundary and authorization policy ownership.
 
 ## Scope
 - Owns: account lifecycle, organization membership, and role assignments.
-- Does not own: catalog metadata, marketplace matching, payments orchestration, and shipping execution.
+- Does not own: catalog metadata, marketplace matching, payment orchestration, or shipment execution.
 
 ## Interfaces
 - Canonical API contract: `../../docs/api/openapi.yaml`
-- Service-local OpenAPI/event directories are not present yet in this pre-code repository.
+- Service guide contract: `../SERVICE_GUIDE_CONTRACT.md`
 
 ## Invariants
 - Membership grants must be explicit and scoped to organization context.
@@ -21,5 +21,5 @@ Define identity-account boundary and authorization policy ownership.
 
 ## References
 - `../../services/README.md`
-- `../../AGENT.md`
 - `../../docs/domain/BOUNDED_CONTEXTS.md`
+- `../../domains/identity/README.md`

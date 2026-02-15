@@ -1,4 +1,4 @@
-# ADR 017: Single Buyer Charge (Checkout) With Multi-Seller Split
+﻿# ADR 017: Single Buyer Charge (Checkout) With Multi-Seller Split
 
 ## Status
 
@@ -22,13 +22,13 @@ We want:
 1. **Single charge + internal allocation + multi-transfer (recommended)**
    - Create one Stripe PaymentIntent for the checkout total
    - Allocate amounts to seller ledgers internally
-   - Later create Stripe Transfers to each seller’s connected account when funds are available/cleared
+   - Later create Stripe Transfers to each sellerâ€™s connected account when funds are available/cleared
 
 2. Separate charges per seller (UI still looks like one checkout)
    - Increases fixed-fee impact and creates more payment failures
 
 3. Single merchant MVP (platform only) and pay sellers off-platform
-   - Faster to ship but painful migration and trust/compliance downsides
+   - Faster to ship but high operational overhead and trust/compliance downsides
 
 ## Decision
 
@@ -53,3 +53,4 @@ Key points:
 - Define event taxonomy for allocation and transfer lifecycle (authorization, capture, allocation, transfer initiated/paid/failed).
 - Define how refunds/chargebacks unwind allocations and handle negative balances.
 - Define how shipping credit is applied and funded relative to allocations.
+
