@@ -1,34 +1,36 @@
-﻿# Deployment Topology
+# Deployment Topology
 
-Related: `docs/engineering/RELEASES.md`, `docs/data/MIGRATIONS.md`
+## Purpose
+Describe baseline deployment topology and release flow.
+
+## Audience
+- Engineers planning runtime and release operations.
+- AI agents producing operational docs.
+
+## Scope
+Applies to local, staging, and production environments.
 
 ## Environments
-
-- `local`: developer containers and seeded data
-- `staging`: production-like integration environment
-- `production`: customer-facing environment
+- `local`: developer environment.
+- `staging`: production-like validation environment.
+- `production`: customer-facing runtime.
 
 ## Topology
-
-- Containerized services using open-source container runtime/orchestrator.
-- Vendor-neutral infrastructure abstractions.
-- Managed or self-managed Postgres depending on host choice.
+- Services should run as containers.
+- Postgres should host event store and read models.
+- Edge traffic should terminate TLS at ingress.
 
 ## Release Flow
+1. Merge to main.
+2. Build immutable artifacts.
+3. Deploy to staging.
+4. Run smoke and integration checks.
+5. Promote to production with controlled rollout.
 
-1. Merge to main
-2. Build immutable container artifact
-3. Deploy to staging
-4. Run smoke and integration checks
-5. Promote to production with controlled rollout
+## Schema Rollout
+Schema updates must follow `../data/SCHEMA_ROLLOUT.md`.
 
-## Feature Flags
-
-- Use runtime flags for risky or incremental launches.
-- Document flag owner, expiry, and rollback plan.
-
-## Migration Strategy
-
-- Forward-only migrations
-- Backward-compatible reads during rollout windows
-- Blue/green or canary rollout where available
+## References
+- `README.md`
+- `../engineering/RELEASES.md`
+- `../data/SCHEMA_ROLLOUT.md`

@@ -1,4 +1,4 @@
-﻿# Testing Standard
+# Testing Standard
 
 ## Purpose
 - Define minimum testing expectations for safe, fast delivery.

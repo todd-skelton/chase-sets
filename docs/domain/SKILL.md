@@ -1,4 +1,4 @@
-﻿# Domain Modeling Playbook
+# Domain Modeling Playbook
 
 ## Purpose
 - Keep domain logic cohesive, explicit, and independent from infrastructure concerns.

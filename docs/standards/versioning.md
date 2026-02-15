@@ -1,22 +1,19 @@
-﻿# Versioning Standard
+# Versioning Standard
 
 ## Purpose
-- Define consistent versioning rules for APIs, events, and schema changes.
+Define versioning rules for APIs, events, and schema contracts.
 
 ## Scope
-- Applies to REST endpoints, event schemas/envelopes, and migration compatibility.
+Applies to HTTP API paths, event envelopes/payloads, and schema compatibility.
 
 ## Rules
-- APIs use URL major versioning (example: `/v1/listings`).
-- Events keep stable `event_type` names (example: `marketplace.listing.created`).
-- Events use `event_version` metadata in the envelope for schema evolution.
-- Additive changes may remain in the same major version.
-- Breaking changes require new major API route or new `event_version`.
-- Deprecations require documented timeline and migration path.
-- Prefer compatibility windows over immediate removals.
+- APIs must use URL major versioning (example: `/v1/...`).
+- Events must keep stable `event_type` names.
+- Event schema evolution must use `event_version`.
+- Additive changes may stay within the same major version.
+- Breaking changes must use a new API major version or new `event_version`.
 
-## Checklist
-- [ ] Classify change as additive or breaking.
-- [ ] Apply version bump where needed.
-- [ ] Update contract tests.
-- [ ] Document migration/deprecation notes.
+## References
+- `../api/SKILL.md`
+- `../events/SKILL.md`
+- `../data/SCHEMA_ROLLOUT.md`

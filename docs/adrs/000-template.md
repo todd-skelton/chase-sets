@@ -1,29 +1,23 @@
-# ADR NNN: <Title>
+# ADR NNN: Title
 
 ## Status
-
-Proposed | Accepted | Deprecated | Superseded
+Accepted | Proposed
 
 ## Context
+Describe the problem and constraints.
 
-What problem are we solving and what constraints matter?
-
-## Options considered
-
+## Options Considered
 1. Option A
 2. Option B
 3. Option C
 
 ## Decision
-
-We will: TBD
+State the selected option and why.
 
 ## Tradeoffs
+- Pros
+- Cons
+- Risks
 
-- Pros:
-- Cons:
-- Risks:
-
-## Consequences / follow-ups
-
-- TBD
+## Consequences
+List follow-up actions and impacted docs.

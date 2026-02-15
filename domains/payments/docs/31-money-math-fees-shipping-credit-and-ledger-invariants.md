@@ -186,8 +186,6 @@ These invariants must be testable via projections + reconciliation:
 
 ---
 
-## Open questions
-
 ## MVP policy decisions (explicit)
 
 These are the proposed MVP defaults; change them intentionally (with an ADR) if you want different economics.
@@ -219,3 +217,9 @@ These are the proposed MVP defaults; change them intentionally (with an ADR) if 
 
 - The ledger supports negative balances.
 - Negative balances freeze withdrawability until repaid via future proceeds or an explicit repayment flow.
+
+## Implementation Checklist
+- Money math must use explicit rounding rules by currency.
+- Ledger entries must preserve zero-sum balance invariants.
+- Shipping-credit settlement must map to deterministic ledger entries.
+- Allocation and unwind behavior must remain reproducible from event history.

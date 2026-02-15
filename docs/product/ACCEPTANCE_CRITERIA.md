@@ -1,4 +1,4 @@
-﻿# Acceptance Criteria
+# Acceptance Criteria
 
 Related: `docs/product/REQUIREMENTS.md`, `docs/planning/DEFINITION_OF_DONE.md`
 
@@ -20,4 +20,3 @@ Related: `docs/product/REQUIREMENTS.md`, `docs/planning/DEFINITION_OF_DONE.md`
 
 - PRD, requirements, and user flows are cross-linked and internally consistent.
 - Domain model and state machines cover all required lifecycle transitions.
-- TODO(QUESTION) items are tracked with clear owner and target date.

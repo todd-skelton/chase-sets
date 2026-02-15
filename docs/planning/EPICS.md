@@ -1,4 +1,4 @@
-﻿# Epics
+# Epics
 
 Related: `docs/planning/ROADMAP.md`, `docs/planning/STORIES_TEMPLATE.md`
 
@@ -8,7 +8,7 @@ Related: `docs/planning/ROADMAP.md`, `docs/planning/STORIES_TEMPLATE.md`
 
 ## EPIC-2 Marketplace Core
 
-- Listings, bids/offers, matching rules
+- Listings, offers/offers, matching rules
 
 ## EPIC-3 Orders and Fulfillment
 

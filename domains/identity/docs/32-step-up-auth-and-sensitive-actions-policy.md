@@ -141,3 +141,9 @@ Every step-up request and outcome must be auditable with:
 - Max **5** failed step-up attempts per **15 minutes** per account.
 - After limit is exceeded, block step-up attempts for **30 minutes**.
 - If **10** failures occur in **24 hours**, require support review to unlock.
+
+## Implementation Checklist
+- Step-up policy must enumerate sensitive actions and required assurance level.
+- Step-up verification windows must be explicit and bounded.
+- Audit logs must capture step-up trigger, challenge method, and verification outcome.
+- Step-up policy should align with payout and administrative risk controls.

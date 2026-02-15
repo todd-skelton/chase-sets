@@ -1,39 +1,25 @@
-﻿# Catalog Service Agent Guide
+# Catalog Service Guide
 
 ## Purpose
-- Define ownership and rules for collectible metadata, set hierarchy, and canonical card data.
+Define catalog metadata and version identity ownership.
+
+## Audience
+- Engineers implementing catalog capabilities.
+- AI agents applying service-local constraints.
 
 ## Scope
-- Owns:
-  - Product taxonomy, set metadata, card attributes, print variants, canonical identifiers.
-  - Normalization and validation rules for catalog quality.
-- Does not own:
-  - Listing lifecycle, pricing, checkout, shipping execution, account identity.
+- Owns: catalog item metadata, version model definitions, and catalog validation rules.
+- Does not own: offer/listing state, checkout orchestration, and payment capture.
 
-## Rules
-- Public interfaces:
-  - OpenAPI: `services/catalog/openapi/openapi.yaml`
-  - Events emitted: `services/catalog/events/emitted/`
-  - Events consumed: `services/catalog/events/consumed/`
-- Data ownership:
-  - Schema prefix: `catalog_*`
-  - Migrations: `services/catalog/infra/db/migrations/`
-- Invariants:
-  - Canonical card identity remains stable once published.
-  - Set and card references must resolve to existing catalog records.
-  - TODO: define duplicate merge policy and correction audit workflow.
+## Interfaces
+- Canonical API contract: `../../docs/api/openapi.yaml`
+- Service-local OpenAPI/event directories are not present yet in this pre-code repository.
 
-## Checklist
-- Local commands:
-  - `pnpm -C services/catalog test`
-  - `pnpm -C services/catalog lint`
-  - `pnpm -C services/catalog typecheck`
-- Testing expectations:
-  - Unit tests for normalization and invariant logic.
-  - Integration tests for repository queries and migration compatibility.
-  - Contract tests for emitted catalog events and public read endpoints.
+## Invariants
+- Catalog identity must remain stable once published.
+- Version resolution must be deterministic for downstream consumers.
 
-## Links
-- `AGENT.md`
-- `docs/domain/SKILL.md`
-- `docs/events/SKILL.md`
+## References
+- `../../services/README.md`
+- `../../AGENT.md`
+- `../../docs/domain/BOUNDED_CONTEXTS.md`

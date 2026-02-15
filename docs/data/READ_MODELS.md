@@ -1,4 +1,4 @@
-﻿# Read Models
+# Read Models
 
 Related: `docs/data/EVENT_STORE.md`, `docs/architecture/QUALITY_ATTRIBUTES.md`
 
@@ -24,4 +24,3 @@ Read models provide query-optimized views for user journeys that should not reco
 
 - Use cursor pagination for large collections.
 - Keep sort keys stable and indexed.
-- TODO(QUESTION): finalize search index provider and sync strategy

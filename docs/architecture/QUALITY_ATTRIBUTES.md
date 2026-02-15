@@ -1,12 +1,8 @@
-﻿# Quality Attributes
+# Quality Attributes
 
 Related: `docs/architecture/SYSTEM_OVERVIEW.md`, `docs/engineering/OBSERVABILITY.md`
 
 ## Availability and Reliability
-
-- TODO(QUESTION): define API uptime SLO target (for example 99.9 percent)
-- TODO(QUESTION): define order placement success SLO
-- TODO(QUESTION): define payout processing latency SLO
 
 ## Scalability
 

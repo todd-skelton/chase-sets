@@ -1,6 +1,6 @@
-﻿# Schema Conventions
+# Schema Conventions
 
-Related: `docs/data/MIGRATIONS.md`, `docs/data/EVENT_STORE.md`
+Related: `docs/data/SCHEMA_ROLLOUT.md`, `docs/data/EVENT_STORE.md`
 
 ## Naming
 

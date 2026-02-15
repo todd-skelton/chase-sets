@@ -6,7 +6,7 @@ Accepted (direction)
 
 ## Context
 
-Listings and bids are **org-owned**.
+Listings and offers are **org-owned**.
 
 For multi-location sellers (warehouse + store + kiosk), we need a consistent way to:
 
@@ -39,6 +39,6 @@ MVP simplification:
 
 - Confirmed: allow multi-seller checkout and split fulfillment into multiple shipments (by seller and/or origin location).
 - Buyer pays shipping per shipment; cart consolidation/optimization is a later enhancement.
-- Decide whether bids can be location-constrained in the future.
+- Decide whether offers can be location-constrained in the future.
 - Define how pickup/kiosk/in-store fulfillment interacts with matching and fees.
 - Align events and projections for inventory reservation/commit.

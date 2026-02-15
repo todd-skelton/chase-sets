@@ -1,39 +1,29 @@
 # ADR 0001: Initial Architecture
 
-## Purpose
-- Capture the baseline architecture for Chase Sets Marketplace.
+## Status
+Accepted
 
 ## Context
-- The product starts as a multi-tenant trading-card marketplace and must scale into broader collectibles.
-- Teams need clear context ownership, stable contracts, and low-friction delivery.
-- Early architecture should favor reliability, auditability, and incremental evolution.
+The platform requires clear bounded-context ownership, explicit contracts, and strong auditability while implementation is still in pre-code phase.
 
 ## Decision
-- Use a TypeScript Node.js monorepo organized by bounded contexts under `services/`.
-- Start with a modular monolith posture and explicit seams for later extraction.
-- Use Postgres as primary data store and outbox transport for initial event publishing.
-- Use REST APIs with OpenAPI-first contracts.
-- Enforce domain, application, and infrastructure layering with inward dependencies.
-- Treat events and API schemas as versioned public contracts.
+- The platform uses a modular monolith posture with explicit bounded contexts.
+- TypeScript on Node.js is the baseline runtime.
+- Postgres is the baseline event store and read model data store.
+- APIs are REST with OpenAPI-first contracts.
+- Event sourcing is the baseline model for core transactional flows.
 
 ## Alternatives Considered
-- Distributed microservices with a broker from day one.
-  - Rejected due to operational overhead and premature complexity.
-- GraphQL-first API surface.
-  - Rejected for initial phase to simplify contract governance and external integration.
-- Shared database schema across contexts.
-  - Rejected because it breaks context autonomy and evolution safety.
+1. Broker-first distributed microservices.
+2. Shared schema without strict context boundaries.
+3. GraphQL-first API surface.
 
 ## Consequences
-- Positive:
-  - Faster iteration with consistent patterns and stronger ownership boundaries.
-  - Better auditability through explicit contracts and outbox-based event trails.
-- Tradeoffs:
-  - Additional discipline required for contract/version governance.
-  - Eventual migration to broker/stream platform may require infrastructure transition work.
+- Teams gain clearer ownership and contract discipline.
+- Delivery requires consistent versioning and contract tests.
+- Architecture extraction remains possible through explicit interfaces.
 
-## Follow-ups
-- TODO: choose initial auth provider and token format standards.
-- TODO: define SLO/SLA baselines for API latency and event delivery lag.
-- TODO: document tenancy isolation model for analytics and search indexes.
-- TODO: decide timeline for outbox-to-broker evolution criteria.
+## References
+- `README.md`
+- `../architecture/SYSTEM_OVERVIEW.md`
+- `../domain/BOUNDED_CONTEXTS.md`

@@ -1,57 +1,44 @@
 # Chase Sets Marketplace
 
-Chase Sets is a marketplace for trading cards and collectibles.
+## Purpose
+Chase Sets is a pre-code documentation repository for a collectibles marketplace architecture and product design.
 
-This repository is currently a pre-code scaffold focused on product, domain, architecture, API, data, and engineering documentation.
+## Audience
+- AI agents that need source-of-truth navigation and contracts.
+- Engineers defining implementation-ready scope, interfaces, and constraints.
 
-## Current Status
+## Current State
+- Application code is not implemented in this repository.
+- Documentation is the source of truth for product, architecture, domain, API, and operational standards.
 
-- Product code: not implemented yet
-- Architecture posture: modular monolith with strict bounded contexts
-- Event model: event sourcing from day one
-- Data store: Postgres (event store + read models)
-- Payments: Stripe
-- Deployment posture: open-source container based, cloud-agnostic
+## Quickstart
+1. Read `.ai/PROJECT_BRIEF.md`.
+2. Read `.ai/CONTEXT_INDEX.md`.
+3. Read `docs/setup.md`.
+4. Follow `CONTRIBUTING.md`.
 
-## Repository Structure (Canonical)
+## Repository Structure
+- `docs/`: canonical product, domain, architecture, API, data, engineering, planning, and runbook docs.
+- `docs/adrs/`: architecture decisions.
+- `.ai/`: compact pointer-first summaries for agent workflows.
+- `domains/`: domain-specific requirements and terminology.
+- `services/`: service ownership guides.
+- `infra/`: infrastructure playbook.
 
-- `docs/`: canonical product, domain, architecture, API, data, engineering, planning, and ADR docs.
-- `.ai/`: compact AI-first canonical summaries and conventions.
-- `domains/`: domain-level requirement and terminology artifacts.
-- `services/`: service-facing agent guides and future implementation surfaces.
-- `infra/`: deployment and infrastructure playbooks.
-
-## Artifact Placement Rules (Canonical)
-
-- Keep cross-cutting product/platform documentation in `docs/`.
-- Keep architecture decisions in `docs/adrs/` unless a decision is strictly module-local.
-- Keep module-specific artifacts close to the owning module once implementation surfaces exist.
-- Do not reintroduce top-level numbered docs under `docs/`; merge into canonical section docs.
-
-## Dependency Boundary Rules
-
-- Business invariants belong to bounded contexts and should not live in generic shared layers.
-- Cross-context integration should happen through contracts/events, not direct ownership leaks.
-- Infrastructure concerns should remain behind clear adapter boundaries.
-
-## Quick Start For Contributors
-
-1. Read `.ai/PROJECT_BRIEF.md`
-2. Read `.ai/CONTEXT_INDEX.md`
-3. Follow `CONTRIBUTING.md`
-4. Use `docs/planning/STORIES_TEMPLATE.md` for new work items
-
-## Documentation Map
-
-- AI context: `.ai/CONTEXT_INDEX.md`
+## Canonical Docs
+- Setup: `docs/setup.md`
+- Environment variables: `docs/environment-variables.md`
 - Product: `docs/product/PRD.md`
-- Domain: `docs/domain/DOMAIN_MODEL.md`
-- Architecture: `docs/architecture/SYSTEM_OVERVIEW.md`
+- Domain: `docs/domain/README.md`
+- Architecture: `docs/architecture/README.md`
 - API: `docs/api/openapi.yaml`
 - Data: `docs/data/EVENT_STORE.md`
 - Engineering: `docs/engineering/CODING_STANDARDS.md`
 - Planning: `docs/planning/ROADMAP.md`
+- ADR index: `docs/adrs/README.md`
 
-## License
-
-Private repository. See `LICENSE`.
+## References
+- `docs/README.md`
+- `AGENT.md`
+- `SKILL.md`
+- `CONTRIBUTING.md`

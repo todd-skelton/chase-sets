@@ -128,8 +128,9 @@ When possible, add simple online signals:
 
 ---
 
-## Open questions
 
-1. What are the first 10–20 real queries you care about most (from your expected launch audience)?
-2. What are the most common confusions to explicitly guard against (similar names across sets, promos, reprints)?
-3. Yes/no: should semantic search treat informal terms like “chase card” as a meaningful intent category (recommended: **yes**, but gate behind evaluation)?
+## Implementation Checklist
+- Relevance evaluation must maintain a curated golden query set with expected outcomes.
+- Evaluation runs should record metric snapshots for change comparison.
+- Ranking or analyzer changes should require evaluation evidence before rollout.
+- Operational runbook should define how to execute and review relevance evaluations.

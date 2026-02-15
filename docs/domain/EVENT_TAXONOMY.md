@@ -1,4 +1,4 @@
-﻿# Event Taxonomy
+# Event Taxonomy
 
 Related: `.ai/CONVENTIONS.md`, `docs/data/EVENT_STORE.md`, `docs/data/READ_MODELS.md`
 

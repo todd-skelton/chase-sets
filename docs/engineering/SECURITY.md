@@ -1,34 +1,29 @@
-﻿# Security
+# Security
 
-Related: `docs/architecture/THREAT_MODEL.md`, `docs/domain/BOUNDED_CONTEXTS.md`
+## Purpose
+Define baseline security controls for documentation and future implementation.
 
-## Secrets Management
+## Scope
+Covers secrets handling, auth controls, API protection, and sensitive data handling.
 
-- Never store secrets in source control.
-- Use environment-based secret injection per environment.
-- Rotate credentials on schedule and incident triggers.
+## Secrets
+- Secrets must not be stored in source control.
+- Runtime secrets should be injected via environment or secret manager.
 
 ## Authentication and Authorization
-
-- Support password, social/SSO, MFA, and passkeys.
-- Enforce RBAC for organization and admin operations.
-- Apply step-up authentication for sensitive actions.
+- Systems should support strong authentication factors.
+- Systems must enforce authorization at application boundaries.
+- Sensitive actions should require stronger verification.
 
 ## API Security
+- External traffic must use TLS.
+- APIs must enforce rate limits and abuse controls.
+- Mutating calls must use idempotency protections.
 
-- Require TLS for all external traffic.
-- Apply rate limiting and abuse controls.
-- Use idempotency and request signing where applicable.
+## Sensitive Data Handling
+- Systems should store only required personal data.
+- Access to sensitive fields should be restricted and auditable.
 
-## Dependency and Supply Chain
-
-- Automated dependency vulnerability scanning.
-- Container image scanning before deployment.
-- Pin critical dependencies and monitor advisories.
-
-## PII Handling
-
-- Collect minimal personal data required for operation.
-- Classify and restrict access to sensitive fields.
-- Define retention and deletion policies.
-- TODO(QUESTION): finalize data retention durations and DSAR process expectations
+## References
+- `../architecture/THREAT_MODEL.md`
+- `../api/WEBHOOKS.md`

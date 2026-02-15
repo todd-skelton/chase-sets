@@ -1,4 +1,4 @@
-﻿# Infrastructure Playbook
+# Infrastructure Playbook
 
 ## Purpose
 - Align environment, secrets, migrations, and observability expectations.
@@ -11,7 +11,6 @@
   - `local`: local and feature branch testing.
   - `staging`: production-like integration and pre-release verification.
   - `production`: customer-facing workloads.
-  - TODO: define promotion gates between `staging` and `production`.
 - Secrets management:
   - Commit only placeholders in `.env.example`.
   - Real secrets must come from managed secret store at runtime.

@@ -70,7 +70,6 @@ Recommended UI terms should remain retail-friendly while preserving canonical in
 ## Compatibility Note
 
 - Canonical prose uses **Offer** for buyer-side intent.
-- Historical ADR/backlog content may still use **Bid**; treat it as a legacy alias.
 
 ## Checklist
 

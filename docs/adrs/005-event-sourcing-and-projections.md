@@ -55,7 +55,7 @@ Chase Sets is event sourced:
   - `idempotencyKey`
 - Define partitioning/ordering strategy:
   - Ordering guaranteed within an aggregate stream.
-  - Identify critical aggregates (Order, Listing, Bid, Item, Wallet).
+  - Identify critical aggregates (Order, Listing, Offer, Item, Wallet).
 - Define projector guarantees:
   - at-least-once consumption
   - idempotent handlers

@@ -1,23 +1,22 @@
-﻿# API Errors
+# API Error Usage
 
-Related: `.ai/CONVENTIONS.md`, `docs/api/openapi.yaml`
+## Purpose
+Describe API-facing usage of the canonical error contract.
 
-## Error Envelope
+## Audience
+- Engineers implementing HTTP handlers.
+- AI agents generating API examples.
 
-```json
-{
-  "error": {
-    "code": "string",
-    "message": "string",
-    "details": {},
-    "retryable": false,
-    "request_id": "uuid"
-  }
-}
-```
+## Scope
+This file describes usage. The canonical envelope and rules are defined in `../standards/errors.md`.
 
-## Standard Error Codes (Initial)
+## How It Works
+1. Return the standard envelope for every non-2xx response.
+2. Use stable machine codes.
+3. Keep `message` safe for clients.
+4. Include `request_id` for support and tracing.
 
+## Standard Codes
 - `AUTH_UNAUTHORIZED`
 - `AUTH_FORBIDDEN`
 - `VALIDATION_FAILED`
@@ -28,9 +27,6 @@ Related: `.ai/CONVENTIONS.md`, `docs/api/openapi.yaml`
 - `INTERNAL_ERROR`
 - `UPSTREAM_PAYMENT_ERROR`
 
-## Guidelines
-
-- `message` is user-safe and non-sensitive.
-- `details` contains machine-readable structured fields.
-- `retryable` indicates safe retry behavior.
-- `request_id` must be returned and logged for support correlation.
+## References
+- `../standards/errors.md`
+- `openapi.yaml`

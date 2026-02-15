@@ -1,39 +1,25 @@
-﻿# Listings Service Agent Guide
+# Listings Service Guide
 
 ## Purpose
-- Define ownership and rules for listing creation, publication, pricing, and listing state transitions.
+Define offer/listing lifecycle ownership inside marketplace behavior.
+
+## Audience
+- Engineers implementing listings capabilities.
+- AI agents applying service-local constraints.
 
 ## Scope
-- Owns:
-  - Listing lifecycle, price model, listing visibility status, seller listing constraints.
-  - Auction/fixed-price listing policy decisions (where applicable).
-- Does not own:
-  - Canonical catalog data, checkout order orchestration, shipping fulfillment execution.
+- Owns: listing lifecycle, visibility state, and seller-side listing constraints.
+- Does not own: catalog canonical identity ownership and payment provider orchestration.
 
-## Rules
-- Public interfaces:
-  - OpenAPI: `services/listings/openapi/openapi.yaml`
-  - Events emitted: `services/listings/events/emitted/`
-  - Events consumed: `services/listings/events/consumed/`
-- Data ownership:
-  - Schema prefix: `listings_*`
-  - Migrations: `services/listings/infra/db/migrations/`
-- Invariants:
-  - A listing references exactly one sellable catalog item identity.
-  - Listing cannot be purchased once terminal state is reached.
-  - TODO: finalize listing state machine for reserve and auction edge cases.
+## Interfaces
+- Canonical API contract: `../../docs/api/openapi.yaml`
+- Service-local OpenAPI/event directories are not present yet in this pre-code repository.
 
-## Checklist
-- Local commands:
-  - `pnpm -C services/listings test`
-  - `pnpm -C services/listings lint`
-  - `pnpm -C services/listings typecheck`
-- Testing expectations:
-  - Unit tests for state transitions and pricing rules.
-  - Integration tests for listing persistence and concurrency collisions.
-  - Contract tests for listing APIs and listing status events.
+## Invariants
+- Each listing must reference one sellable version identity.
+- Listing terminal states must block further purchase attempts.
 
-## Links
-- `AGENT.md`
-- `docs/api/SKILL.md`
-- `docs/events/SKILL.md`
+## References
+- `../../services/README.md`
+- `../../AGENT.md`
+- `../../docs/domain/BOUNDED_CONTEXTS.md`

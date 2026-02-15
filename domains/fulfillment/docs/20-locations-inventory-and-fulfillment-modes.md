@@ -14,7 +14,7 @@ See also:
 
 ## Problem statement
 
-Once listings/bids are **org-owned**, "where the item physically is" becomes important:
+Once listings/offers are **org-owned**, "where the item physically is" becomes important:
 
 - Multi-location orgs may want to treat inventory separately per location.
 - Shipping cost and delivery time depend on the origin location.
@@ -123,9 +123,9 @@ At minimum, model events like:
 
 ---
 
-## Open questions
 
-1. Do we ever allow a Listing to draw from multiple locations (recommended: no; keep listings location-bound)?
-2. Do we allow buyers to filter for “pickup available near me” (likely yes, later), and what radius logic is acceptable?
-3. Should bids ever be location-constrained (e.g., only match within X miles), or remain global?
-4. When multiple shipments are created, what is the buyer UX (explicit per-shipment shipping line items; delivery ETAs; partial delivery messaging)?
+## Implementation Checklist
+- Inventory management must model balances and reservations by location.
+- Reservation flow must define reserve, commit, and release transitions.
+- Fulfillment operations should document oversell prevention controls.
+- Location metadata should remain explicit in inventory and shipment projections.

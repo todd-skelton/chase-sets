@@ -1,45 +1,33 @@
 # Contributing
 
-## Scope
+## Purpose
+Define how contributors update this pre-code documentation repository.
 
-This repository is in pre-code mode. Prioritize documentation, decision records, and architectural clarity over implementation.
+## Audience
+- Engineers and product contributors.
+- AI agents preparing implementation-ready changes.
+
+## Scope
+This guide applies to documentation updates in this repository.
 
 ## Workflow
-
 1. Start from `.ai/CONTEXT_INDEX.md`.
-2. If a change affects behavior or architecture, update `.ai/DECISIONS.md` and `docs/adrs/0001-initial-architecture.md` (or add a new ADR).
-3. Keep docs short and link to canonical docs instead of duplicating content.
-4. Use `docs/planning/STORIES_TEMPLATE.md` for execution-ready stories.
-5. Treat `docs/*` and `.ai/*` as canonical source documents.
+2. Identify the canonical target file under `docs/`.
+3. Update canonical docs before local summaries.
+4. If architecture changes, update `.ai/DECISIONS.md` and add/update an ADR in `docs/adrs/`.
+5. Validate links and terminology consistency.
 
-## Artifact Placement Rules
-
-- Cross-cutting docs belong in `docs/` section files (product/domain/architecture/api/data/engineering/planning).
-- System-wide architecture decisions belong in `docs/adrs/`.
-- Domain/module-specific details should live near owning modules once those modules exist.
-- Avoid duplicate narrative copies across files; update canonical targets instead.
-- Do not add top-level numbered docs under `docs/`.
-
-## Boundary and Ownership Rules
-
-- Keep business invariants within owning bounded contexts.
-- Integrate across contexts through contracts/events, not direct data ownership coupling.
-- Keep infrastructure choices and adapters explicit and documented.
+## Documentation Rules
+- Contributors must use canonical terms from `docs/domain/glossary.md`.
+- Contributors should prefer short, procedural sections and avoid duplicated narrative.
+- Contributors must keep links relative.
+- Contributors must keep requirements explicit with `must`, `should`, or `may` where applicable.
 
 ## Pull Request Expectations
-
-- Clear summary of problem and change
-- Linked docs updated
-- Acceptance criteria referenced
-- Risks and rollback notes included
-
-## Writing Style
-
-- Use precise terms from `.ai/GLOSSARY.md`
-- Prefer checklists and explicit invariants
-- Mark unknowns as `TODO(QUESTION): ...`
+- Clear problem statement and intended outcome.
+- Updated canonical docs and references.
+- Explicit risks and rollout notes when contracts change.
 
 ## Non-goals
-
-- Do not add feature code unless explicitly requested
-- Do not make vendor/compliance claims not captured in ADRs
+- Adding runtime implementation code.
+- Storing secrets or production credentials.

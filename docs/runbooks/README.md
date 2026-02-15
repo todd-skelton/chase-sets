@@ -1,20 +1,28 @@
-﻿# Runbooks
+# Runbooks
 
 ## Purpose
-- Track operational procedures for incidents, maintenance, and routine operations.
+Define operational runbook expectations and structure.
+
+## Audience
+- Engineers handling incidents and operational tasks.
+- AI agents drafting operational procedures.
 
 ## Scope
-- Service recovery, dependency failures, deployment checks, and escalation paths.
+Covers incident response, service recovery, and rollout verification.
 
-## Rules
-- Keep runbooks short, stepwise, and executable under incident pressure.
-- Link telemetry dashboards, alerts, and ownership contacts.
-- Include rollback and verification steps for risky operations.
+## Requirements
+- Runbooks must be step-by-step and executable under pressure.
+- Runbooks must include verification steps and rollback triggers.
+- Runbooks should link relevant dashboards and ownership contacts.
 
-## Checklist
-- [ ] Add a runbook for each critical service dependency.
-- [ ] Include on-call signals and severity criteria.
-- [ ] Review runbooks after incidents and major architecture changes.
+## Minimum Template
+1. Trigger condition.
+2. Preconditions.
+3. Execution steps.
+4. Verification steps.
+5. Escalation path.
 
-## Open Questions
-- TODO: define on-call rotation and severity model.
+## References
+- `../engineering/OBSERVABILITY.md`
+- `../engineering/RELEASES.md`
+- `../data/SCHEMA_ROLLOUT.md`

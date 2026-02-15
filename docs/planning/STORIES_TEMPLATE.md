@@ -1,4 +1,4 @@
-﻿# Story Template
+# Story Template
 
 Related: `docs/planning/DEFINITION_OF_READY.md`, `docs/planning/DEFINITION_OF_DONE.md`
 

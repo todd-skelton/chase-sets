@@ -1,7 +1,15 @@
 # Reputation Domain
 
-Module-level docs:
+## Purpose
+Define feedback, rating, and reputation signal requirements.
 
-- `docs/00-todo.md`
-- Terminology & definitions: [docs/terminology-and-definitions.md](docs/terminology-and-definitions.md)
+## Scope
+Reputation owns post-transaction trust signals and visibility rules.
+
+## Docs
+- `docs/terminology-and-definitions.md`
 - `docs/01-reputation-scope-and-model.md`
+
+## References
+- `../../docs/domain/glossary.md`
+- `../../docs/domain/BOUNDED_CONTEXTS.md`

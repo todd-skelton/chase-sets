@@ -1,4 +1,4 @@
-﻿# Event Store
+# Event Store
 
 Related: `docs/domain/EVENT_TAXONOMY.md`, `docs/data/READ_MODELS.md`
 
@@ -21,7 +21,6 @@ Initial recommendation:
 
 - Domain events are retained long term for audit and replay.
 - Operational/system events may have bounded retention.
-- TODO(QUESTION): formal event retention windows by category
 
 ## Projections and Replay
 

@@ -1,4 +1,4 @@
-﻿# Events Playbook
+# Events Playbook
 
 ## Purpose
 - Standardize event design, publishing, and consumption across contexts.

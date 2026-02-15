@@ -1,4 +1,4 @@
-﻿# Test Strategy
+# Test Strategy
 
 Related: `docs/domain/STATE_MACHINES.md`, `docs/api/openapi.yaml`
 

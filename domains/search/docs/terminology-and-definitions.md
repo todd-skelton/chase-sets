@@ -1,50 +1,25 @@
-﻿# Search Terminology & Definitions
+# Search Terminology and Definitions
 
-This document defines the ubiquitous language for the **Search domain**.
+## Purpose
+Define search-specific terms not already canonicalized in `../../../docs/domain/glossary.md`.
 
-Search owns query, indexing, ranking, and filtering semantics for discovery. It does not own Catalog truth; it indexes it.
+## Audience
+- Engineers implementing search indexing and ranking.
+- AI agents documenting search contracts.
 
----
+## Scope
+Search covers query parsing, ranking, and filtered retrieval.
 
-## Required usage
-
-- Use these terms to model and name entities, commands, events, APIs, and projections in this domain.
-- Reconcile shared terms in [docs/domain/glossary.md](../../../docs/domain/glossary.md).
-
----
-
-## Core concepts (MVP)
-
-### Query
-
-A **Query** is the userâ€™s search input and associated constraints.
-
-### Index
-
-An **Index** is a materialized structure used to retrieve and rank results.
-
-### Document
-
-A **Document** is an indexable representation of an item (Catalog-derived) with fields for search and filtering.
-
-### Facet / Filter
-
-A **Facet** is a field that can be used to filter or aggregate results; a **Filter** is a selected facet constraint.
-
-### Ranking / Relevance
-
-**Ranking** orders results; **Relevance** is how well results match the query and intent.
-
----
+## Domain Terms
+- **Search Document**: indexable projection record derived from source contexts.
+- **Analyzer**: text processing strategy used during indexing/querying.
+- **Facet Filter**: structured filter constraint applied to search results.
+- **Relevance Evaluation Set**: curated query set used to measure ranking behavior.
 
 ## Boundaries
+Search owns index behavior and retrieval quality. Search does not own source-of-truth catalog or transactional order state.
 
-Search references:
-
-- Catalog (source of truth for items and attributes)
-
-Search does not own:
-
-- Inventory availability
-- Pricing/market data
-
+## References
+- `../../../docs/domain/glossary.md`
+- `19-search-and-filtering-requirements.md`
+- `34-search-relevance-evaluation-and-golden-queries.md`

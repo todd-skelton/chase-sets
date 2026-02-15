@@ -1,4 +1,4 @@
-﻿# Threat Model
+# Threat Model
 
 Related: `docs/engineering/SECURITY.md`, `docs/api/WEBHOOKS.md`
 
@@ -22,7 +22,7 @@ Related: `docs/engineering/SECURITY.md`, `docs/api/WEBHOOKS.md`
 
 ## Abuse and Fraud Focus
 
-- Monitor suspicious velocity on bids, purchases, and disputes.
+- Monitor suspicious velocity on offers, purchases, and disputes.
 - Add holds and manual review gates for high-risk payouts.
 - Preserve immutable evidence in event streams.
 

@@ -154,8 +154,6 @@ The domain/event model must support at least:
 
 ---
 
-## Open questions
-
 ## MVP defaults (proposed)
 
 1. **Refund windows**
@@ -186,3 +184,9 @@ The domain/event model must support at least:
 
 - Refunds are **targeted** to the specific line item / seller order / shipment that caused the claim.
 - Do not pro-rate across sellers in the same checkout unless a single checkout-wide promotion/credit explicitly requires it.
+
+## Implementation Checklist
+- Payments domain must define explicit unwind behavior for refunds and chargebacks.
+- Webhook ingestion should map provider events to deterministic internal events.
+- Ledger adjustments must remain auditable and referentially consistent.
+- Payment dispute operations should expose operational read models for support.

@@ -1,4 +1,4 @@
-﻿# Orders Domain â€” Scope & Lifecycle
+# Orders Domain — Scope & Lifecycle
 
 ## Summary
 
@@ -8,7 +8,7 @@ Orders owns the **buyer checkout session** and the resulting **seller-scoped ord
 - Payments (authorization/capture, allocation, refunds/disputes)
 - Fulfillment (shipments, labels, tracking, delivery)
 
-This keeps Marketplace focused on bids/listings/matching, and keeps Payments focused on money/ledger invariants.
+This keeps Marketplace focused on offers/listings/matching, and keeps Payments focused on money/ledger invariants.
 
 ## Responsibilities (MVP)
 
@@ -32,7 +32,7 @@ This keeps Marketplace focused on bids/listings/matching, and keeps Payments foc
 
 ## Domain boundaries (high-level)
 
-### Marketplace â†’ Orders
+### Marketplace → Orders
 
 Marketplace emits a deterministic trade execution event (e.g., `MatchCreated` / `TradeExecuted`) containing:
 
@@ -43,11 +43,11 @@ Marketplace emits a deterministic trade execution event (e.g., `MatchCreated` / 
 
 Orders consumes that and creates a `Checkout` + one `Order` per seller (and/or per origin location if that split is decided at checkout time).
 
-### Channels (in-store / third-party) â†’ Orders
+### Channels (in-store / third-party) → Orders
 
 Non-marketplace channels may create **orders directly** (no matching). In that case, a channel adapter ingests an external order and issues an Orders command (idempotent by `(channel, externalOrderId)`) to create an internal `Checkout`/`Order`.
 
-### Orders â†’ Payments
+### Orders → Payments
 
 Orders requests Payments to:
 
@@ -56,7 +56,7 @@ Orders requests Payments to:
 
 Orders reacts to payment events (`PaymentAuthorized`, `PaymentCaptured`, `PaymentFailed`) to advance state.
 
-### Orders â†’ Fulfillment
+### Orders → Fulfillment
 
 Once paid, Orders requests Fulfillment to:
 
@@ -86,15 +86,15 @@ Orders reacts to fulfillment events (`ShipmentCreated`, `ShipmentLabelPurchased`
 
 Checkout (proposed):
 
-- Created â†’ Submitted â†’ Paid â†’ Completed
-- Created â†’ Abandoned
-- Created/Submitted â†’ Cancelled (if policy allows)
+- Created → Submitted → Paid → Completed
+- Created → Abandoned
+- Created/Submitted → Cancelled (if policy allows)
 
 Order (proposed):
 
-- Created â†’ Paid â†’ InFulfillment â†’ Completed
-- Created â†’ Cancelled (pre-capture)
-- Paid â†’ Refunded (via Payments-led refund/dispute flow)
+- Created → Paid → InFulfillment → Completed
+- Created → Cancelled (pre-capture)
+- Paid → Refunded (via Payments-led refund/dispute flow)
 
 ## Events & commands (doc-first)
 
@@ -123,14 +123,6 @@ Order (proposed):
 - Checkout submission must be idempotent by `clientRequestId`.
 - Order totals must be recomputable deterministically from line items + explicit credits/fees.
 
-## Open questions
-
-- Do we split orders by seller only, or by (seller, origin location) at creation time?
-- How is shipping address represented in events (PII inline vs reference id)?
-- When do we finalize shipping totals (quote-before-pay vs buy-label-after-pay)?
-  - MVP: quote shipping before checkout submit for transparency and authorization sizing, then settle to actual label cost after label purchase (with an explicit shipping buffer to reduce auth failures).
-- Do we allow multi-quantity line items for sealed product in MVP?
-
 ## References
 
 - Data & event model: `docs/data/EVENT_STORE.md`
@@ -138,3 +130,9 @@ Order (proposed):
 - Fulfillment baseline: `domains/fulfillment/docs/18-shipping-and-fulfillment-mvp.md`
 - Money math invariants: `domains/payments/docs/31-money-math-fees-shipping-credit-and-ledger-invariants.md`
 
+
+## Implementation Checklist
+- Orders domain must define canonical checkout and order state transitions.
+- Orders events should represent shipping address by reference where feasible.
+- Orders integration must define idempotent creation from marketplace trade outcomes.
+- Orders projections should include buyer summary and seller queue views.

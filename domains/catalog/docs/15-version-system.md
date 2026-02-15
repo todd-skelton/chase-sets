@@ -45,7 +45,6 @@ The version system must support these end-to-end uses without hardcoding domain-
 1. **Admin authors a VersionModel**
    - Define `rootOptions`, options, option values, constraints, and facet rules as data.
    - Reuse modules/subtrees across many Items.
-   - Apply per-item overrides (enable/disable option values, rename labels, reorder/sort option values).
 2. **Web/API renders a guided selector**
    - Given an Item + VersionModel, render a staged wizard and prevent invalid combinations.
    - Provide clear UX error states (missing required option, invalid selection).
@@ -59,7 +58,7 @@ The version system must support these end-to-end uses without hardcoding domain-
 5. **Search filtering and grouping**
    - Materialize `flattenedFacets` (stable keys/values) that Search can index and expose as config-driven filters.
 6. **Marketplace/Inventory compatibility**
-   - Marketplace groups bids/listings by `versionId`.
+   - Marketplace groups offers/listings by `versionId`.
    - Inventory tracks balances by `versionId`.
 
 ---
@@ -220,10 +219,9 @@ Allow template/Item-level overrides without modifying global modules.
 
 ---
 
-## Open questions
 
-1. Event sourcing: which VersionModel changes are captured as events (publish, deprecate, supersede) and what is the immutable version boundary?
-2. Projections: which read models do we need first (JSON for UI, relational for analytics, search facets, caches)?
-3. Version identifier strategy: store full `versionPath` and/or derived hash.
-4. Validation engine boundaries: where rules live (API vs shared library).
-5. How to detect unreachable options and conflicting overrides.
+## Implementation Checklist
+- Catalog authoring must define validation rules for required options and invalid combinations.
+- Catalog authoring should define alias handling for search without changing canonical identity keys.
+- Catalog projections should provide a public item view and version-facet output.
+- Catalog docs should keep item/version boundaries explicit for downstream contexts.

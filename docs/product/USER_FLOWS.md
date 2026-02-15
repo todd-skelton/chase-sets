@@ -1,4 +1,4 @@
-﻿# User Flows
+# User Flows
 
 Related: `docs/product/PRD.md`, `docs/domain/STATE_MACHINES.md`, `docs/api/openapi.yaml`
 
@@ -29,4 +29,3 @@ Related: `docs/product/PRD.md`, `docs/domain/STATE_MACHINES.md`, `docs/api/opena
 ## Notes
 
 - Condition language must align with `.ai/GLOSSARY.md` scale.
-- TODO(QUESTION): webhook consumers and operational integrations for these flows

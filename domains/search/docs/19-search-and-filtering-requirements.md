@@ -1,4 +1,4 @@
-﻿# 3.x Search & Filtering (Requirements)
+# 3.x Search & Filtering (Requirements)
 
 ## Purpose
 
@@ -51,7 +51,7 @@ The admin defines:
 ### Non-goals
 
 - No per-filter feature code.
-- No hardcoded PokÃ©mon-specific filters.
+- No hardcoded Pokémon-specific filters.
 
 ---
 
@@ -62,11 +62,11 @@ The admin defines:
   - exact name matches
 - Tolerate common typos.
 - Deterministic sorting for order books (price-time).
-  - Note: UI may call this â€œmarketâ€ or â€œall listings & offersâ€; internal model is still an order book projection.
+  - Note: UI may call this “market” or “all listings & offers”; internal model is still an order book projection.
 
 Semantic requirements (day one):
 
-- Support â€œnatural languageâ€ queries (e.g., â€œshiny charizardâ€, â€œpikachu promoâ€, â€œfirst edition blastoiseâ€) with relevant results.
+- Support “natural language” queries (e.g., “shiny charizard”, “pikachu promo”, “first edition blastoise”) with relevant results.
 - Use hybrid retrieval/ranking (lexical + vector) so exact identifiers still win when present.
 
 ---
@@ -77,32 +77,9 @@ ADR 012 is **Accepted**: OpenSearch (for hybrid lexical + vector search).
 
 ---
 
-## Open questions (need your answers)
 
-### Canonical top queries (feed the golden query set)
-
-What are the top 10 search queries we must nail (examples)? This doc is the canonical list.
-
-Draft MVP top 10 (edit/replace as needed):
-
-1. Exact set + number: â€œBase Set Charizard 4/102â€
-2. Exact set + number + version cue: â€œCharizard 4/102 shadowlessâ€
-3. Card name + set name: â€œPikachu promoâ€ / â€œPikachu promo SWSH020â€
-4. Nickname/descriptor: â€œshiny charizardâ€
-5. Edition cue: â€œ1st edition blastoiseâ€
-6. Graded query: â€œPSA 10 Charizardâ€
-7. Graded query with company + grade: â€œCGC 9.5 Umbreonâ€
-8. Sealed product: â€œEvolving Skies booster boxâ€
-9. Sealed product type: â€œCrown Zenith elite trainer boxâ€
-10. Language cue: â€œJapanese Charizardâ€
-
-Also ensure these are represented in the evaluation doc: `domains/search/docs/34-search-relevance-evaluation-and-golden-queries.md`.
-
-### Other open questions
-
-- Which filters must exist day 1 (minimum set)?
-- Do we need range filters in MVP (e.g., price range, grade range)?
-- Do you need synonyms (e.g., common nickname â†’ canonical name) in MVP?
-- Do you want the filter config to vary per category (Singles vs Sealed vs Graded)?
-- What embedding model do you want to start with (hosted API vs self-hosted OSS), and what is the cost/latency budget per query? (Default posture: hosted API; see ADR 016.)
-
+## Implementation Checklist
+- Search implementation must define index mappings for text, keyword, and facet fields.
+- Search filtering must define minimum day-one filter set and parameter schema.
+- Ranking policy should define hybrid scoring guardrails for exact-match queries.
+- Search ingestion should define replay-safe projection-to-index flow.

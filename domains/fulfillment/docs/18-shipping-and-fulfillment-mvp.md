@@ -1,4 +1,4 @@
-﻿# 3.x Shipping & Fulfillment (MVP Requirements)
+# 3.x Shipping & Fulfillment (MVP Requirements)
 
 ## Purpose
 
@@ -45,7 +45,7 @@ Out of scope (MVP, unless you explicitly want them):
 ### 1) Seller ships to buyer (standard)
 
 1. Buyer pays for an order.
-2. Seller receives â€œready to shipâ€ notification.
+2. Seller receives “ready to ship” notification.
 3. Seller purchases a label (or platform purchases on their behalf).
 4. Seller ships package; tracking begins.
 5. Delivery confirmed; order completes.
@@ -140,17 +140,9 @@ Notes:
 
 ---
 
-## Open questions (need your answers)
 
-1. When actual shipping exceeds the 5% credit cap, does the buyer pay the remainder (recommended), or do we constrain eligible listings/offers to those that fit under the cap?
-
-- MVP: buyer pays the remainder.
-
-2. Which carriers are in scope for MVP (USPS/UPS/FedEx) and which services?
-3. Do we support seller-provided labels (enter tracking only), or must all labels be purchased through EasyPost?
-
-- MVP: labels must be purchased through EasyPost so we can settle to actual label cost deterministically.
-
-4. Do we require signature confirmation for high-value orders?
-5. What is the refund/cancellation policy for shipping labels if an order is cancelled?
-
+## Implementation Checklist
+- Fulfillment services must map label purchase outcomes into explicit shipment status events.
+- Fulfillment services should define deterministic handling for label purchase failures.
+- Fulfillment services should define delivery exception handling for lost, damaged, and return-to-sender states.
+- Fulfillment contracts should define tracking ingestion mapping from provider payloads.

@@ -128,7 +128,9 @@ If pickup is enabled:
 
 ---
 
-## Open questions
 
-1. When pickup is added later: what constraints (radius, hours, eligible categories) and what identity verification at pickup?
-2. Do pickup orders have different hold periods than shipped orders?
+## Implementation Checklist
+- Checkout integration must define behavior for mixed-mode carts.
+- Fulfillment mode policy should define buyer and seller UX constraints per mode.
+- Admin tooling should expose mode-specific operational controls and visibility.
+- Required events should include mode-selection context for downstream processing.

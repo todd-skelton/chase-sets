@@ -1,17 +1,30 @@
 # Documentation Index
 
-[Back to repository index](../README.md)
+## Purpose
+This directory is the canonical documentation root.
 
-This folder is the canonical documentation root.
+## Audience
+- AI agents selecting the correct source-of-truth file for a task.
+- Engineers executing product and architecture work.
 
-## Canonical Sections
+## Start Here
+1. `../README.md`
+2. `setup.md`
+3. `environment-variables.md`
+4. `architecture/README.md`
+5. `domain/README.md`
 
-- Product: `docs/product/PRD.md`, `docs/product/REQUIREMENTS.md`
-- Domain: `docs/domain/README.md`, `docs/domain/glossary.md`
-- Architecture: `docs/architecture/README.md`
-- ADRs: `docs/adrs/README.md`
-- API: `docs/api/SKILL.md`, `docs/api/ERRORS.md`, `docs/api/WEBHOOKS.md`
-- Data: `docs/data/EVENT_STORE.md`, `docs/data/READ_MODELS.md`
-- Engineering: `docs/engineering/CODING_STANDARDS.md`, `docs/engineering/OWNERSHIP_AND_SUPPORT.md`
-- Planning: `docs/planning/ROADMAP.md`, `docs/planning/EPICS.md`
-- Runbooks: `docs/runbooks/README.md`
+## Sections
+- Product: `product/PRD.md`, `product/REQUIREMENTS.md`, `product/USER_FLOWS.md`
+- Domain: `domain/README.md`, `domain/glossary.md`
+- Architecture: `architecture/README.md`
+- API: `api/openapi.yaml`, `api/ERRORS.md`, `api/WEBHOOKS.md`
+- Data: `data/EVENT_STORE.md`, `data/READ_MODELS.md`, `data/SCHEMA_ROLLOUT.md`
+- Engineering: `engineering/CODING_STANDARDS.md`, `engineering/TEST_STRATEGY.md`, `engineering/SECURITY.md`
+- Standards: `standards/versioning.md`, `standards/errors.md`, `standards/testing.md`
+- Planning: `planning/ROADMAP.md`, `planning/EPICS.md`
+- Runbooks: `runbooks/README.md`
+- ADRs: `adrs/README.md`
+
+## References
+- `../README.md`

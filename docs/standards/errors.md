@@ -1,38 +1,41 @@
-﻿# Error Standard
+# Error Standard
 
 ## Purpose
-- Define a stable API error shape and handling expectations.
+Define the canonical API error contract.
+
+## Audience
+- Engineers implementing API and integration handlers.
+- AI agents writing API documentation and examples.
 
 ## Scope
-- Applies to all service HTTP responses and integration boundary adapters.
+Applies to all HTTP and integration boundary error responses.
 
-## Rules
-- Use a consistent JSON envelope:
-  ```json
-  {
-    "error": {
-      "code": "string",
-      "message": "string",
-      "details": {},
-      "retryable": false,
-      "request_id": "uuid"
-    }
+## Error Envelope
+```json
+{
+  "error": {
+    "code": "string",
+    "message": "string",
+    "details": {},
+    "retryable": false,
+    "request_id": "uuid"
   }
-  ```
-  - `code`: stable machine-readable error code.
-  - `message`: safe human-readable summary.
-  - `details`: optional structured validation or domain details.
-  - `retryable`: indicates safe retry behavior.
-  - `request_id`: support correlator returned to clients and logged.
-- Do not leak stack traces, SQL messages, secrets, or provider internals.
-- Map domain failures to deterministic status codes.
-- Preserve idempotency semantics for retriable operations.
+}
+```
 
-## Checklist
-- [ ] Error code documented and stable.
-- [ ] `request_id` included.
-- [ ] Sensitive data redaction verified.
-- [ ] Contract tests cover error responses.
+## Requirements
+- `code` must be stable and machine-readable.
+- `message` must be safe for client exposure.
+- `details` should contain structured fields only.
+- `retryable` must reflect safe retry semantics.
+- `request_id` must be returned and logged.
 
-## Open Questions
-- TODO: finalize shared error code namespace by context.
+## Operational Rules
+- Systems must not leak stack traces, SQL internals, or secrets.
+- Services should map domain failures to deterministic status codes.
+- Contract tests must validate error envelope shape.
+
+## References
+- `../api/ERRORS.md`
+- `versioning.md`
+- `testing.md`

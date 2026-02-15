@@ -153,19 +153,9 @@ All actions must be auditable.
 
 ---
 
-## Open questions
 
-1. Do we allow selling before KYC/KYB, or require verification before first listing?
-
-- MVP: require verification (18+ and valid ID) before selling.
-
-2. Do we require tax info before first payout, or only after a threshold?
-
-- MVP: require tax info as part of seller eligibility (before selling / first payout).
-
-3. Do we want instant payouts at launch, or only standard payouts?
-4. What is the default hold policy for new sellers (first N orders / first N days)?
-
-- MVP: hold until delivery confirmation (baseline), then evolve to risk-based holds.
-
-5. What are the initial payout velocity limits you want (daily/weekly caps)?
+## Implementation Checklist
+- Seller onboarding policy must define verification gates before payout eligibility.
+- Payout controls should include hold and velocity policies tied to risk signals.
+- Seller-facing APIs should expose clear onboarding and payout readiness states.
+- Support tooling should surface verification and hold reasons with audit context.

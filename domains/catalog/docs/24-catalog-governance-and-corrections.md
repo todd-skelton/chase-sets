@@ -6,7 +6,6 @@ Define how the curated catalog is managed over time without breaking:
 
 - Event sourcing (if it wasn’t an event, it never happened)
 - Stable SKU and order book behavior
-- Historical integrity (orders/listings must remain referentially correct)
 - Search and filtering (aliases, synonyms, redirects)
 
 This is requirements-only (no implementation).
@@ -17,7 +16,6 @@ This is requirements-only (no implementation).
 
 - Keep the catalog accurate and trustworthy.
 - Enable controlled edits (curation + corrections) with a clear audit trail.
-- Support corrections like rename/merge/split without breaking historical orders/listings.
 - Provide a safe workflow that can be operated by non-engineers.
 - Preserve liquidity and order book continuity when feasible.
 
@@ -58,7 +56,6 @@ MVP constraint: even if org RBAC is minimal, internal/admin roles still need sep
    - Rarity metadata
    - Images/asset links (if any)
 3. **Identity/canonical corrections (breaking if done naively)**
-   - **Rename** (canonical display name change)
    - **Rekey** (canonical identifiers change: card number correction, set assignment correction)
    - **Merge** (two items are duplicates → one canonical)
    - **Split** (one item incorrectly represented → multiple canonicals)
@@ -75,7 +72,6 @@ MVP constraint: even if org RBAC is minimal, internal/admin roles still need sep
 
 ---
 
-## Immutable IDs and historical integrity
 
 ### Stable identity requirements
 
@@ -86,7 +82,6 @@ MVP constraint: even if org RBAC is minimal, internal/admin roles still need sep
 
 When a correction occurs:
 
-- Old IDs remain valid references for historical objects.
 - A **supersede mapping** links old → new canonical.
 - Search/browse uses the new canonical by default but can resolve old references.
 
@@ -95,7 +90,7 @@ When a correction occurs:
 Requirements:
 
 - Existing Orders must continue to reference the original Item/SKU they were created with.
-- Listings/Bids may:
+- Listings/Offers may:
   - continue referencing their original SKU but be displayed under the canonical replacement, OR
   - be migrated to a new SKU via an explicit migration workflow (policy-driven).
 
@@ -115,7 +110,7 @@ Order book continuity:
    - Provide reason code + notes
    - Attach evidence/links
    - Preview impacted entities:
-     - affected listings/bids
+     - affected listings/offers
      - affected SKUs/order books
      - search aliases/queries impacted (best-effort)
 2. **Review**
@@ -142,10 +137,9 @@ Minimum viable internal tooling:
 - Change request queue with status (draft, needs review, approved, published, rejected)
 - Diff view (before/after fields)
 - Impact preview:
-  - counts of listings/bids/orders impacted
+  - counts of listings/offers/orders impacted
   - list of top impacted SKUs/order books
 - Ability to add aliases and redirects
-- Ability to mark an item as deprecated (cannot create new listings/bids)
 - Audit log explorer (by item, by editor, by date range)
 
 ---
@@ -155,7 +149,6 @@ Minimum viable internal tooling:
 Requirements:
 
 - Catalog must support aliases/synonyms so common names map correctly.
-- Deprecated/superseded items should:
   - not show as primary results for browsing
   - still resolve if directly referenced (deep link) and display redirect messaging
 - Filter facets must remain stable across corrections; if a version model changes, older orders must remain referentially correct.
@@ -177,10 +170,9 @@ Requirements:
 
 ---
 
-## Open questions
 
-1. Who is allowed to create new Items at launch (internal only vs trusted sellers)?
-2. Do we allow sellers to “report catalog issue” in MVP (and what triage SLA)?
-3. When do we merge order books vs keep separate and just redirect search/browse?
-4. For a split correction, do we require migrating existing listings/bids, or allow them to remain on the old item until edited?
-5. What canonical identifier strategy do you want for Singles (set + number + version flags) vs Sealed (UPC?)?
+## Implementation Checklist
+- Governance workflow must capture actor, rationale, and effective timestamp for each approved correction.
+- Governance workflow should include impact previews for affected listings, offers, and orders.
+- Governance tooling should support merge and split operations without breaking canonical references.
+- Governance policy should define correction approval roles and publish criteria.

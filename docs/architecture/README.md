@@ -1,4 +1,4 @@
-﻿# Architecture Docs
+# Architecture Docs
 
 ## Purpose
 - Provide canonical architecture pointers for implementation and review decisions.

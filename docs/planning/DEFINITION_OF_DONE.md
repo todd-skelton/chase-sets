@@ -1,4 +1,4 @@
-﻿# Definition Of Done
+# Definition Of Done
 
 Related: `docs/planning/DEFINITION_OF_READY.md`, `docs/engineering/TEST_STRATEGY.md`
 

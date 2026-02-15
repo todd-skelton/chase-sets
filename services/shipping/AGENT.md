@@ -1,39 +1,25 @@
-﻿# Shipping Service Agent Guide
+# Shipping Service Guide
 
 ## Purpose
-- Define ownership and rules for shipment planning, label purchase orchestration, and tracking updates.
+Define shipment planning and tracking behavior ownership.
+
+## Audience
+- Engineers implementing shipping capabilities.
+- AI agents applying service-local constraints.
 
 ## Scope
-- Owns:
-  - Shipment entities, package selection, rate quote consumption, tracking status projection.
-  - Fulfillment workflow states from ready-to-ship to delivered/exception.
-- Does not own:
-  - Checkout order placement, payment authorization, account identity proofing.
+- Owns: shipment planning, label orchestration, and tracking status updates.
+- Does not own: checkout creation and payment authorization ownership.
 
-## Rules
-- Public interfaces:
-  - OpenAPI: `services/shipping/openapi/openapi.yaml`
-  - Events emitted: `services/shipping/events/emitted/`
-  - Events consumed: `services/shipping/events/consumed/`
-- Data ownership:
-  - Schema prefix: `shipping_*`
-  - Migrations: `services/shipping/infra/db/migrations/`
-- Invariants:
-  - Shipment must reference a valid fulfillable order item set.
-  - Carrier tracking updates are append-only facts with latest-state projection.
-  - TODO: define re-label and return label rules for failed deliveries.
+## Interfaces
+- Canonical API contract: `../../docs/api/openapi.yaml`
+- Service-local OpenAPI/event directories are not present yet in this pre-code repository.
 
-## Checklist
-- Local commands:
-  - `pnpm -C services/shipping test`
-  - `pnpm -C services/shipping lint`
-  - `pnpm -C services/shipping typecheck`
-- Testing expectations:
-  - Unit tests for shipment status transitions.
-  - Integration tests for carrier adapter mapping and retry behavior.
-  - Contract tests for shipping events and webhook ingestion endpoints.
+## Invariants
+- Shipments must reference valid fulfillable order data.
+- Tracking updates must be append-only facts with deterministic projection updates.
 
-## Links
-- `AGENT.md`
-- `docs/events/SKILL.md`
-- `infra/SKILL.md`
+## References
+- `../../services/README.md`
+- `../../AGENT.md`
+- `../../docs/domain/BOUNDED_CONTEXTS.md`

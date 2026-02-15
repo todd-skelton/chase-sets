@@ -1,4 +1,4 @@
-﻿# Definition Of Ready
+# Definition Of Ready
 
 Related: `docs/planning/STORIES_TEMPLATE.md`, `docs/product/ACCEPTANCE_CRITERIA.md`
 
@@ -11,4 +11,3 @@ A story is ready when all are true:
 - Telemetry expectations are specified.
 - Risks and dependencies are listed.
 - Rollback intent is defined.
-- Unknowns are captured as `TODO(QUESTION): ...` with owner.

@@ -33,7 +33,7 @@ This document is requirements-only (no implementation).
 
 Ownership targets (resources that may be owned by an Organization):
 
-- Listings and bids
+- Listings and offers
 - Locations and inventory
 - Payout settings and tax/KYC configuration pointers
 - Support/dispute workflows
@@ -70,7 +70,7 @@ Permission buckets:
 
 - Org settings: create/update org profile.
 - Member management: invite/remove/change roles.
-- Marketplace: create/update/cancel listings, view bids, manage inventory.
+- Marketplace: create/update/cancel listings, view offers, manage inventory.
 - Orders: view orders, update fulfillment-relevant status.
 - Finance: view wallet/ledger, configure payout destination, request payouts.
 
@@ -96,7 +96,9 @@ Permission buckets:
 
 ---
 
-## Open questions
 
-1. Locations/inventory: is MVP strictly single default location per org, with multi-location later?
-2. For multi-member expansion, should invitations or admin-added members ship first?
+## Implementation Checklist
+- Identity services must define invitation and membership lifecycle transitions.
+- RBAC policy must define a minimum role-permission matrix for organization operations.
+- Identity APIs should enforce explicit organization context on privileged actions.
+- Identity tests should validate permission decisions across role combinations.

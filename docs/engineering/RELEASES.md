@@ -1,6 +1,6 @@
-﻿# Releases
+# Releases
 
-Related: `docs/architecture/DEPLOYMENT_TOPOLOGY.md`, `docs/data/MIGRATIONS.md`
+Related: `docs/architecture/DEPLOYMENT_TOPOLOGY.md`, `docs/data/SCHEMA_ROLLOUT.md`
 
 ## Versioning
 

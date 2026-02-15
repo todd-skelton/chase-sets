@@ -10,7 +10,7 @@ Chase Sets needs a version system that can represent complex conditional selecti
 
 - No hardcoded per-category assumptions
 - A seller/buyer UI that is driven entirely by configuration
-- A stable SKU model for listings/bids/orders
+- A stable SKU model for listings/offers/orders
 - Flattened facets for search and analytics
 
 ## Options considered

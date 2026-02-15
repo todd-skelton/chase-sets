@@ -54,7 +54,6 @@ Related: `.ai/GLOSSARY.md`, `docs/domain/BOUNDED_CONTEXTS.md`, `docs/domain/STAT
 ## Terminology Alignment
 
 - Canonical prose uses `Offer` for buyer-side intent.
-- `Bid` remains a legacy alias in historical ADR/backlog content.
 - UI can use retail-friendly language while preserving canonical model meaning.
 
 ## Notes

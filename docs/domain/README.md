@@ -1,4 +1,4 @@
-﻿# Domain Docs
+# Domain Docs
 
 ## Purpose
 - Provide canonical domain model and bounded context references.
@@ -16,4 +16,3 @@
 ## Checklist
 - [ ] Update glossary when new business language is introduced.
 - [ ] Keep bounded context ownership aligned with `services/*/AGENT.md`.
-- [ ] Treat `Offer` as the canonical buyer-side term in prose; legacy ADR/backlog references to `Bid` are historical.

@@ -1,28 +1,26 @@
-﻿# Roadmap
+# Roadmap
 
-Related: `docs/planning/EPICS.md`, `docs/product/PRD.md`
+## Purpose
+Provide high-level sequencing for product and platform capabilities.
 
-## Phase 0: Foundation (Now)
+## Scope
+Roadmap phases are planning guides for documentation-first execution.
 
-- Documentation scaffold and decision baseline
-- Initial bounded context definitions
-- Event taxonomy and standards
+## Phase 0: Foundation
+- Canonical docs and architecture decisions.
+- Domain boundaries and taxonomy.
+- Standards for API, events, and testing.
 
 ## Phase 1: MVP Core
+- Identity and account controls.
+- Marketplace offers/listings and matching.
+- Orders, payments, and fulfillment baseline.
 
-- Identity and auth including passkeys
-- Listings, bids/offers, matching, checkout
-- Stripe payment and payout baseline
-- Fulfillment and dispute minimum workflows
+## Phase 2: Expansion
+- Search relevance maturity.
+- Trust and safety depth.
+- Operational hardening.
 
-## Phase 2: V1 Expansion
-
-- Search relevance and ranking improvements
-- Trust and safety tooling depth
-- Seller operations enhancements
-- Performance and reliability hardening
-
-## Milestone Questions
-
-- TODO(QUESTION): target dates for MVP and V1
-- TODO(QUESTION): staffing assumptions by context
+## References
+- `EPICS.md`
+- `../product/PRD.md`

@@ -1,39 +1,25 @@
-﻿# Integrations Service Agent Guide
+# Integrations Service Guide
 
 ## Purpose
-- Define ownership and rules for external system integration boundaries and adapter reliability.
+Define external adapter and provider boundary behavior.
+
+## Audience
+- Engineers implementing integrations capabilities.
+- AI agents applying service-local constraints.
 
 ## Scope
-- Owns:
-  - Provider adapters, webhook ingestion, outbound API orchestration, retry and circuit-breaker policy.
-  - Mapping between internal contracts and external provider contracts.
-- Does not own:
-  - Core domain invariants for catalog/listings/orders/accounts.
+- Owns: provider adapters, inbound webhook normalization, and outbound integration dispatch.
+- Does not own: core business invariants owned by domain contexts.
 
-## Rules
-- Public interfaces:
-  - OpenAPI: `services/integrations/openapi/openapi.yaml`
-  - Events emitted: `services/integrations/events/emitted/`
-  - Events consumed: `services/integrations/events/consumed/`
-- Data ownership:
-  - Schema prefix: `integrations_*`
-  - Migrations: `services/integrations/infra/db/migrations/`
-- Invariants:
-  - External side effects are tracked with idempotency keys and retry-safe state.
-  - Provider payload mapping is explicit and versioned.
-  - TODO: define dead-letter and operator replay workflow.
+## Interfaces
+- Canonical API contract: `../../docs/api/openapi.yaml`
+- Service-local OpenAPI/event directories are not present yet in this pre-code repository.
 
-## Checklist
-- Local commands:
-  - `pnpm -C services/integrations test`
-  - `pnpm -C services/integrations lint`
-  - `pnpm -C services/integrations typecheck`
-- Testing expectations:
-  - Unit tests for adapter mapping and policy logic.
-  - Integration tests for webhook verification and outbox dispatch.
-  - Contract tests for provider-facing and internal integration APIs/events.
+## Invariants
+- Provider payload mapping must be explicit.
+- External side effects must be idempotent and retry-safe.
 
-## Links
-- `AGENT.md`
-- `docs/events/SKILL.md`
-- `infra/SKILL.md`
+## References
+- `../../services/README.md`
+- `../../AGENT.md`
+- `../../docs/domain/BOUNDED_CONTEXTS.md`

@@ -1,39 +1,25 @@
-﻿# Accounts Service Agent Guide
+# Accounts Service Guide
 
 ## Purpose
-- Define ownership and rules for tenant accounts, user membership, authentication boundaries, and authorization roles.
+Define identity-account boundary and authorization policy ownership.
+
+## Audience
+- Engineers implementing accounts capabilities.
+- AI agents applying service-local constraints.
 
 ## Scope
-- Owns:
-  - Account and membership lifecycle, role assignments, account settings.
-  - Identity and tenant boundary checks for service-facing auth context.
-- Does not own:
-  - Catalog data, listing lifecycle, payment processor orchestration, shipping operations.
+- Owns: account lifecycle, organization membership, and role assignments.
+- Does not own: catalog metadata, marketplace matching, payments orchestration, and shipping execution.
 
-## Rules
-- Public interfaces:
-  - OpenAPI: `services/accounts/openapi/openapi.yaml`
-  - Events emitted: `services/accounts/events/emitted/`
-  - Events consumed: `services/accounts/events/consumed/`
-- Data ownership:
-  - Schema prefix: `accounts_*`
-  - Migrations: `services/accounts/infra/db/migrations/`
-- Invariants:
-  - User membership is scoped to tenant and role grants are explicit.
-  - Privileged actions require authorization checks in application layer.
-  - TODO: define step-up authentication triggers for sensitive actions.
+## Interfaces
+- Canonical API contract: `../../docs/api/openapi.yaml`
+- Service-local OpenAPI/event directories are not present yet in this pre-code repository.
 
-## Checklist
-- Local commands:
-  - `pnpm -C services/accounts test`
-  - `pnpm -C services/accounts lint`
-  - `pnpm -C services/accounts typecheck`
-- Testing expectations:
-  - Unit tests for role and permission policy rules.
-  - Integration tests for membership persistence and auth token mapping.
-  - Contract tests for auth/account APIs and membership events.
+## Invariants
+- Membership grants must be explicit and scoped to organization context.
+- Privileged actions must be authorized in application logic.
 
-## Links
-- `AGENT.md`
-- `docs/domain/SKILL.md`
-- `docs/api/SKILL.md`
+## References
+- `../../services/README.md`
+- `../../AGENT.md`
+- `../../docs/domain/BOUNDED_CONTEXTS.md`

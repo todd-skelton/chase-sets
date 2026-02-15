@@ -1,4 +1,4 @@
-﻿# Reputation Domain â€” Scope & Model (Requirements)
+# Reputation Domain — Scope & Model (Requirements)
 
 ## Purpose
 
@@ -39,7 +39,7 @@ The Reputation domain does NOT own:
 
 ## Core entities (conceptual)
 
-- **Rating**: a structured score (e.g., 1â€“5) left by a buyer or seller.
+- **Rating**: a structured score (e.g., 1–5) left by a buyer or seller.
 - **Review**: the written narrative and tags attached to a rating.
 - **Feedback Window**: the time period after a completed order in which feedback can be submitted.
 - **Reputation Profile**: an aggregated view of ratings/reviews for an organization or account.
@@ -74,11 +74,9 @@ The Reputation domain does NOT own:
 
 ---
 
-## Open questions
 
-1. Do buyers and sellers rate each other symmetrically, or do we start buyer â†’ seller only?
-2. What is the feedback window duration (e.g., 30 days post-delivery)?
-3. Are ratings optional if a review is submitted, or always required together?
-4. What are the minimum moderation triggers for suppression or escalation?
-5. How do we handle partial refunds/returns in eligibility?
-
+## Implementation Checklist
+- Reputation policy must define feedback eligibility and submission windows.
+- Moderation controls should define visibility states and escalation triggers.
+- Reputation projections should include profile signals and feedback status.
+- Domain events should include actor and decision context for moderation actions.

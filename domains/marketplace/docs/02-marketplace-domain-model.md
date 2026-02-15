@@ -194,10 +194,9 @@ Represents the immutable outcome of a matching execution. Sales are created by t
 
 ---
 
-## Open questions / backlog alignment
 
-- Fees and guardrails (buyer premium, seller fee, price floors/ceilings).
-- Expiration and time-in-force policies beyond GTC.
-- Minimum increment rules (price/quantity step sizes).
-- Matching rule transparency and user-facing explanation.
-- Settlement window expectations post-sale.
+## Implementation Checklist
+- Domain model must define command and event sets for listing and offer lifecycle actions.
+- Projection model should define open-intent and recent-trade views.
+- Integration contracts should define idempotent handoff behavior to orders.
+- Test strategy should include deterministic matching and replay-safe projection checks.

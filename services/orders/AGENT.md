@@ -1,39 +1,25 @@
-﻿# Orders Service Agent Guide
+# Orders Service Guide
 
 ## Purpose
-- Define ownership and rules for cart to order conversion, order lifecycle, and order-level consistency.
+Define checkout and seller-order orchestration ownership.
+
+## Audience
+- Engineers implementing orders capabilities.
+- AI agents applying service-local constraints.
 
 ## Scope
-- Owns:
-  - Order creation, line-item snapshotting, order status transitions, cancellation windows.
-  - Order-level totals as persisted facts for downstream fulfillment and accounting.
-- Does not own:
-  - Payment processor specifics, shipping carrier execution, catalog canonical data.
+- Owns: checkout creation, order lifecycle transitions, and order totals snapshots.
+- Does not own: payment processor internals and shipping carrier APIs.
 
-## Rules
-- Public interfaces:
-  - OpenAPI: `services/orders/openapi/openapi.yaml`
-  - Events emitted: `services/orders/events/emitted/`
-  - Events consumed: `services/orders/events/consumed/`
-- Data ownership:
-  - Schema prefix: `orders_*`
-  - Migrations: `services/orders/infra/db/migrations/`
-- Invariants:
-  - Order totals are immutable snapshots after placement except defined adjustment flows.
-  - Order status transitions must be monotonic and audit-logged.
-  - TODO: define split-order policy for multi-seller carts.
+## Interfaces
+- Canonical API contract: `../../docs/api/openapi.yaml`
+- Service-local OpenAPI/event directories are not present yet in this pre-code repository.
 
-## Checklist
-- Local commands:
-  - `pnpm -C services/orders test`
-  - `pnpm -C services/orders lint`
-  - `pnpm -C services/orders typecheck`
-- Testing expectations:
-  - Unit tests for order state machine and pricing snapshot logic.
-  - Integration tests for transactional order placement and idempotency.
-  - Contract tests for order APIs and lifecycle events.
+## Invariants
+- Order totals must be immutable after placement except explicit adjustment flows.
+- Order transitions must be monotonic and auditable.
 
-## Links
-- `AGENT.md`
-- `docs/api/SKILL.md`
-- `docs/events/SKILL.md`
+## References
+- `../../services/README.md`
+- `../../AGENT.md`
+- `../../docs/domain/BOUNDED_CONTEXTS.md`
