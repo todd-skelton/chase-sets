@@ -22,4 +22,5 @@ Define checkout and seller-order orchestration ownership.
 ## References
 - `../../services/README.md`
 - `../../docs/domain/BOUNDED_CONTEXTS.md`
-- `../../domains/orders/README.md`
+- `../../docs/domain/orders-scope-and-lifecycle.md`
+

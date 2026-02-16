@@ -1,6 +1,6 @@
-# Product Requirements Document (PRD)
+﻿# Product Requirements Document (PRD)
 
-Related: `.ai/PROJECT_BRIEF.md`, `docs/product/REQUIREMENTS.md`, `docs/product/ACCEPTANCE_CRITERIA.md`
+Related: `docs/README.md`, `docs/product/REQUIREMENTS.md`, `docs/product/ACCEPTANCE_CRITERIA.md`
 
 ## Vision
 
@@ -72,3 +72,5 @@ MVP focuses on trading cards and adjacent collectibles; taxonomy can expand once
 ### Can assistants/agents use the platform?
 
 Yes, through the same platform APIs with explicit consent, scoped access, and strong audit controls.
+
+

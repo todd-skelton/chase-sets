@@ -22,4 +22,5 @@ Define listing and offer lifecycle ownership within marketplace behavior.
 ## References
 - `../../services/README.md`
 - `../../docs/domain/BOUNDED_CONTEXTS.md`
-- `../../domains/marketplace/README.md`
+- `../../docs/domain/marketplace-scope-and-model.md`
+

@@ -22,4 +22,5 @@ Define shipment planning and tracking behavior ownership.
 ## References
 - `../../services/README.md`
 - `../../docs/domain/BOUNDED_CONTEXTS.md`
-- `../../domains/fulfillment/README.md`
+- `../../docs/domain/fulfillment-shipping-and-fulfillment-mvp.md`
+

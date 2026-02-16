@@ -22,4 +22,5 @@ Define indexing and retrieval behavior ownership.
 ## References
 - `../../services/README.md`
 - `../../docs/domain/BOUNDED_CONTEXTS.md`
-- `../../domains/search/README.md`
+- `../../docs/domain/search-filtering-requirements.md`
+

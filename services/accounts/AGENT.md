@@ -22,4 +22,5 @@ Define identity-account boundary and authorization policy ownership.
 ## References
 - `../../services/README.md`
 - `../../docs/domain/BOUNDED_CONTEXTS.md`
-- `../../domains/identity/README.md`
+- `../../docs/domain/identity-org-accounts-and-rbac.md`
+

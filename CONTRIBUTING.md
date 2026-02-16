@@ -1,33 +1,41 @@
+﻿---
+owner: docs
+status: active
+audience: all
+last_reviewed: 2026-02-16
+---
+
 # Contributing
 
 ## Purpose
-Define how contributors update this pre-code documentation repository.
+- Define how contributors update this pre-code documentation repository.
+- Keep documentation changes traceable, scoped, and link-consistent.
 
 ## Audience
 - Engineers and product contributors.
 - AI agents preparing implementation-ready changes.
 
-## Scope
-This guide applies to documentation updates in this repository.
+## Scope / Non-scope
+- In scope: documentation updates, link maintenance, and source-of-truth alignment.
+- Non-scope: adding runtime implementation code.
 
 ## Workflow
-1. Start from `.ai/CONTEXT_INDEX.md`.
+1. Start from `docs/README.md`.
 2. Identify the canonical target file under `docs/`.
 3. Update canonical docs before local summaries.
-4. If architecture changes, update `.ai/DECISIONS.md` and add/update an ADR in `docs/adrs/`.
+4. If architecture changes, add or update an ADR in `docs/adrs/`.
 5. Validate links and terminology consistency.
 
 ## Documentation Rules
-- Contributors must use canonical terms from `docs/domain/glossary.md`.
-- Contributors should prefer short, procedural sections and avoid duplicated narrative.
-- Contributors must keep links relative.
-- Contributors must keep requirements explicit with `must`, `should`, or `may` where applicable.
+- Use canonical terms from `docs/domain/glossary.md`.
+- Prefer concise, procedural sections over duplicated narrative.
+- Keep links relative and valid.
+- Keep requirements explicit with `must`, `should`, or `may` where applicable.
 
-## Pull Request Expectations
-- Clear problem statement and intended outcome.
-- Updated canonical docs and references.
-- Explicit risks and rollout notes when contracts change.
+## Related docs
+- [Documentation Index](docs/README.md)
+- [Agent Guide](AGENT.md)
+- [ADR Index](docs/adrs/README.md)
 
-## Non-goals
-- Adding runtime implementation code.
-- Storing secrets or production credentials.
+## Next steps
+- Add verification checks for link integrity in CI once code scaffolding exists.

@@ -1,6 +1,6 @@
-# Domain Model
+﻿# Domain Model
 
-Related: `.ai/GLOSSARY.md`, `docs/domain/BOUNDED_CONTEXTS.md`, `docs/domain/STATE_MACHINES.md`
+Related: `docs/domain/glossary.md`, `docs/domain/BOUNDED_CONTEXTS.md`, `docs/domain/STATE_MACHINES.md`
 
 ## Aggregates
 

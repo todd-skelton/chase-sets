@@ -22,4 +22,5 @@ Define catalog metadata and version identity ownership.
 ## References
 - `../../services/README.md`
 - `../../docs/domain/BOUNDED_CONTEXTS.md`
-- `../../domains/catalog/README.md`
+- `../../docs/domain/catalog-version-system.md`
+

@@ -1,44 +1,43 @@
+﻿---
+owner: docs
+status: active
+audience: all
+last_reviewed: 2026-02-16
+---
+
 # Chase Sets Marketplace
 
 ## Purpose
-Chase Sets is a pre-code documentation repository for a collectibles marketplace architecture and product design.
+- Define implementation-ready product, architecture, and domain documentation.
+- Provide a single source-of-truth map for engineers and AI agents.
+- Keep repository scope documentation-first until code implementation starts.
 
 ## Audience
 - AI agents that need source-of-truth navigation and contracts.
-- Engineers defining implementation-ready scope, interfaces, and constraints.
+- Engineers defining scope, interfaces, and constraints.
 
-## Current State
-- Application code is not implemented in this repository.
-- Documentation is the source of truth for product, architecture, domain, API, and operational standards.
+## Scope / Non-scope
+- In scope: documentation for product, domain, architecture, data, API, engineering standards, planning, and operations.
+- Non-scope: runtime implementation code in this repository at this stage.
 
 ## Quickstart
-1. Read `.ai/PROJECT_BRIEF.md`.
-2. Read `.ai/CONTEXT_INDEX.md`.
-3. Read `docs/setup.md`.
-4. Follow `CONTRIBUTING.md`.
+1. Read `docs/README.md`.
+2. Read `docs/product/PRD.md`.
+3. Read `docs/domain/README.md`.
+4. Read `docs/setup.md`.
+5. Follow `CONTRIBUTING.md`.
 
 ## Repository Structure
-- `docs/`: canonical product, domain, architecture, API, data, engineering, planning, and runbook docs.
-- `docs/adrs/`: architecture decisions.
-- `.ai/`: compact pointer-first summaries for agent workflows.
-- `domains/`: domain-specific requirements and terminology.
+- `docs/`: canonical docs hub.
 - `services/`: service ownership guides.
 - `infra/`: infrastructure playbook.
 
-## Canonical Docs
-- Setup: `docs/setup.md`
-- Environment variables: `docs/environment-variables.md`
-- Product: `docs/product/PRD.md`
-- Domain: `docs/domain/README.md`
-- Architecture: `docs/architecture/README.md`
-- API: `docs/api/openapi.yaml`
-- Data: `docs/data/EVENT_STORE.md`
-- Engineering: `docs/engineering/CODING_STANDARDS.md`
-- Planning: `docs/planning/ROADMAP.md`
-- ADR index: `docs/adrs/README.md`
+## Related docs
+- [Documentation Index](docs/README.md)
+- [Agent Guide](AGENT.md)
+- [Contributing](CONTRIBUTING.md)
+- [Skill Index](SKILL.md)
 
-## References
-- `docs/README.md`
-- `AGENT.md`
-- `SKILL.md`
-- `CONTRIBUTING.md`
+## Next steps
+- Keep all new documentation under `docs/` unless service-local guidance is required.
+- Add runbook procedures as soon as executable services exist.

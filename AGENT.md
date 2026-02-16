@@ -1,36 +1,37 @@
+﻿---
+owner: docs
+status: active
+audience: agents
+last_reviewed: 2026-02-16
+---
+
 # Chase Sets Marketplace Agent Guide
 
 ## Purpose
-Provide the minimum source-of-truth map and execution constraints for agents working in this repository.
+- Define the default workflow for AI agents editing this repo.
+- Keep edits aligned with canonical documentation hierarchy.
+- Prevent duplicate or conflicting source-of-truth updates.
 
-## Audience
-- AI agents performing documentation or architecture tasks.
-- Engineers reviewing agent-generated updates.
-
-## Scope
-This guide applies to repository-wide documentation work.
+## Scope / Non-scope
+- In scope: repository-wide documentation edits.
+- Non-scope: runtime behavior claims not represented in repository docs.
 
 ## Start Sequence
-1. Read `.ai/PROJECT_BRIEF.md`.
-2. Read `.ai/CONTEXT_INDEX.md`.
-3. Read `docs/README.md`.
-4. Read the target local guide (`services/<service>/AGENT.md` or `domains/<domain>/README.md`).
+1. Read `docs/README.md`.
+2. Read `docs/AGENT_GUIDE.md`.
+3. Read the target topic index (`docs/domain/README.md`, `docs/architecture/README.md`, etc.).
+4. Read service-local guidance only when required: `services/<service>/AGENT.md`.
 
 ## Non-negotiables
-- Agents must update canonical docs before summaries.
-- Agents must keep bounded-context ownership explicit.
-- Agents must keep API and event contracts versioned.
-- Agents must avoid speculative claims about runtime behavior not present in the repo.
+- Update canonical docs before summaries.
+- Keep bounded-context ownership explicit.
+- Keep API and event contracts versioned.
+- Avoid speculative claims about runtime behavior.
 
-## Repository Map
-- Architecture: `docs/architecture/README.md`
-- Domain: `docs/domain/README.md`
-- Standards: `docs/standards/versioning.md`, `docs/standards/errors.md`, `docs/standards/testing.md`
-- ADRs: `docs/adrs/README.md`
-- Runbooks: `docs/runbooks/README.md`
-- Skills: `SKILL.md`, `docs/api/SKILL.md`, `docs/domain/SKILL.md`, `docs/events/SKILL.md`, `infra/SKILL.md`
+## Related docs
+- [Agent Workflow Guide](docs/AGENT_GUIDE.md)
+- [Contributing](CONTRIBUTING.md)
+- [Services Documentation](services/README.md)
 
-## References
-- `README.md`
-- `CONTRIBUTING.md`
-- `services/README.md`
+## Next steps
+- Keep service guides synchronized with canonical domain docs when boundaries change.

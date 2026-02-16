@@ -1,6 +1,6 @@
-# Event Taxonomy
+﻿# Event Taxonomy
 
-Related: `.ai/CONVENTIONS.md`, `docs/data/EVENT_STORE.md`, `docs/data/READ_MODELS.md`
+Related: `docs/standards/versioning.md`, `docs/data/EVENT_STORE.md`, `docs/data/READ_MODELS.md`
 
 ## Naming Rules
 
@@ -37,3 +37,4 @@ Related: `.ai/CONVENTIONS.md`, `docs/data/EVENT_STORE.md`, `docs/data/READ_MODEL
 - Domain events: business facts used by other contexts.
 - Integration events: externally published, stability-focused contracts.
 - System events: operational telemetry, not domain truth.
+

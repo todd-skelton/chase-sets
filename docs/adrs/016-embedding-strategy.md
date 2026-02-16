@@ -40,7 +40,7 @@ Accepted (MVP):
 
 We must still run an explicit evaluation pass to validate relevance and cost/latency:
 
-- Golden query set + offline relevance metrics: `domains/search/docs/34-search-relevance-evaluation-and-golden-queries.md`
+- Golden query set + offline relevance metrics: `docs/domain/search-relevance-evaluation-and-golden-queries.md`
 
 ## Decision details (MVP)
 
@@ -90,7 +90,7 @@ Record a concrete evaluation run and the supporting evidence.
 - Embedding provider/model id:
 - Embedding dimension:
 - Index fields embedded:
-- Dataset/query set version: `domains/search/docs/34-search-relevance-evaluation-and-golden-queries.md`
+- Dataset/query set version: `docs/domain/search-relevance-evaluation-and-golden-queries.md`
 
 Acceptance criteria:
 
@@ -105,5 +105,6 @@ Acceptance criteria:
 If any acceptance criterion fails:
 
 - Document the failing case(s) and adopt a fallback posture (lexical-only with vectors disabled, or hybrid-only with tighter gating).
+
 
 

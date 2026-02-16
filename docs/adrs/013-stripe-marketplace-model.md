@@ -1,4 +1,4 @@
-# ADR 013: Stripe Marketplace Model (Connect + Checkout/Capture)
+﻿# ADR 013: Stripe Marketplace Model (Connect + Checkout/Capture)
 
 ## Status
 
@@ -92,8 +92,8 @@ If any acceptance criterion fails:
 
 ## Alignment notes
 
-- Money math and rounding invariants: see `domains/payments/docs/31-money-math-fees-shipping-credit-and-ledger-invariants.md`.
-- Dispute/unwind behavior: see `domains/payments/docs/21-disputes-refunds-chargebacks-and-ledger-unwind.md`.
+- Money math and rounding invariants: see `docs/domain/payments-money-math-fees-shipping-credit-and-ledger-invariants.md`.
+- Dispute/unwind behavior: see `docs/domain/payments-disputes-refunds-chargebacks-and-ledger-unwind.md`.
 
 ## Research notes (to validate before final decision)
 
@@ -103,7 +103,7 @@ We need to validate the exact Stripe-supported pattern for:
 - Allocation across multiple seller balances
 - Multiple transfers (one per seller) from the platform to connected accounts
 
-If Stripe’s constraints prevent this, we fall back to charging per seller.
+If Stripeâ€™s constraints prevent this, we fall back to charging per seller.
 
 Suggested Stripe docs to review:
 
@@ -111,3 +111,4 @@ Suggested Stripe docs to review:
 - https://docs.stripe.com/connect/separate-charges-and-transfers
 - https://docs.stripe.com/connect/destination-charges
 - https://docs.stripe.com/connect/direct-charges
+
